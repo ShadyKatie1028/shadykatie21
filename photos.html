@@ -255,22 +255,31 @@
       transform: translateX(-50%);
       width: 80vw;
       max-width: 950px;
-      height: 60px;
-      background: rgba(0, 0, 0, 0.8);
+      height: auto;
+      max-height: 150px;
+      background: rgba(0, 0, 0, 0.9);
       color: #fff;
-      padding: 12px 16px;
+      padding: 20px;
       border-radius: 0 0 8px 8px;
       z-index: 100;
       display: none;
-      align-items: center;
-      font-size: 0.9rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      font-size: 1rem;
+      line-height: 1.6;
+      overflow-y: auto;
     }
 
     .grid-photo-info.active {
       display: flex;
+    }
+
+    .grid-photo-info strong {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: block;
     }
 
     .photo-grid img.large {
@@ -453,7 +462,16 @@
         img.classList.add('expanded');
         overlay.classList.add('active');
         gridPhotoInfo.classList.add('active');
-        gridPhotoInfo.textContent = img.alt || 'Photo';
+        
+        const photoName = img.alt || 'Photo';
+        const bio = img.getAttribute('data-bio') || '';
+        
+        if (bio) {
+          gridPhotoInfo.innerHTML = `<strong>${photoName}</strong><br>${bio}`;
+        } else {
+          gridPhotoInfo.textContent = photoName;
+        }
+        
         document.body.style.overflow = 'hidden';
       });
     });
@@ -468,34 +486,33 @@
   <hr style="border: none; height: 2px; background: black; margin: 40px 0;">
 
   <div class="photo-grid">
-    <img class="large" src="Katie Lin-2028.jpg" alt="Katie Lin">
-    <img class="wide" src="Erica 2.jpg" alt="Erica 2">
-    <img class="tall" src="Erica 4.jpg" alt="Erica 4">
-    <img class="tall" src="Erica 3.jpg" alt="Erica 3">
-    <img class="small" src="Erica 5.jpg" alt="Erica 5">
+    <img class="large" src="Katie Lin-2028.jpg" alt="Katie Lin" data-bio="A candid moment capturing the essence of everyday life.">
+    <img class="wide" src="Erica 2.jpg" alt="Erica 2" data-bio="Golden hour memories with good friends.">
+    <img class="tall" src="Erica 4.jpg" alt="Erica 4" data-bio="Laughter and joy in every frame.">
+    <img class="tall" src="Erica 3.jpg" alt="Erica 3" data-bio="Precious moments frozen in time.">
+    <img class="small" src="Erica 5.jpg" alt="Erica 5" data-bio="A snapshot of beautiful memories.">
 
-
-    <img class="tall" src="NYC .jpg" alt="NYC">
-    <img class="wide" src="NYC 2.jpg" alt="NYC 2">
-    <img class="small" src="FUCK ice.jpg" alt="FUCK ice">
-    <img class="tall" src="The Met.jpg" alt="The Met">
-    <img class="xlarge" src="The Met 2.jgp" alt="The Met 2">
-    <img class="tall" src="The Met 3.jpg" alt="The Met 3">
-    <img class="large" src="Isabella.jpg" alt="Isabella">
-    <img class="wide" src="garedn.jpg" alt="garedn">
-    <img class="tall" src="Boston.jpg" alt="Boston">
-    <img class="xlarge" src="boston 2.jpg" alt="Boston 2">
-    <img class="small" src="squrrl.jpg" alt="squrrl">
+    <img class="tall" src="NYC .jpg" alt="NYC" data-bio="The city that never sleeps, captured through my lens.">
+    <img class="wide" src="NYC 2.jpg" alt="NYC 2" data-bio="Urban exploration and architectural wonder.">
+    <img class="small" src="FUCK ice.jpg" alt="Ice" data-bio="Nature's artistry in frozen form.">
+    <img class="tall" src="The Met.jpg" alt="The Met" data-bio="Exploring light and architecture at The Met, capturing reflections and quiet museum corners.">
+    <img class="xlarge" src="The Met 2.jgp" alt="The Met 2" data-bio="Art and architecture in perfect harmony.">
+    <img class="tall" src="The Met 3.jpg" alt="The Met 3" data-bio="Beauty found in the details.">
+    <img class="large" src="Isabella.jpg" alt="Isabella" data-bio="Isabella Stewart Gardner Museum, August 7, 2026">
+    <img class="wide" src="garedn.jpg" alt="Garden" data-bio="Nature's palette in full bloom.">
+    <img class="tall" src="Boston.jpg" alt="Boston" data-bio="IS THIS NOT GIVING 'BRAND NEW DAY' BUT MAKE IT BOSTON?">
+    <img class="xlarge" src="boston 2.jpg" alt="Boston 2" data-bio="City vibes and summer memories.">
+    <img class="small" src="squrrl.jpg" alt="Squirrel" data-bio="A friendly encounter with nature.">
    
-    <img class="small" src="Photography.jpg" alt="Photography">
-    <img class="wide" src="Photography.jpg" alt="Photography">
-    <img class="tall" src="Photography.jpg" alt="Photography">
-    <img class="small" src="Photography.jpg" alt="Photography">
-    <img class="wide" src="Photography.jpg" alt="Photography">
-    <img class="tall" src="Photography.jpg" alt="Photography">
-    <img class="small" src="Photography.jpg" alt="Photography">
-    <img class="wide" src="Photography.jpg" alt="Photography">
-    <img class="small" src="Photography.jpg" alt="Photography">
+    <img class="small" src="Photography.jpg" alt="Photography" data-bio="Capturing light and moments.">
+    <img class="wide" src="Photography.jpg" alt="Photography" data-bio="The art of seeing the extraordinary.">
+    <img class="tall" src="Photography.jpg" alt="Photography" data-bio="Every frame tells a story.">
+    <img class="small" src="Photography.jpg" alt="Photography" data-bio="Visual storytelling through images.">
+    <img class="wide" src="Photography.jpg" alt="Photography" data-bio="Moments that matter.">
+    <img class="tall" src="Photography.jpg" alt="Photography" data-bio="Exploring the world through a camera.">
+    <img class="small" src="Photography.jpg" alt="Photography" data-bio="Beauty in the everyday.">
+    <img class="wide" src="Photography.jpg" alt="Photography" data-bio="Light, shadow, and emotion.">
+    <img class="small" src="Photography.jpg" alt="Photography" data-bio="A visual journey.">
     <img class="wide" src="Photography.jpg" alt="Photography">
     <img class="tall" src="Photography.jpg" alt="Photography">
     <img class="small" src="Photography.jpg" alt="Photography">
