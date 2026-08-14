@@ -97,6 +97,48 @@
       outline: none;
     }
 
+    .lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 99;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 50%;
+      font-size: 24px;
+      color: #222;
+      cursor: pointer;
+      z-index: 101;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .close-btn:hover {
+      background: #fff;
+      transform: scale(1.1);
+    }
+
     .polaroid.expanded {
       position: fixed;
       top: 50%;
@@ -229,6 +271,7 @@
 </head>
 
 <body>
+  <div class="lightbox-overlay" id="lightboxOverlay"></div>
 
   <p><a href="index.html">← Back to Home</a></p>
     <h1 style="text-align: center;">My Photos</h1>
@@ -239,22 +282,25 @@
   <h2 style="text-align:center; margin-top: 40px;">Polaroid Gallery</h2>
   <div class="polaroid-gallery">
     <div class="polaroid">
+      <button class="close-btn" style="display: none;">✕</button>
       <div class="bio-overlay">Exploring light and architecture at The Met, capturing reflections and quiet museum corners.</div>
       <img src="The Met.jpg" alt="The Met">
       <p>The Met</p>
     </div>
     <div class="polaroid">
+      <button class="close-btn" style="display: none;">✕</button>
       <div class="bio-overlay">IS THIS NOT GIVING 'BRAND NEW DAY' BUT MAKE IT BOSTON?\!?.</div>
       <img src="Boston.jpg" alt="Boston">
       <p>Boston</p>
     </div>
     <div class="polaroid">
+      <button class="close-btn" style="display: none;">✕</button>
       <div class="bio-overlay">isabella stewart gardner museum August 7, 2026</div>
       <img src="Isabella.jpg" alt="Isabella">
       <p>Isabella</p>
-      <p> testing random stuff</p>
     </div>
     <div class="polaroid">
+      <button class="close-btn" style="display: none;">✕</button>
       <div class="bio-overlay">Its giving 'Oooh oooh oooh Im On Fire'</div>
       <img src="Lifeguard.jpg" alt="Lifeguard">
       <p>Lifeguard in San Diego</p>
@@ -262,18 +308,49 @@
   </div>
 
   <script>
+    const overlay = document.getElementById('lightboxOverlay');
+    
+    function closeLightbox() {
+      document.querySelectorAll('.polaroid.expanded').forEach(card => {
+        card.classList.remove('expanded');
+        card.querySelector('.close-btn').style.display = 'none';
+      });
+      overlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+    
     document.querySelectorAll('.polaroid').forEach(card => {
-      card.addEventListener('click', () => {
+      const closeBtn = card.querySelector('.close-btn');
+      
+      card.addEventListener('click', (e) => {
+        if (e.target === closeBtn) return;
+        
         const expanded = card.classList.toggle('expanded');
         document.querySelectorAll('.polaroid').forEach(other => {
-          if (other \!== card) other.classList.remove('expanded');
+          if (other !== card) other.classList.remove('expanded');
         });
-        document.body.style.overflow = expanded ? 'hidden' : 'auto';
+        
         if (expanded) {
+          overlay.classList.add('active');
+          closeBtn.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
           const top = card.getBoundingClientRect().top + window.pageYOffset - 40;
           window.scrollTo({ top, behavior: 'smooth' });
+        } else {
+          closeLightbox();
         }
       });
+      
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeLightbox();
+      });
+    });
+    
+    overlay.addEventListener('click', closeLightbox);
+    
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
     });
   </script>
 
