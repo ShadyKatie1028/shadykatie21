@@ -10,34 +10,46 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-    .photo-wall {
-      position: relative;
-      width: 100%;
-      max-width: 1000px;
-      aspect-ratio: 1000 / 236;
-      margin: 20px auto;
+    .hero-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: flex-start;
+      padding: 12px 16px;
+      background: transparent;
     }
 
-    .photo-wall .frame {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 2;
+    .logo-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border: none;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 50%;
+      padding: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      outline: none;
     }
 
-    .photo-wall .photo {
-      position: absolute;
-      object-fit: cover;
-      object-position: center;
-      z-index: 1;
-      transform: translate(-50%, -50%);
+    .logo-btn:hover {
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transform: scale(1.1);
     }
 
-    .photo1 { top: 50%; left: 18%; width: 18%; height: 72%; }
-    .photo2 { top: 50%; left: 50%; width: 18%; height: 72%; }
-    .photo3 { top: 50%; left: 82%; width: 18%; height: 72%; }
+    .logo-btn img {
+      width: 25px;
+      height: 25px;
+      display: block;
+    }
+
+    .hero-title {
+      font-size: 100%;
+      margin: 0 0 0 auto;
+    }
 
     .polaroid-gallery {
       display: grid;
@@ -60,7 +72,16 @@
       position: relative;
       transform-origin: center center;
       overflow: hidden;
+      cursor: pointer;
+      transform: rotate(var(--rotate, 0deg)) scale(1);
+      transition: box-shadow 0.24s ease, transform 0.24s ease;
+      outline: none;
     }
+
+    .polaroid:nth-child(1) { --rotate: -3deg; }
+    .polaroid:nth-child(2) { --rotate: 2deg; }
+    .polaroid:nth-child(3) { --rotate: -1.5deg; }
+    .polaroid:nth-child(4) { --rotate: 3deg; }
 
     .polaroid .bio-overlay {
       position: absolute;
@@ -85,113 +106,10 @@
       transform: translateY(0);
     }
 
-    .polaroid {
-      cursor: pointer;
-      transform: rotate(var(--rotate, 0deg)) scale(1);
-      transition: box-shadow 0.24s ease, transform 0.24s ease;
-    }
-
     .polaroid:hover {
       box-shadow: 0 28px 56px rgba(0, 0, 0, 0.2);
       transform: rotate(var(--rotate, 0deg)) scale(1.02);
-      outline: none;
     }
-
-    .lightbox-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.85);
-      z-index: 99;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .lightbox-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      background: rgba(255, 255, 255, 0.9);
-      border: none;
-      border-radius: 50%;
-      font-size: 24px;
-      color: #222;
-      cursor: pointer;
-      z-index: 101;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s ease;
-    }
-
-    .close-btn:hover {
-      background: #fff;
-      transform: scale(1.1);
-    }
-
-    .polaroid.expanded {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      width: 75vw;
-      max-width: 900px;
-      height: 75vh;
-      max-height: 720px;
-      z-index: 100;
-      transform: translate(-50%, -50%) rotate(var(--rotate, 0deg)) scale(1);
-      box-shadow: 0 42px 110px rgba(0, 0, 0, 0.36);
-      border-radius: 8px;
-      overflow: hidden;
-      display: block;
-      padding: 0;
-      background: transparent;
-    }
-
-    .polaroid.expanded img {
-      width: 100%;
-      height: 100%;
-      border-radius: 0;
-      object-fit: contain;
-    }
-
-    .polaroid.expanded p {
-      display: none;
-    }
-
-    .polaroid.expanded .bio-overlay {
-      position: absolute;
-      top: auto;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: auto;
-      max-height: 0;
-      opacity: 0;
-      transform: none;
-      background: #fff;
-      color: #222;
-      align-items: flex-start;
-      justify-content: flex-start;
-      padding: 24px;
-      text-align: left;
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-
-    .polaroid:nth-child(1) { --rotate: -3deg; }
-    .polaroid:nth-child(2) { --rotate: 2deg; }
-    .polaroid:nth-child(3) { --rotate: -1.5deg; }
-    .polaroid:nth-child(4) { --rotate: 3deg; }
 
     .polaroid img {
       width: 100%;
@@ -209,162 +127,141 @@
     }
 
     .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(180px, 1fr));
-      grid-auto-rows: 180px;
-      grid-auto-flow: dense;
-      gap: 16px;
+      column-count: 4;
+      column-gap: 14px;
       margin: 0 auto 40px;
-      max-width: 1200px;
+      max-width: 1000px;
       padding: 0 10px;
     }
 
-    .photo-grid img {
+    .grid-item {
+      position: relative;
+      margin-bottom: 14px;
+      display: inline-block;
       width: 100%;
-      height: 100%;
-      display: block;
-      border-radius: 14px;
-      object-fit: cover;
-      transition: transform 0.28s ease, filter 0.28s ease, box-shadow 0.28s ease;
+      border-radius: 12px;
+      overflow: hidden;
+      break-inside: avoid;
       cursor: pointer;
     }
 
-    .photo-grid img.expanded {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      width: 80vw;
-      max-width: 950px;
-      height: 80vh;
-      max-height: 800px;
-      z-index: 100;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 42px 110px rgba(0, 0, 0, 0.36);
-      border-radius: 8px;
-      object-fit: contain;
-      background: transparent;
-      display: block;
-      margin: 0;
-      padding: 0;
-    }
-
-    .grid-photo-info {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80vw;
-      max-width: 950px;
+    .grid-item img {
+      width: 100%;
       height: auto;
-      max-height: 150px;
-      background: rgba(0, 0, 0, 0.9);
-      color: #fff;
-      padding: 20px;
-      border-radius: 0 0 8px 8px;
-      z-index: 100;
-      display: none;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      font-size: 1rem;
-      line-height: 1.6;
-      overflow-y: auto;
-    }
-
-    .grid-photo-info.active {
-      display: flex;
-    }
-
-    .grid-photo-info strong {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 8px;
       display: block;
+      border-radius: 12px;
+      transition: transform 0.24s ease, filter 0.24s ease;
     }
 
-    .placeholder {
-      display: none;
-    }
-
-    .photo-grid img.large {
-      grid-column: span 2;
-      grid-row: span 2;
-    }
-
-    .photo-grid img.xlarge {
-      grid-column: span 3;
-      grid-row: span 2;
-    }
-
-    .photo-grid img.wide {
-      grid-column: span 2;
-    }
-
-    .photo-grid img.tall {
-      grid-row: span 2;
-    }
-
-    .photo-grid img:hover {
-      transform: scale(1.03);
-      filter: saturate(1.04) brightness(1.02);
-    }
-
-    @media screen and (max-width: 1000px) {
-      .photo-grid {
-        grid-template-columns: repeat(3, minmax(180px, 1fr));
-      }
-    }
-
-    @media screen and (max-width: 760px) {
-      .photo-grid {
-        grid-template-columns: repeat(2, minmax(180px, 1fr));
-      }
-    }
-
-    @media screen and (max-width: 520px) {
-      .photo-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .logo-btn {
-      display: inline-flex;
+    .grid-item .bio-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(26, 25, 22, 0.85);
+      color: #f8f4e9;
+      display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-decoration: none;
-      border: none;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 50%;
-      padding: 8px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 16px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.24s ease, transform 0.24s ease;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      z-index: 2;
     }
 
-    .logo-btn:hover {
-      background: #fff;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      transform: scale(1.1);
+    .grid-item .bio-overlay strong {
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: #fff;
     }
 
-    .logo-btn img {
-      width: 25px;
-      height: 25px;
+    .grid-item:hover .bio-overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .grid-item:hover img {
+      transform: scale(1.04);
+      filter: brightness(0.9);
+    }
+
+    @media screen and (max-width: 768px) {
+      .photo-grid { column-count: 3; }
+    }
+
+    @media screen and (max-width: 500px) {
+      .photo-grid { column-count: 2; }
+    }
+
+    /* --- GLOBAL LIGHTBOX MODAL --- */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .lightbox-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-modal img {
+      max-width: 90vw;
+      max-height: 75vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-caption {
+      color: #fff;
+      margin-top: 16px;
+      text-align: center;
+      max-width: 600px;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .lightbox-caption strong {
       display: block;
+      font-size: 1.15rem;
+      margin-bottom: 4px;
     }
 
-    .hero-header {
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      background: rgba(255, 255, 255, 0.85);
+      border: none;
+      border-radius: 50%;
+      font-size: 24px;
+      color: #111;
+      cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 12px;
-      justify-content: flex-start;
-      padding: 12px 16px;
-      background: transparent;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.2s ease;
     }
 
-    .hero-title {
-      font-size: 100%;
-      margin: 0 0 0 auto;
+    .lightbox-close:hover {
+      background: #fff;
+      transform: scale(1.1);
     }
   </style>
 </head>
@@ -377,166 +274,184 @@
     <h1 class="hero-title">My Photos</h1>
   </div>
 
-  <div class="lightbox-overlay" id="lightboxOverlay"></div>
-  <div class="grid-photo-info" id="gridPhotoInfo"></div>
-
   <hr style="border: none; height: 2px; background: black; margin: 10px 0;">
 
   <p style="text-align: center;">Welcome to the photos page! Here is where I'll share my favorite moments and camera shots.</p>
 
   <h2 style="text-align:center; margin-top: 40px;">Polaroid Gallery</h2>
   <div class="polaroid-gallery">
-    <div class="polaroid">
-      <button class="close-btn" style="display: none;">✕</button>
+    <div class="polaroid" tabindex="0" data-bio="Exploring light and architecture at The Met, capturing reflections and quiet museum corners.">
       <div class="bio-overlay">Exploring light and architecture at The Met, capturing reflections and quiet museum corners.</div>
       <img src="The Met.jpg" alt="The Met">
       <p>The Met</p>
     </div>
-    <div class="polaroid">
-      <button class="close-btn" style="display: none;">✕</button>
-      <div class="bio-overlay">IS THIS NOT GIVING 'BRAND NEW DAY' BUT MAKE IT BOSTON?\!?.</div>
+    <div class="polaroid" tabindex="0" data-bio="IS THIS NOT GIVING 'BRAND NEW DAY' BUT MAKE IT BOSTON?!">
+      <div class="bio-overlay">IS THIS NOT GIVING 'BRAND NEW DAY' BUT MAKE IT BOSTON?!</div>
       <img src="Boston.jpg" alt="Boston">
       <p>Boston</p>
     </div>
-    <div class="polaroid">
-      <button class="close-btn" style="display: none;">✕</button>
-      <div class="bio-overlay">isabella stewart gardner museum August 7, 2026</div>
+    <div class="polaroid" tabindex="0" data-bio="Isabella Stewart Gardner Museum August 7, 2026">
+      <div class="bio-overlay">Isabella Stewart Gardner Museum August 7, 2026</div>
       <img src="Isabella.jpg" alt="Isabella">
       <p>Isabella</p>
     </div>
-    <div class="polaroid">
-      <button class="close-btn" style="display: none;">✕</button>
+    <div class="polaroid" tabindex="0" data-bio="Its giving 'Oooh oooh oooh Im On Fire'">
       <div class="bio-overlay">Its giving 'Oooh oooh oooh Im On Fire'</div>
-      <img src="Lifeguard.jpg" alt="Lifeguard">
+      <img src="Lifeguard.jpg" alt="Lifeguard in San Diego">
       <p>Lifeguard in San Diego</p>
     </div>
   </div>
 
+  <hr style="border: none; height: 2px; background: black; margin: 40px 0;">
+
+  <div class="photo-grid">
+    <div class="grid-item" tabindex="0" data-bio="A candid moment capturing the essence of everyday life.">
+      <img src="Katie Lin-2028.jpg" alt="Katie Lin">
+      <div class="bio-overlay"><strong>Katie Lin</strong>A candid moment capturing the essence of everyday life.</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="Golden hour memories with good friends.">
+      <img src="Erica 2.jpg" alt="Erica 2">
+      <div class="bio-overlay"><strong>Erica 2</strong>Golden hour memories with good friends.</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="Laughter and joy in every frame.">
+      <img src="Erica 4.jpg" alt="Erica 4">
+      <div class="bio-overlay"><strong>Erica 4</strong>Laughter and joy in every frame.</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="Precious moments frozen in time.">
+      <img src="Erica 3.jpg" alt="Erica 3">
+      <div class="bio-overlay"><strong>Erica 3</strong>Precious moments frozen in time.</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="A snapshot of beautiful memories.">
+      <img src="Erica 5.jpg" alt="Erica 5">
+      <div class="bio-overlay"><strong>Erica 5</strong>A snapshot of beautiful memories.</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="The city that never sleeps, captured through my lens.">
+      <img src="NYC .jpg" alt="NYC">
+      <div class="bio-overlay"><strong>NYC</strong>The city that never sleeps, captured through my lens.</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="Urban exploration and architectural wonder.">
+      <img src="NYC 2.jpg" alt="NYC 2">
+      <div class="bio-overlay"><strong>NYC 2</strong>Urban exploration and architectural wonder.</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="Nature's artistry in frozen form.">
+      <img src="FUCK ice.jpg" alt="Ice">
+      <div class="bio-overlay"><strong>Ice</strong>Nature's artistry in frozen form.</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="Exploring light and architecture at The Met, capturing reflections and quiet museum corners.">
+      <img src="The Met.jpg" alt="The Met">
+      <div class="bio-overlay"><strong>The Met</strong>Exploring light and architecture at The Met, capturing reflections and quiet museum corners.</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="Art and architecture in perfect harmony.">
+      <img src="The Met 2.jpg" alt="The Met 2">
+      <div class="bio-overlay"><strong>The Met 2</strong>Art and architecture in perfect harmony.</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="Beauty found in the details.">
+      <img src="The Met 3.jpg" alt="The Met 3">
+      <div class="bio-overlay"><strong>The Met 3</strong>Beauty found in the details.</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="Isabella Stewart Gardner Museum, August 7, 2026">
+      <img src="Isabella.jpg" alt="Isabella">
+      <div class="bio-overlay"><strong>Isabella</strong>Isabella Stewart Gardner Museum, August 7, 2026</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="Nature's palette in full bloom.">
+      <img src="garedn.jpg" alt="Garden">
+      <div class="bio-overlay"><strong>Garden</strong>Nature's palette in full bloom.</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="IS THIS NOT GIVING 'BRAND NEW DAY' BUT MAKE IT BOSTON?">
+      <img src="Boston.jpg" alt="Boston">
+      <div class="bio-overlay"><strong>Boston</strong>IS THIS NOT GIVING 'BRAND NEW DAY' BUT MAKE IT BOSTON?</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="City vibes and summer memories.">
+      <img src="boston 2.jpg" alt="Boston 2">
+      <div class="bio-overlay"><strong>Boston 2</strong>City vibes and summer memories.</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="A friendly encounter with nature.">
+      <img src="squrrl.jpg" alt="Squirrel">
+      <div class="bio-overlay"><strong>Squirrel</strong>A friendly encounter with nature.</div>
+    </div>
+  </div>
+
+  <div class="lightbox-modal" id="lightboxModal">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+    <img id="lightboxImage" src="" alt="Enlarged view">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
   <script>
-    const overlay = document.getElementById('lightboxOverlay');
-    const gridPhotoInfo = document.getElementById('gridPhotoInfo');
-    
-    function closeLightbox() {
-      document.querySelectorAll('.polaroid.expanded').forEach(card => {
-        card.classList.remove('expanded');
-        card.querySelector('.close-btn').style.display = 'none';
-      });
-      document.querySelectorAll('.photo-grid img.expanded').forEach(img => {
-        img.classList.remove('expanded');
-      });
-      gridPhotoInfo.classList.remove('active');
-      overlay.classList.remove('active');
-      document.body.style.overflow = 'auto';
+    const lightboxModal = document.getElementById('lightboxModal');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    function openLightbox(src, title, bio) {
+      lightboxImage.src = src;
+      lightboxImage.alt = title || 'Photo';
+      
+      let captionHtml = '';
+      if (title) captionHtml += `<strong>${title}</strong>`;
+      if (bio) captionHtml += `<span>${bio}</span>`;
+      
+      lightboxCaption.innerHTML = captionHtml;
+      lightboxModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
-    
-    // Handle polaroid clicks
+
+    function closeLightbox() {
+      lightboxModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+      lightboxImage.src = '';
+    }
+
     document.querySelectorAll('.polaroid').forEach(card => {
-      const closeBtn = card.querySelector('.close-btn');
-      
-      card.addEventListener('click', (e) => {
-        if (e.target === closeBtn) return;
-        
-        const expanded = card.classList.toggle('expanded');
-        document.querySelectorAll('.polaroid').forEach(other => {
-          if (other !== card) other.classList.remove('expanded');
-        });
-        
-        if (expanded) {
-          overlay.classList.add('active');
-          closeBtn.style.display = 'flex';
-          document.body.style.overflow = 'hidden';
-        } else {
-          closeLightbox();
+      const img = card.querySelector('img');
+      const title = card.querySelector('p')?.textContent || img.alt;
+      const bio = card.getAttribute('data-bio') || '';
+
+      card.addEventListener('click', () => openLightbox(img.src, title, bio));
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLightbox(img.src, title, bio);
         }
-      });
-      
-      closeBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        closeLightbox();
       });
     });
 
-    // Handle grid photo clicks
-    document.querySelectorAll('.photo-grid img').forEach(img => {
-      img.addEventListener('click', (e) => {
-        document.querySelectorAll('.photo-grid img.expanded').forEach(other => {
-          other.classList.remove('expanded');
-        });
-        
-        img.classList.add('expanded');
-        overlay.classList.add('active');
-        gridPhotoInfo.classList.add('active');
-        
-        const photoName = img.alt || 'Photo';
-        const bio = img.getAttribute('data-bio') || '';
-        
-        if (bio) {
-          gridPhotoInfo.innerHTML = `<strong>${photoName}</strong><br>${bio}`;
-        } else {
-          gridPhotoInfo.textContent = photoName;
+    document.querySelectorAll('.grid-item').forEach(item => {
+      const img = item.querySelector('img');
+      const title = img.alt;
+      const bio = item.getAttribute('data-bio') || '';
+
+      item.addEventListener('click', () => openLightbox(img.src, title, bio));
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLightbox(img.src, title, bio);
         }
-        
-        document.body.style.overflow = 'hidden';
       });
     });
-    
-    overlay.addEventListener('click', closeLightbox);
-    
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal) closeLightbox();
+    });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeLightbox();
     });
   </script>
-
-  <hr style="border: none; height: 2px; background: black; margin: 40px 0;">
-
-  <div class="photo-grid">
-    <img class="large" src="Katie Lin-2028.jpg" alt="Katie Lin" data-bio="A candid moment capturing the essence of everyday life.">
-    <img class="wide" src="Erica 2.jpg" alt="Erica 2" data-bio="Golden hour memories with good friends.">
-    <img class="tall" src="Erica 4.jpg" alt="Erica 4" data-bio="Laughter and joy in every frame.">
-    <img class="tall" src="Erica 3.jpg" alt="Erica 3" data-bio="Precious moments frozen in time.">
-    <img class="small" src="Erica 5.jpg" alt="Erica 5" data-bio="A snapshot of beautiful memories.">
-
-    <img class="tall" src="NYC .jpg" alt="NYC" data-bio="The city that never sleeps, captured through my lens.">
-    <img class="wide" src="NYC 2.jpg" alt="NYC 2" data-bio="Urban exploration and architectural wonder.">
-    <img class="small" src="FUCK ice.jpg" alt="Ice" data-bio="Nature's artistry in frozen form.">
-    <img class="tall" src="The Met.jpg" alt="The Met" data-bio="Exploring light and architecture at The Met, capturing reflections and quiet museum corners.">
-    <img class="xlarge" src="The Met 2.jgp" alt="The Met 2" data-bio="Art and architecture in perfect harmony.">
-    <img class="tall" src="The Met 3.jpg" alt="The Met 3" data-bio="Beauty found in the details.">
-    <img class="large" src="Isabella.jpg" alt="Isabella" data-bio="Isabella Stewart Gardner Museum, August 7, 2026">
-    <img class="wide" src="garedn.jpg" alt="Garden" data-bio="Nature's palette in full bloom.">
-    <img class="tall" src="Boston.jpg" alt="Boston" data-bio="IS THIS NOT GIVING 'BRAND NEW DAY' BUT MAKE IT BOSTON?">
-    <img class="xlarge" src="boston 2.jpg" alt="Boston 2" data-bio="City vibes and summer memories.">
-    <img class="small" src="squrrl.jpg" alt="Squirrel" data-bio="A friendly encounter with nature.">
-   
-    <img class="small placeholder" src="Photography.jpg" alt="Photography" data-bio="Capturing light and moments.">
-    <img class="wide placeholder" src="Photography.jpg" alt="Photography" data-bio="The art of seeing the extraordinary.">
-    <img class="tall placeholder" src="Photography.jpg" alt="Photography" data-bio="Every frame tells a story.">
-    <img class="small placeholder" src="Photography.jpg" alt="Photography" data-bio="Visual storytelling through images.">
-    <img class="wide placeholder" src="Photography.jpg" alt="Photography" data-bio="Moments that matter.">
-    <img class="tall placeholder" src="Photography.jpg" alt="Photography" data-bio="Exploring the world through a camera.">
-    <img class="small placeholder" src="Photography.jpg" alt="Photography" data-bio="Beauty in the everyday.">
-    <img class="wide placeholder" src="Photography.jpg" alt="Photography" data-bio="Light, shadow, and emotion.">
-    <img class="small placeholder" src="Photography.jpg" alt="Photography" data-bio="A visual journey.">
-    <img class="wide placeholder" src="Photography.jpg" alt="Photography">
-    <img class="tall placeholder" src="Photography.jpg" alt="Photography">
-    <img class="small placeholder" src="Photography.jpg" alt="Photography">
-    <img class="wide placeholder" src="Photography.jpg" alt="Photography">
-    <img class="tall placeholder" src="Photography.jpg" alt="Photography">
-    <img class="wide placeholder" src="Photography.jpg" alt="Photography">
-    <img class="tall placeholder" src="Photography.jpg" alt="Photography">
-    <img class="small placeholder" src="Photography.jpg" alt="Photography">
-    <img class="wide placeholder" src="Photography.jpg" alt="Photography">
-    <img class="tall placeholder" src="Photography.jpg" alt="Photography">
-    <img class="wide placeholder" src="Photography.jpg" alt="Photography">
-    <img class="tall placeholder" src="Photography.jpg" alt="Photography">
-    <img class="small placeholder" src="Photography.jpg" alt="Photography">
-    <img class="wide placeholder" src="Photography.jpg" alt="Photography">
-    <img class="tall placeholder" src="Photography.jpg" alt="Photography">
-    <img class="small placeholder" src="Photography.jpg" alt="Photography">
-    <img class="wide" src="Photography.jpg" alt="Photography">
-    <img class="tall" src="Photography.jpg" alt="Photography">
-    <img class="small" src="Photography.jpg" alt="Photography">
-    <img class="wide" src="Photography.jpg" alt="Photography">
-  </div>
 </body>
 </html>
