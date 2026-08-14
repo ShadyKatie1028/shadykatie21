@@ -226,6 +226,51 @@
       border-radius: 14px;
       object-fit: cover;
       transition: transform 0.28s ease, filter 0.28s ease, box-shadow 0.28s ease;
+      cursor: pointer;
+    }
+
+    .photo-grid img.expanded {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 80vw;
+      max-width: 950px;
+      height: 80vh;
+      max-height: 800px;
+      z-index: 100;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 42px 110px rgba(0, 0, 0, 0.36);
+      border-radius: 8px;
+      object-fit: contain;
+      background: transparent;
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
+
+    .grid-photo-info {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80vw;
+      max-width: 950px;
+      height: 60px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 0 0 8px 8px;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      font-size: 0.9rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .grid-photo-info.active {
+      display: flex;
     }
 
     .photo-grid img.large {
@@ -273,6 +318,7 @@
 
 <body>
   <div class="lightbox-overlay" id="lightboxOverlay"></div>
+  <div class="grid-photo-info" id="gridPhotoInfo"></div>
 
   <p><a href="index.html">← Back to Home</a></p>
     <h1 style="text-align: center;">My Photos</h1>
@@ -310,16 +356,22 @@
 
   <script>
     const overlay = document.getElementById('lightboxOverlay');
+    const gridPhotoInfo = document.getElementById('gridPhotoInfo');
     
     function closeLightbox() {
       document.querySelectorAll('.polaroid.expanded').forEach(card => {
         card.classList.remove('expanded');
         card.querySelector('.close-btn').style.display = 'none';
       });
+      document.querySelectorAll('.photo-grid img.expanded').forEach(img => {
+        img.classList.remove('expanded');
+      });
+      gridPhotoInfo.classList.remove('active');
       overlay.classList.remove('active');
       document.body.style.overflow = 'auto';
     }
     
+    // Handle polaroid clicks
     document.querySelectorAll('.polaroid').forEach(card => {
       const closeBtn = card.querySelector('.close-btn');
       
@@ -345,6 +397,21 @@
       closeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         closeLightbox();
+      });
+    });
+
+    // Handle grid photo clicks
+    document.querySelectorAll('.photo-grid img').forEach(img => {
+      img.addEventListener('click', (e) => {
+        document.querySelectorAll('.photo-grid img.expanded').forEach(other => {
+          other.classList.remove('expanded');
+        });
+        
+        img.classList.add('expanded');
+        overlay.classList.add('active');
+        gridPhotoInfo.classList.add('active');
+        gridPhotoInfo.textContent = img.alt || 'Photo';
+        document.body.style.overflow = 'hidden';
       });
     });
     
