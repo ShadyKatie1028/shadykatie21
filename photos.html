@@ -418,8 +418,6 @@
           overlay.classList.add('active');
           closeBtn.style.display = 'flex';
           document.body.style.overflow = 'hidden';
-          const top = card.getBoundingClientRect().top + window.pageYOffset - 40;
-          window.scrollTo({ top, behavior: 'smooth' });
         } else {
           closeLightbox();
         }
