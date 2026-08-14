@@ -313,15 +313,46 @@
         grid-template-columns: 1fr;
       }
     }
+
+    .logo-btn {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.95);
+      border: none;
+      border-radius: 50%;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo-btn:hover {
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transform: scale(1.1);
+    }
+
+    .logo-btn img {
+      width: 25px;
+      height: 25px;
+      display: block;
+    }
   </style>
 </head>
 
 <body>
+  <a href="index.html" class="logo-btn">
+    <img src="LOGO.png" alt="Back to Home">
+  </a>
   <div class="lightbox-overlay" id="lightboxOverlay"></div>
   <div class="grid-photo-info" id="gridPhotoInfo"></div>
 
-  <p><a href="index.html">← Back to Home</a></p>
-    <h1 style="text-align: center;">My Photos</h1>
+  <h1 style="text-align: center;">My Photos</h1>
   <hr style="border: none; height: 2px; background: black; margin: 10px 0;">
 
   <p style="text-align: center;">Welcome to the photos page! Here is where I'll share my favorite moments and camera shots.</p>
