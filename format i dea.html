@@ -1,0 +1,216 @@
+<style>
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f3f4f7;
+            color: #1a1a1a;
+        }
+
+        .page {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: 3rem;
+            line-height: 1.05;
+        }
+
+        .hero p {
+            margin: 18px auto 0;
+            max-width: 680px;
+            color: #555962;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(35, 45, 70, 0.12);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .card-content {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding: 32px;
+        }
+
+        .card-image {
+            width: 240px;
+            min-width: 240px;
+            border-radius: 24px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-text {
+            flex: 1;
+            min-width: 280px;
+            max-width: 100%;
+        }
+
+        .card-text h2,
+        .card-text h3,
+        .card-text h1 {
+            margin: 0 0 18px;
+            line-height: 1.05;
+        }
+
+        .card-text h2 {
+            font-size: 2rem;
+        }
+
+        .card-text h3 {
+            font-size: 1.3rem;
+            color: #3d4361;
+        }
+
+        .card-text p {
+            margin: 0 0 24px;
+            color: #575f74;
+            line-height: 1.75;
+            font-size: 1rem;
+        }
+
+        .button-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 22px;
+            border-radius: 999px;
+            background: #111111;
+            color: #ffffff;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .button-link img {
+            display: block;
+            width: 20px;
+            height: 20px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 24px;
+            margin: 0 auto 40px;
+        }
+
+        .feature-card {
+            padding: 30px 24px;
+            border-radius: 30px;
+            background: #ffffff;
+            box-shadow: 0 18px 50px rgba(35, 45, 70, 0.08);
+            border: 1px solid rgba(103, 110, 153, 0.12);
+            text-align: center;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .feature-card-header {
+            display: block;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .feature-card-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            background: #f4f4f1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            color: #d86d35;
+            box-shadow: 0 18px 36px rgba(35, 45, 70, 0.12);
+            border: 1px solid rgba(216, 109, 53, 0.14);
+            transition: transform 0.2s ease;
+        }
+
+        .feature-card-icon:hover {
+            transform: translateY(-2px);
+        }
+
+        .feature-card h4 {
+            margin: 0;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #222;
+        }
+
+        .feature-card p {
+            margin: 0;
+            color: #5f647a;
+            line-height: 1.75;
+            font-size: 0.97rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 0 0 22px;
+            font-size: 2rem;
+        }
+
+        .footer-center {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .divider {
+            height: 1px;
+            border: 0;
+            background: #e5e7ef;
+            margin: 0 0 32px;
+        }
+
+        @media (max-width: 960px) {
+            .feature-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 760px) {
+            .page {
+                padding: 24px 16px;
+            }
+
+            .card-content {
+                padding: 24px;
+            }
+
+            .card-image {
+                width: 100%;
+                min-width: 100%;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
