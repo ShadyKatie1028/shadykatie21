@@ -2,11 +2,250 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Music</title>
-    </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shady's Blog</title>
+    <style>
+        body {
+            background-image: url('music-background.jpg'); 
+            background-repeat: repeat-y;
+            background-position: center top;
+            background-size: 100% auto;
+            background-attachment: scroll;
+            background-color: #616e34; 
+            font-family: Georgia, serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        * {
+            color: #D3D3D3 !important;
+        }
+
+        header {
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto 30px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: normal;
+            margin: 0 0 10px;
+        }
+
+        header p {
+            font-style: italic;
+            margin: 0;
+        }
+
+        .page-wrapper {
+            max-width: 850px;
+            margin: 0 auto;
+            display: flex;
+            gap: 35px;
+            align-items: flex-start;
+        }
+
+        .music-sidebar {
+            flex: 0 0 165px;
+            text-align: center;
+        }
+
+        .music-sidebar img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 8px;
+        }
+
+        .music-info {
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .music-title {
+            font-weight: bold;
+            display: block;
+        }
+
+        .music-title a {
+            text-decoration: none;
+        }
+
+        .music-title a:hover {
+            text-decoration: underline;
+        }
+
+        .music-artist {
+            font-size: 0.78rem;
+        }
+
+        .mp3-controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 8px 0 12px;
+        }
+
+        .mp3-btn {
+            background: none;
+            border: 1px solid #d4cebe;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            transition: all 0.2s ease;
+        }
+
+        .mp3-btn:hover {
+            background: #e8e3d5;
+        }
+
+        .fav-songs {
+            text-align: left;
+            border-top: 1px solid #e0dbd1;
+            padding-top: 10px;
+        }
+
+        .fav-songs h3 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 0 6px;
+            font-weight: normal;
+        }
+
+        .fav-songs ol {
+            margin: 0;
+            padding-left: 15px;
+            font-size: 0.78rem;
+        }
+
+        .fav-songs li {
+            margin-bottom: 3px;
+        }
+
+        .container {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .blog-post {
+            margin-bottom: 60px;
+        }
+
+        .post-meta {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            font-size: 0.85rem;
+            border-top: 1px solid #e0dbd1;
+            padding-top: 20px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e0dbd1; 
+            margin: 40px 0;
+        }
+
+        .logo-btn img {
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            border: 1px solid #ffffff;
+            background-color: #ffffff;
+            display: block;
+            padding: 6px;          
+            box-sizing: border-box; 
+            object-fit: contain;   
+        }
+
+        @media (max-width: 650px) {
+            .page-wrapper {
+                flex-direction: column;
+            }
+            .music-sidebar {
+                width: 100%;
+                max-width: 200px;
+                margin: 0 auto 30px;
+            }
+        }
+    </style>
+</head>
 <body>
-    <p> <a href="index.html">← Back to Home</a> </p>
-    <h1>My Music & Favorite Tracks</h1>
-    <p>Welcome to the music page! Here is where I'll post my favorite songs, playlists, and music discoveries.</p>
+
+    <div class="hero-header">
+        <a href="index.html" class="logo-btn">
+            <img src="LOGO.png" alt="Logo">
+        </a>
+    </div>
+
+    <header>
+        <h1>Under the Tree</h1>
+        <p>With some headphones.</p>
+    </header>
+
+    <div style="max-width: 850px; margin: 0 auto;"><hr></div>
+
+    <div class="page-wrapper">
+        <aside class="music-sidebar">
+            <img src="Those Eyes.jpeg" alt="Album Cover">
+            
+            <div class="music-info">
+                <span class="music-title"><a href="https://youtu.be/b_CpWmkhwq0?si=tkxkWRH9BEBUoC6P" target="_blank">Those Eyes</a></span>
+                <span class="music-artist">New West</span>
+            </div>
+
+            <div class="mp3-controls">
+                <button class="mp3-btn" aria-label="Previous">⏮</button>
+                <button class="mp3-btn" aria-label="Play">▶</button>
+                <button class="mp3-btn" aria-label="Next">⏭</button>
+            </div>
+
+            <div class="fav-songs">
+                <h3>Fav Songs</h3>
+                <ol>
+                    <li>Those Eyes - New West</li>
+                    <li>Wait for Me - Hadestown</li>
+                    <li>Lonesome Is A State Of Mind - DJO </li>
+                    
+                </ol>
+            </div>
+        </aside>
+
+            <hr>
+            <main class="container">
+            <article class="blog-post">
+                <div class="post-meta">August 15, 2026 • New Song</div>
+                <p>Been loving <a href="https://youtu.be/b_CpWmkhwq0?si=tkxkWRH9BEBUoC6P"><em>Those Eyes</em> </a> by New West recently...</p> 
+            </article>
+
+<hr>
+
+            <article class="blog-post">
+                <div class="post-meta">August 15, 2026</div>
+                <p>This is where I will update you guys on what songs Ive been liking, thoughts on new albums/songs/eps or song recommendations that yall have given me. As well as song lyrics that stood out to me, and/or that have been stuck in my head.</p> 
+            </article>
+        </main>
+    </div>
+
+    <footer style="max-width: 850px; margin: 80px auto 0;">
+        <p>2026 Shady's Blog.</p>
+    </footer>
+
 </body>
 </html>
