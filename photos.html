@@ -188,6 +188,11 @@
       filter: brightness(0.9);
     }
 
+    .grid-item:nth-child(odd) { transform: rotate(-1deg); }
+.grid-item:nth-child(even) { transform: rotate(1.5deg); }
+.grid-item:hover { transform: rotate(0deg) scale(1.03); z-index: 5; }
+
+
     @media screen and (max-width: 768px) {
       .photo-grid { column-count: 3; }
     }
@@ -196,7 +201,7 @@
       .photo-grid { column-count: 2; }
     }
 
-    /* --- GLOBAL LIGHTBOX MODAL --- */
+   
     .lightbox-modal {
       position: fixed;
       inset: 0;
@@ -271,10 +276,10 @@
     <a href="index.html" class="logo-btn">
       <img src="LOGO.png" alt="Logo">
     </a>
-    <h1 style="text-align:center;">My Photos</h1>
+    <h1 style="text-align: center; display: block; width: 100%;">My Photos</h1>
   </div>
 
-  <hr style="border: none; height: 2px; background: black; margin: 10px 0;">
+  <hr style="border: none; height: 2px; background: black; margin: 0px 0;">
 
   <p style="text-align: center;">Welcome to the photos page! Here is where I'll share my favorite moments and camera shots.</p>
 
@@ -310,15 +315,26 @@
       <div class="bio-overlay"><strong>Erica</strong>something something idk yet</div>
     </div>
 
+ 
+
+    <div class="grid-item" tabindex="0" data-bio="more stuff idk yet.">
+      <img src="Mit.jpg" alt="Arc">
+      <div class="bio-overlay"><strong>Mit</strong> TONY STARK BUILT THIS IN A CAVE. WITH A BOX OF SCRAPS</div>
+    </div> 
+
+
+    
     <div class="grid-item" tabindex="0" data-bio="more stuff idk yet.">
       <img src="Erica 2.jpg" alt="Erica 2">
       <div class="bio-overlay"><strong>Erica 2</strong>more stuff idk yet.</div>
     </div>
 
-    <div class="grid-item" tabindex="0" data-bio="blah blah blah.">
+    <div class="grid-item"tabindex="0" data-bio="blah blah blah.">
       <img src="Erica 4.jpg" alt="Erica 4">
       <div class="bio-overlay"><strong>Erica 4</strong>blah blah blah.</div>
     </div>
+
+   
 
     <div class="grid-item" tabindex="0" data-bio="i do not speak blah blah blah.">
       <img src="Erica 3.jpg" alt="Erica 3">
@@ -344,6 +360,8 @@
       <img src="FUCK ice.jpg" alt="Ice">
       <div class="bio-overlay"><strong>Ice</strong>What else is there to say?</div>
     </div>
+
+
 
     <div class="grid-item" tabindex="0" data-bio="The Met is just so pretty.">
       <img src="The Met.jpg" alt="The Met">
@@ -378,6 +396,86 @@
     <div class="grid-item" tabindex="0" data-bio="Boston">
       <img src="boston 2.jpg" alt="Boston 2">
       <div class="bio-overlay"><strong>Boston 2</strong>Boston</div>
+    </div>
+
+   <div class="grid-item" tabindex="0" data-bio="Will Fourth of July">
+      <img src="Will 4th of July.jpg" alt="Will Fourth of July">
+      <div class="bio-overlay"><strong>Will Fourth of July</strong>Will Fourth of July</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="Will Fourth of July">
+      <img src="Will 4th of July-2.jpg" alt="Will Fourth of July">
+      <div class="bio-overlay"><strong>Will Fourth of July</strong>Will Fourth of July</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="Will Fourth of July">
+      <img src="Will 4th of July-3.jpg" alt="Will Fourth of July">
+      <div class="bio-overlay"><strong>Will Fourth of July</strong>Will Fourth of July</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="Will Fourth of July">
+      <img src="Will 4th of July-5.jpg" alt="Will Fourth of July">
+      <div class="bio-overlay"><strong>Will Fourth of July</strong>Will Fourth of July</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="Will Fourth of July">
+      <img src="Will 4th of July-6.jpg" alt="Will Fourth of July">
+      <div class="bio-overlay"><strong>Will Fourth of July</strong>Will Fourth of July</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="SD">
+      <img src="SD.jpg" alt="SD">
+      <div class="bio-overlay"><strong>SD</strong>SD</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="SD">
+      <img src="SD-2.jpg" alt="SD">
+      <div class="bio-overlay"><strong>SD</strong>SD</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="SD">
+      <img src="SD-3.jpg" alt="SD">
+      <div class="bio-overlay"><strong>SD</strong>SD</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="SD">
+      <img src="SD-4.jpg" alt="SD">
+      <div class="bio-overlay"><strong>SD</strong>SD</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="SD">
+      <img src="SD-5.jpg" alt="SD">
+      <div class="bio-overlay"><strong>SD</strong>SD</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="SD">
+      <img src="SD-6.jpg" alt="SD">
+      <div class="bio-overlay"><strong>SD</strong>SD</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="SD">
+      <img src="SD-7.jpg" alt="SD">
+      <div class="bio-overlay"><strong>SD</strong>SD</div>
+    </div>
+    
+    <div class="grid-item" tabindex="0" data-bio="SD">
+      <img src="SD-8.jpg" alt="SD">
+      <div class="bio-overlay"><strong>SD</strong>SD</div>
+    </div>
+    
+    <div class="grid-item" tabindex="0" data-bio="SD">
+      <img src="SD-9.jpg" alt="SD">
+      <div class="bio-overlay"><strong>SD</strong>SD</div>
+    </div>
+
+    <div class="grid-item" tabindex="0" data-bio="Big Fishy">
+      <img src="big fish.jpg" alt="big guy">
+      <div class="bio-overlay"><strong>Big Fishy</strong>:o</div>
+    </div> 
+ 
+    <div class="grid-item" tabindex="0" data-bio="more stuff idk yet.">
+      <img src="neon fishy.jpg" alt="neon fishy">
+      <div class="bio-overlay"><strong> Neon Fishy</strong>not edible do not eat neon fish.</div>
     </div>
 
     <div class="grid-item" tabindex="0" data-bio="squirrel!!!">
@@ -457,5 +555,8 @@
       if (e.key === 'Escape') closeLightbox();
     });
   </script>
+
+
+
 </body>
 </html>
