@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shady's Blog - Private Admin Panel</title>
+    <style>
+        body { background-color: #f7f5f0; font-family: Georgia, serif; padding: 40px 20px; }
+        .admin-box { max-width: 500px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; border: 1px solid #e0dbd1; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; font-family: sans-serif; font-size: 0.85rem; text-transform: uppercase; }
+        input, textarea { width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #333; color: white; border: none; padding: 12px 20px; width: 100%; font-weight: bold; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div class="admin-box">
+        <h2 style="margin-top: 0; text-align: center;">Publish a New Blog Post</h2>
+        
+        <form action="https://hook.us2.make.com/adeqwj6dlg40uknbij22col6pkwohhxn" method="POST">
+            
+            <label for="title">Post Title</label>
+            <input type="text" id="title" name="post_title" required placeholder="e.g., Hadestown on Broadway!">
+
+            <label for="content">Post Content (Paragraph Text)</label>
+            <textarea id="content" name="post_content" rows="8" required placeholder="Type your inside thoughts here..."></textarea>
+
+            <button type="submit">Publish to Website & Blast Email</button>
+        </form>
+    </div>
+
+</body>
+</html>
