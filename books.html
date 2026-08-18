@@ -3,10 +3,477 @@
 <head>
     <meta charset="UTF-8">
     <title>Books - Shady's Blog</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #6B1C06; 
+            font-family: serif;
+            color: aliceblue;
+        }
+
+        .bookmark-ribbon {
+            position: absolute;
+            top: 0;
+            left: 25px;
+            z-index: 1000;
+            width: 26px;
+            height: 44px;
+            background-color: #d83a2d;
+            display: block;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+            filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.4));
+        }
+
+        .bookmark-ribbon:hover {
+            background-color: #b82d22;
+        }
+
+        .hero-background {
+            position: relative;
+            min-height: 100vh;
+            background-image: url('books_background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .positioned-text {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        .color-section {
+            display: flex;
+            gap: 30px;
+            padding: 40px 10px 40px 0px;
+            box-sizing: border-box;
+            max-width: 100%;
+            margin: 0;
+        }
+
+        .bookshelf-sidebar {
+            width: 350px;
+            min-width: 310px;
+            background: linear-gradient(180deg, #140704 0%, #240d07 100%);
+            border-left: 12px solid #1a0805;
+            border-right: 12px solid #1a0805;
+            border-top: 14px solid #240d07;
+            border-bottom: 18px solid #100401;
+            border-radius: 2px;
+            padding: 0;
+            box-shadow: 
+                inset 0 18px 25px rgba(0,0,0,0.9),
+                inset 0 -12px 20px rgba(0,0,0,0.9),
+                5px 10px 25px rgba(0,0,0,0.7);
+            height: fit-content;
+        }
+
+        .shelf {
+            height: 155px;
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            padding: 0 4px;
+            position: relative;
+            border-bottom: 15px solid #2b110a;
+            box-shadow: 
+                0 9px 14px rgba(0, 0, 0, 0.8),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1),
+                inset 0 -4px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .shelf::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, transparent 100%);
+            pointer-events: none;
+            z-index: 5;
+        }
+        .css-book {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 8px;
+            line-height: 1.05;
+            font-weight: bold;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            border-radius: 1px 1px 0 0;
+            padding: 4px 1px;
+            box-shadow: 
+                inset 2px 0 4px rgba(255,255,255,0.18),
+                inset -2px 0 4px rgba(0,0,0,0.6),
+                1px 0 3px rgba(0,0,0,0.7);
+            transition: transform 0.2s ease, filter 0.2s ease;
+            user-select: none;
+            white-space: normal;
+            word-break: break-word;
+            box-sizing: border-box;
+        }
+
+        .css-book:hover {
+            transform: scale(1.06) translateY(-4px) rotate(0deg) !important;
+            filter: brightness(1.2);
+            z-index: 10;
+        }
+
+        .book-stack {
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .stack-right { margin-left: auto; }
+        .stack-left { margin-right: auto; }
+
+        .stacked-book {
+            height: 18px;
+            width: 88px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 7.5px;
+            line-height: 1;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 1px;
+            padding: 0 2px;
+            box-shadow: 
+                inset 0 2px 3px rgba(255,255,255,0.2),
+                inset 0 -2px 3px rgba(0,0,0,0.6),
+                0 -2px 4px rgba(0,0,0,0.6);
+            transition: transform 0.2s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .stacked-book:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .sp-wwz-exact { background: linear-gradient(90deg, #8a3311, #c8531d, #8a3311); color: #111; font-weight: 900; }
+        .sp-raisin-exact { background: linear-gradient(90deg, #d64a38, #f5bf38, #d64a38); color: #111; }
+        .sp-roomview-exact { background: linear-gradient(90deg, #3d3b2b, #736b43, #3d3b2b); color: #f5eedc; border-top: 2px solid #ffffff; }
+        .sp-animalfarm-exact { background: linear-gradient(90deg, #181818, #2a2a2a, #181818); color: #f49ac2; }
+        .sp-catcher-exact { background: linear-gradient(90deg, #c9932a, #e2b342, #c9932a); color: #111; }
+        .sp-createdanger-exact { background: linear-gradient(90deg, #d8b8cc, #edd3e3, #d8b8cc); color: #111; border-top: 3px solid #ffeb3b; }
+        .sp-deadpoets-exact { background: linear-gradient(90deg, #8a5e18, #c48c27, #8a5e18); color: #111; }
+        .sp-land-exact { background: linear-gradient(90deg, #132743, #203e68, #132743); color: #d4af37; border-top: 2px solid #d4af37; border-bottom: 2px solid #d4af37; }
+        .sp-funnystory-exact { background: linear-gradient(90deg, #b0ca23, #cde338, #b0ca23); color: #111; }
+        .sp-youngpoet-exact { background: linear-gradient(90deg, #0f1c24, #1b2d38, #0f1c24); color: #f2e3c6; border-bottom: 3px solid #ffffff; }
+        .sp-ofmicemen-exact { background: linear-gradient(90deg, #222222, #3a3a3a, #222222); color: #e9b338; border-top: 3px solid #d93d3d; }
+        .sp-ontheroad-exact { background: linear-gradient(90deg, #1b8a6b, #2bb38c, #1b8a6b); color: #f29a9a; }
+        .sp-dullpeople-exact { background: linear-gradient(90deg, #0d0d0d, #222222, #0d0d0d); color: #ffffff; border-top: 3px solid #ffffff; border-bottom: 3px solid #ffffff; }
+        .sp-wallflower-exact { background: linear-gradient(90deg, #e3ded8, #f5f0eb, #e3ded8); color: #111111; border-top: 2px solid #e05d38; }
+        .sp-hailmary-exact { background: linear-gradient(90deg, #b8860b, #daa520, #b8860b); color: #000000; font-weight: 900; }
+        .sp-slaughter5-exact { background: linear-gradient(90deg, #b02a1e, #d9382b, #b02a1e); color: #f2e2be; }
+        .sp-gatsby-exact { background: linear-gradient(90deg, #0e2040, #1a3668, #0e2040); color: #ffd700; border-top: 2px solid #ffd700; }
+        .sp-montecristo-exact { background: linear-gradient(90deg, #8b5a2b, #b87a3d, #8b5a2b); color: #0b1a2d; }
+        .sp-heaven5-exact { background: linear-gradient(90deg, #8b2323, #a83232, #8b2323); color: #f2e3c6; border-top: 2px solid #f2e3c6; border-bottom: 2px solid #f2e3c6; }
+        .sp-oldman-exact { background: linear-gradient(90deg, #122830, #224452, #122830); color: #e88d67; border-bottom: 3px solid #e88d67; }
+        .sp-thepearl-exact { background: linear-gradient(90deg, #1b5c68, #2a8394, #1b5c68); color: #f5eedc; border-top: 2px solid #e88d67; }
+        .sp-stranger-exact { background: linear-gradient(90deg, #111111, #2b2b2b, #111111); color: #ffffff; border-top: 2px solid #ffffff; border-bottom: 2px solid #ffffff; }
+        .sp-tuesdays-exact { background: linear-gradient(90deg, #d8cfb3, #eee7d5, #d8cfb3); color: #9e1f1f; border-left: 2px solid #9e1f1f; border-right: 2px solid #9e1f1f; }
+        .sp-whitenights-exact { background: linear-gradient(90deg, #0d0d0d, #1c1c1c, #0d0d0d); color: #d48c37; border-bottom: 3px solid #ffffff; }
+
+        .sp-penguin-black { background: linear-gradient(90deg, #111, #222, #111); color: #fff; border-top: 3px solid #e76f51; border-bottom: 3px solid #e76f51; }
+        .sp-vintage-paper { background: linear-gradient(90deg, #c7b39b, #ded0be, #c7b39b); color: #111; }
+
+        .tilt-wall-left { transform: rotate(-6deg) translateY(-3px); transform-origin: bottom left; margin-left: -1px; }
+        .tilt-wall-right { transform: rotate(6deg) translateY(-3px); transform-origin: bottom right; margin-right: -1px; }
+
+        .blogs-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .post {
+            background-color: rgba(0, 0, 0, 0.35);
+            border-radius: 8px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .post-date {
+            font-family: sans-serif;
+            font-size: 0.85rem;
+            color: #d4a373;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .post-title {
+            margin: 0 0 15px 0;
+            color: #FFD1A9;
+            font-size: 1.8rem;
+        }
+
+        .post-body {
+            color: #e0d0cc;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* --- POPUP MODAL --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #2b110a;
+            border: 2px solid #522316;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 750px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9);
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .modal-cover {
+            width: 180px;
+            height: 270px;
+            object-fit: cover;
+            border-radius: 6px;
+            box-shadow: 4px 4px 12px rgba(0,0,0,0.6);
+            flex-shrink: 0;
+        }
+
+        .modal-details { flex: 1; }
+        .modal-details h2 { margin: 0 0 5px 0; color: #FFD1A9; font-size: 2rem; }
+        .modal-meta { font-family: sans-serif; font-size: 0.95rem; color: #d4a373; margin-bottom: 12px; font-style: italic; }
+
+        .modal-features {
+            font-family: sans-serif;
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            background: rgba(0,0,0,0.25);
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.95rem;
+        }
+
+        .feature-item span { color: #FFD1A9; font-weight: bold; }
+        .star-rating { color: #d4af37; letter-spacing: 2px; }
+        .modal-details p { color: #e0d0cc; font-size: 1.05rem; line-height: 1.6; }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #d83a2d;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close-btn:hover { color: #ff5c4d; }
+    </style>
 </head>
-<body style="background-image: url('books_background.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">   
-    <p><a href="index.html" style="color:aliceblue">← Back to Home</a></p>
-    <h1 style="text-align: center; color: aliceblue;">My Books & Favorite Reads</h1>
-    <p style="text-align: center; color: aliceblue;">Welcome to the books page! Here is where I'll post recent reads, book reviews, and recommendations.</p>
+<body>   
+
+    <a href="index.html" class="bookmark-ribbon" title="Back to Home"></a>
+
+    <div class="hero-background">
+        <div class="positioned-text">
+            <h1>My Books & Favorite Reads</h1>
+            <p>Welcome to the books page! Here is where I'll post recent reads, book reviews, and recommendations.</p>
+            <p>Scroll down to see</p>
+        </div>
+    </div>
+
+    <div class="color-section">
+        
+        <div class="bookshelf-sidebar">
+            
+            <div class="shelf">
+                <div class="css-book sp-penguin-black tilt-wall-left" style="width: 22px; height: 115px;" 
+                     onclick="openBookModal('Billy Budd, Sailor', 'Herman Melville', '1924', 'billy_budd.jpg', 5, 'No', '')">BILLY BUDD</div>
+                <div class="css-book sp-wwz-exact" style="width: 32px; height: 128px;" 
+                     onclick="openBookModal('World War Z', 'Max Brooks', '2006', 'world_war_z.jpg', 4, 'Yes', '')">WORLD WAR Z</div>
+                <div class="css-book sp-raisin-exact" style="width: 22px; height: 115px;" 
+                     onclick="openBookModal('A Raisin in the Sun', 'Lorraine Hansberry', '1959', 'raisin_sun.jpg', 5, 'No', '')">RAISIN IN THE SUN</div>
+                <div class="css-book sp-hailmary-exact" style="width: 34px; height: 128px;" 
+                     onclick="openBookModal('Project Hail Mary', 'Andy Weir', '2021', 'hail_mary.jpg', 5, 'Yes', '')">PROJECT HAIL MARY</div>
+                
+                <div class="book-stack stack-right">
+                    <div class="stacked-book sp-ontheroad-exact" 
+                         onclick="openBookModal('On the Road', 'Jack Kerouac', '1957', 'on_the_road.jpg', 4, 'No', '')">ON THE ROAD</div>
+                    <div class="stacked-book sp-roomview-exact" 
+                         onclick="openBookModal('A Room with a View', 'E.M. Forster', '1908', 'room_view.jpg', 4, 'No', '')">ROOM WITH VIEW</div>
+                </div>
+            </div>
+
+            <div class="shelf">
+                <div class="book-stack stack-left">
+                    <div class="stacked-book sp-whitenights-exact" 
+                         onclick="openBookModal('White Nights', 'Fyodor Dostoevsky', '1848', 'white_nights.jpg', 4, 'No', '')">WHITE NIGHTS</div>
+                    <div class="stacked-book sp-thepearl-exact" 
+                         onclick="openBookModal('The Pearl', 'John Steinbeck', '1947', 'the_pearl.jpg', 4, 'No', '')">THE PEARL</div>
+                </div>
+
+                <div class="css-book sp-tuesdays-exact" style="width: 22px; height: 112px;" 
+                     onclick="openBookModal('Tuesdays with Morrie', 'Mitch Albom', '1997', 'tuesdays_morrie.jpg', 5, 'No', '')">TUESDAYS WITH MORRIE</div>
+                <div class="css-book sp-animalfarm-exact" style="width: 20px; height: 108px;" 
+                     onclick="openBookModal('Animal Farm', 'George Orwell', '1945', 'animal_farm.jpg', 5, 'No', '')">ANIMAL FARM</div>
+                <div class="css-book sp-createdanger-exact tilt-wall-right" style="width: 26px; height: 116px;" 
+                     onclick="openBookModal('Create Dangerously', 'Edwidge Danticat', '2010', 'create_dangerously.jpg', 5, 'N/A', '')">CREATE DANGEROUSLY</div>
+            </div>
+
+            <div class="shelf">
+                <div class="css-book sp-montecristo-exact tilt-wall-left" style="width: 40px; height: 135px;" 
+                     onclick="openBookModal('The Count of Monte Cristo', 'Alexandre Dumas', '1844', 'monte_cristo.jpg', 5, 'No', '')">COUNT OF MONTE CRISTO</div>
+                <div class="css-book sp-land-exact" style="width: 28px; height: 126px;" 
+                     onclick="openBookModal('How Much Land Does a Man Need?', 'Leo Tolstoy', '1886', 'how_much_land.jpg', 4, 'N/A', '')">HOW MUCH LAND</div>
+                <div class="css-book sp-catcher-exact" style="width: 25px; height: 120px;" 
+                     onclick="openBookModal('The Catcher in the Rye', 'J.D. Salinger', '1951', 'catcher_rye.jpg', 4, 'No', '')">CATCHER IN THE RYE</div>
+                <div class="css-book sp-stranger-exact tilt-wall-right" style="width: 22px; height: 115px;" 
+                     onclick="openBookModal('The Stranger', 'Albert Camus', '1942', 'the_stranger.jpg', 5, 'No', '')">THE STRANGER</div>
+            </div>
+
+            <div class="shelf">
+                <div class="book-stack stack-left">
+                    <div class="stacked-book sp-slaughter5-exact" 
+                         onclick="openBookModal('Slaughterhouse-Five', 'Kurt Vonnegut', '1969', 'slaughterhouse_5.jpg', 5, 'No', '')">SLAUGHTERHOUSE-5</div>
+                    <div class="stacked-book sp-wallflower-exact" 
+                         onclick="openBookModal('The Perks of Being a Wallflower', 'Stephen Chbosky', '1999', 'wallflower.jpg', 5, 'Yes', '')">WALLFLOWER</div>
+                </div>
+
+                <div class="css-book sp-oldman-exact" style="width: 26px; height: 118px;" 
+                     onclick="openBookModal('The Old Man and the Sea', 'Ernest Hemingway', '1952', 'old_man_sea.jpg', 2.5, 'No', '')">OLD MAN & THE SEA</div>
+                <div class="css-book sp-funnystory-exact tilt-wall-right" style="width: 30px; height: 125px;" 
+                     onclick="openBookModal('It\'s Kind of a Funny Story', 'Ned Vizzini', '2006', 'funny_story.jpg', 3.5, 'No', '')">IT'S KIND OF A FUNNY STORY</div>
+            </div>
+
+            <div class="shelf">
+                <div class="css-book sp-vintage-paper tilt-wall-left" style="width: 20px; height: 108px;" 
+                     onclick="openBookModal('Sketchy Doubtful Incomplete Jottings', 'Fernando Pessoa', '1982', 'jottings.jpg', 4, 'N/A', '')">SKETCHY JOTTINGS</div>
+                <div class="css-book sp-ofmicemen-exact" style="width: 22px; height: 114px;" 
+                     onclick="openBookModal('Of Mice and Men', 'John Steinbeck', '1937', 'mice_and_men.jpg', 5, 'No', '')">OF MICE AND MEN</div>
+                <div class="css-book sp-gatsby-exact" style="width: 26px; height: 124px;" 
+                     onclick="openBookModal('The Great Gatsby', 'F. Scott Fitzgerald', '1925', 'gatsby.jpg', 5, 'Yes', '')">THE GREAT GATSBY</div>
+                <div class="css-book sp-youngpoet-exact" style="width: 22px; height: 112px;" 
+                     onclick="openBookModal('Letters to a Young Poet', 'Rainer Maria Rilke', '1929', 'young_poet.jpg', 5, 'N/A', '')">LETTERS TO A YOUNG POET</div>
+                <div class="css-book sp-deadpoets-exact tilt-wall-right" style="width: 25px; height: 120px;" 
+                     onclick="openBookModal('Dead Poets Society', 'N.H. Kleinbaum', '1989', 'dead_poets.jpg', 5, 'Yes', '')">DEAD POETS SOCIETY</div>
+            </div>
+
+            <!-- SHELF 6 -->
+            <div class="shelf">
+                <div class="css-book sp-dullpeople-exact tilt-wall-left" style="width: 21px; height: 110px;" 
+                     onclick="openBookModal('Only Dull People Are Brilliant at Breakfast', 'Oscar Wilde', '2016', 'dull_people.jpg', 4, 'N/A', '')">ONLY DULL PEOPLE</div>
+                <div class="css-book sp-heaven5-exact" style="width: 25px; height: 120px;" 
+                     onclick="openBookModal('The Five People You Meet in Heaven', 'Mitch Albom', '2003', 'heaven_5.jpg', 5, 'No', '')">5 PEOPLE YOU MEET IN HEAVEN</div>
+            </div>
+
+        </div>
+
+        <div class="blogs-main">
+            <article class="post">
+                <div class="post-date">August 18, 2026</div>
+                <h2 class="post-title">Welcome to My Personal Library</h2>
+                <div class="post-body">
+                    <p>Click on any book spine on the bookshelf to inspect my review notes, 5-star rating, and movie adaptation status!</p>
+                </div>
+            </article>
+        </div>
+
+    </div>
+
+    <!-- POPUP MODAL -->
+    <div id="bookModal" class="modal-overlay" onclick="closeBookModal(event)">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeBookModal(event, true)">&times;</span>
+            <img id="modalImg" class="modal-cover" src="" alt="Cover">
+            <div class="modal-details">
+                <h2 id="modalTitle">Book Title</h2>
+                <div id="modalMeta" class="modal-meta">By Author • Released Year</div>
+                
+                <div class="modal-features">
+                    <div class="feature-item">
+                        <span>Rating:</span> <span id="modalStars" class="star-rating">★★★★★</span>
+                    </div>
+                    <div class="feature-item">
+                        <span>Movie Watched:</span> <span id="modalMovie">Yes</span>
+                    </div>
+                </div>
+
+                <p id="modalThoughts"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openBookModal(title, author, year, imageSrc, rating, movieWatched, thoughts) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalMeta').innerText = "By " + author + " • Released " + year;
+            
+            var imgElement = document.getElementById('modalImg');
+            imgElement.src = imageSrc;
+            
+            var fullStars = Math.floor(rating);
+            var hasHalf = (rating % 1 !== 0);
+            var stars = "";
+            
+            for (var i = 0; i < 5; i++) {
+                if (i < fullStars) {
+                    stars += "★";
+                } else if (i === fullStars && hasHalf) {
+                    stars += "½";
+                } else {
+                    stars += "☆";
+                }
+            }
+            
+            document.getElementById('modalStars').innerText = stars;
+            document.getElementById('modalMovie').innerText = movieWatched;
+            document.getElementById('modalThoughts').innerText = thoughts || "My thoughts and review notes for this book will go right here...";
+            
+            document.getElementById('bookModal').style.display = 'flex';
+        }
+
+        function closeBookModal(event, forceClose = false) {
+            if (forceClose || event.target.id === 'bookModal') {
+                document.getElementById('bookModal').style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
