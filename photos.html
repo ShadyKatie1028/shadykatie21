@@ -4,301 +4,306 @@
   <meta charset="UTF-8">
   <title>Photos - Shady's Blog</title>
   <style>
-    body {
-      background-color: #C8AD7F;
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
+  body {
+  background-color: #C8AD7F;
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
 
-    .hero-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      justify-content: flex-start;
-      padding: 12px 16px;
-      background: transparent;
-    }
+.hero-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-start;
+  padding: 12px 16px;
+  background: transparent;
+}
 
-    .logo-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      border: none;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 50%;
-      padding: 8px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      outline: none;
-    }
+.logo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: none;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
 
-    .logo-btn:hover {
-      background: #fff;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      transform: scale(1.1);
-    }
+.logo-btn:hover {
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: scale(1.1);
+}
 
-    .logo-btn img {
-      width: 25px;
-      height: 25px;
-      display: block;
-    }
+.logo-btn img {
+  width: 25px;
+  height: 25px;
+  display: block;
+}
 
-    .hero-title {
-      font-size: 100%;
-      margin: 0 0 0 auto;
-    }
+.hero-title {
+  font-size: 100%;
+  margin: 0 0 0 auto;
+}
 
-    .polaroid-gallery {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
-      margin: 16px auto 0;
-      max-width: 1000px;
-      padding: 0 10px 40px;
-    }
+.polaroid-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin: 16px auto 0;
+  max-width: 1000px;
+  padding: 0 10px 40px;
+}
 
-    .polaroid {
-      width: 100%;
-      background: #faf3e9;
-      border: none;
-      box-sizing: border-box;
-      border-radius: 18px;
-      box-shadow: 0 22px 46px rgba(0, 0, 0, 0.14);
-      padding: 14px 14px 22px;
-      text-align: center;
-      position: relative;
-      transform-origin: center center;
-      overflow: hidden;
-      cursor: pointer;
-      transform: rotate(var(--rotate, 0deg)) scale(1);
-      transition: box-shadow 0.24s ease, transform 0.24s ease;
-      outline: none;
-    }
+.polaroid {
+  width: 100%;
+  background: #faf3e9;
+  border: none;
+  box-sizing: border-box;
+  border-radius: 18px;
+  box-shadow: 0 22px 46px rgba(0, 0, 0, 0.14);
+  padding: 14px 14px 22px;
+  text-align: center;
+  position: relative;
+  transform-origin: center center;
+  overflow: hidden;
+  cursor: pointer;
+  transform: rotate(var(--rotate, 0deg)) scale(1);
+  transition: box-shadow 0.24s ease, transform 0.24s ease;
+  outline: none;
+}
 
-    .polaroid:nth-child(1) { --rotate: -3deg; }
-    .polaroid:nth-child(2) { --rotate: 2deg; }
-    .polaroid:nth-child(3) { --rotate: -1.5deg; }
-    .polaroid:nth-child(4) { --rotate: 3deg; }
+.polaroid:nth-child(1) { --rotate: -3deg; }
+.polaroid:nth-child(2) { --rotate: 2deg; }
+.polaroid:nth-child(3) { --rotate: -1.5deg; }
+.polaroid:nth-child(4) { --rotate: 3deg; }
 
-    .polaroid .bio-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(26, 25, 22, 0.82);
-      color: #f8f4e9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.24s ease, transform 0.24s ease;
-      font-size: 0.95rem;
-      line-height: 1.5;
-      z-index: 3;
-    }
+.polaroid .bio-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 25, 22, 0.82);
+  color: #f8f4e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.24s ease, transform 0.24s ease;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  z-index: 3;
+}
 
-    .polaroid:hover .bio-overlay {
-      opacity: 1;
-      transform: translateY(0);
-    }
+.polaroid:hover .bio-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-    .polaroid:hover {
-      box-shadow: 0 28px 56px rgba(0, 0, 0, 0.2);
-      transform: rotate(var(--rotate, 0deg)) scale(1.02);
-    }
+.polaroid:hover {
+  box-shadow: 0 28px 56px rgba(0, 0, 0, 0.2);
+  transform: rotate(var(--rotate, 0deg)) scale(1.02);
+}
 
-    .polaroid img {
-      width: 100%;
-      height: 220px;
-      display: block;
-      border-radius: 12px;
-      object-fit: cover;
-    }
+.polaroid img {
+  width: 100%;
+  height: 220px;
+  display: block;
+  border-radius: 12px;
+  object-fit: cover;
+}
 
-    .polaroid p {
-      margin: 14px 0 0;
-      color: #444;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
+.polaroid p {
+  margin: 14px 0 0;
+  color: #444;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
 
-    .photo-grid {
-      column-count: 4;
-      column-gap: 14px;
-      margin: 0 auto 40px;
-      max-width: 1000px;
-      padding: 0 10px;
-    }
+.photo-grid {
+  column-count: 4;
+  column-gap: 10px;
+  margin: 0 auto 40px;
+  max-width: 1000px;
+  padding: 0 10px;
+}
 
-    .grid-item {
-      position: relative;
-      margin-bottom: 14px;
-      display: inline-block;
-      width: 100%;
-      border-radius: 12px;
-      overflow: hidden;
-      break-inside: avoid;
-      cursor: pointer;
-    }
+.grid-item {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  break-inside: avoid;
+  display: inline-block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    .grid-item img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 12px;
-      transition: transform 0.24s ease, filter 0.24s ease;
-    }
+.grid-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  transition: transform 0.24s ease, filter 0.24s ease;
+}
 
-    .grid-item .bio-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(26, 25, 22, 0.85);
-      color: #f8f4e9;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.24s ease, transform 0.24s ease;
-      font-size: 0.9rem;
-      line-height: 1.4;
-      z-index: 2;
-    }
+.grid-item .bio-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 25, 22, 0.85);
+  color: #f8f4e9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.24s ease, transform 0.24s ease;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  z-index: 2;
+}
 
-    .grid-item .bio-overlay strong {
-      font-size: 1rem;
-      margin-bottom: 6px;
-      color: #fff;
-    }
+.grid-item .bio-overlay strong {
+  font-size: 1rem;
+  margin-bottom: 6px;
+  color: #fff;
+}
 
-    .grid-item:hover .bio-overlay {
-      opacity: 1;
-      transform: translateY(0);
-    }
+.grid-item:hover .bio-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-    .grid-item:hover img {
-      transform: scale(1.04);
-      filter: brightness(0.9);
-    }
+.grid-item:hover img {
+  transform: scale(1.04);
+  filter: brightness(0.9);
+}
 
-    .grid-item:nth-child(odd) { transform: rotate(-1deg); }
-    .grid-item:nth-child(even) { transform: rotate(1.5deg); }
-    .grid-item:hover { transform: rotate(0deg) scale(1.03); z-index: 5; }
+.grid-item:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  z-index: 5;
+}
 
+@media screen and (max-width: 768px) {
+  .photo-grid { column-gap: 8px; }
+  .grid-item { margin-bottom: 8px; }
+}
 
-    @media screen and (max-width: 768px) {
-      .photo-grid { column-count: 3; }
-    }
+@media screen and (max-width: 500px) {
+  .photo-grid { column-gap: 6px; }
+  .grid-item { margin-bottom: 6px; }
+}
 
-    @media screen and (max-width: 500px) {
-      .photo-grid { column-count: 2; }
-    }
+.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  padding: 20px;
+  box-sizing: border-box;
+}
 
-   
-    .lightbox-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.88);
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-      padding: 20px;
-      box-sizing: border-box;
-    }
+.lightbox-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
 
-    .lightbox-modal.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
+.lightbox-modal img {
+  max-width: 90vw;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
 
-    .lightbox-modal img {
-      max-width: 90vw;
-      max-height: 75vh;
-      object-fit: contain;
-      border-radius: 8px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    }
+.lightbox-caption {
+  color: #fff;
+  margin-top: 16px;
+  text-align: center;
+  max-width: 600px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
 
-    .lightbox-caption {
-      color: #fff;
-      margin-top: 16px;
-      text-align: center;
-      max-width: 600px;
-      font-size: 1rem;
-      line-height: 1.5;
-    }
+.lightbox-caption strong {
+  display: block;
+  font-size: 1.15rem;
+  margin-bottom: 4px;
+}
 
-    .lightbox-caption strong {
-      display: block;
-      font-size: 1.15rem;
-      margin-bottom: 4px;
-    }
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 1001;
+}
 
-    .lightbox-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 44px;
-      height: 44px;
-      background: rgba(255, 255, 255, 0.85);
-      border: none;
-      border-radius: 50%;
-      font-size: 24px;
-      color: #111;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s ease, transform 0.2s ease;
-    }
+.lightbox-close:hover {
+  background: #fff;
+  transform: scale(1.1);
+}
 
-    .lightbox-close:hover {
-      background: #fff;
-      transform: scale(1.1);
-    }
-  </style>
+</style>
 </head>
 
 <body>
-  <div class="hero-header">
-    <a href="index.html" class="logo-btn">
+  <div class="hero-header" style="display: flex; flex-direction: column; align-items: center; position: relative;">
+    <a href="index.html" class="logo-btn" style="position: absolute; left: 20px; top: 20px;">
       <img src="LOGO.png" alt="Logo">
     </a>
-    <h1 style="text-align: center; display: block; width: 100%;">My Photos</h1>
+    <h1 style="margin: 0 0 10px 0;">My Photos</h1>
+    <p style="margin: 0; max-width: 600px; text-align: center;">Welcome to the photos page! Here is where I'll share my favorite moments and camera shots.</p>
   </div>
 
   <hr style="border: none; height: 2px; background: black; margin: 0px 0;">
 
-  <p style="text-align: center;">Welcome to the photos page! Here is where I'll share my favorite moments and camera shots.</p>
-
   <h2 style="text-align:center; margin-top: 40px;">Featured Gallery</h2>
   <div class="polaroid-gallery">
     <div class="polaroid" tabindex="0" data-bio="Perseus with the Head of Medusa, The Met, Aug 5, 2026">
-      <div class="bio-overlay">Perseus with the Head of Medusa, The Met, Aug 5, 2026</div>
+      <div class="bio-overlay">Perseus with the Head of Medusa, Italian/rome, 1804-1806</div>
       <img src="The Met.jpg" alt="The Met">
-      <p>Perseus with the Head of Medusa, The Met, Aug 5, 2026</p>
+      <p>The Met, Aug 5, 2026</p>
     </div>
     <div class="polaroid" tabindex="0" data-bio="IS THIS NOT GIVING 'BRAND NEW DAY' BUT MAKE IT BOSTON?!">
       <div class="bio-overlay">IS THIS NOT GIVING 'BRAND NEW DAY' BUT MAKE IT BOSTON?!</div>
       <img src="Boston.jpg" alt="Boston">
-      <p>Perseus with the Head of Medusa, The Met, Aug 5, 2026</p>
+      <p>Charles River, Boston August 5, 2026</p>
     </div>
     <div class="polaroid" tabindex="0" data-bio="Isabella Stewart Gardner Museum August 7, 2026">
-      <div class="bio-overlay">Isabella Stewart Gardner Museum August 7, 2026</div>
+      <div class="bio-overlay">Vigin and Child, French, 14th Century</div>
       <img src="Isabella.jpg" alt="Isabella">
-      <p>Isabella</p>
+      <p>Isabella Stewart Gardner Museum August 7, 2026</p>
     </div>
     <div class="polaroid" tabindex="0" data-bio="Its giving 'Oooh oooh oooh Im On Fire'">
       <div class="bio-overlay">Its giving 'Oooh oooh oooh Im On Fire'</div>
@@ -308,181 +313,292 @@
   </div>
 
   <hr style="border: none; height: 2px; background: black; margin: 40px 0;">
+<div class="photo-grid">
 
-  <div class="photo-grid">
-    <div class="grid-item" tabindex="0" data-bio="something something idk yet">
-      <img src="Erica 1.jpg" alt="Erica 1">
-      <div class="bio-overlay"><strong>Erica</strong>something something idk yet</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="more stuff idk yet.">
-      <img src="Mit.jpg" alt="Arc">
-      <div class="bio-overlay"><strong>Mit</strong> TONY STARK BUILT THIS IN A CAVE. WITH A BOX OF SCRAPS</div>
-    </div> 
-    
-    <div class="grid-item" tabindex="0" data-bio="more stuff idk yet.">
-      <img src="Erica 2.jpg" alt="Erica 2">
-      <div class="bio-overlay"><strong>Erica 2</strong>more stuff idk yet.</div>
-    </div>
-
-    <div class="grid-item"tabindex="0" data-bio="blah blah blah.">
-      <img src="Erica 4.jpg" alt="Erica 4">
-      <div class="bio-overlay"><strong>Erica 4</strong>blah blah blah.</div>
-    </div>
-
-   
-
-    <div class="grid-item" tabindex="0" data-bio="i do not speak blah blah blah.">
-      <img src="Erica 3.jpg" alt="Erica 3">
-      <div class="bio-overlay"><strong>Erica 3</strong>i do not speak blah blah blah.</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="ERICAAAAAA">
-      <img src="Erica 5.jpg" alt="Erica 5">
-      <div class="bio-overlay"><strong>Erica 5</strong>ERICAAAAAA</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="Start spreading the news....">
-      <img src="NYC .jpg" alt="NYC">
-      <div class="bio-overlay"><strong>NYC</strong>Start spreading the news....</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="IMMMM LEAVING TODAYYY">
-      <img src="NYC 2.jpg" alt="NYC 2">
-      <div class="bio-overlay"><strong>NYC 2</strong>IMMMM LEAVING TODAYYY.</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="Just Fuck Ice">
-      <img src="FUCK ice.jpg" alt="Ice">
-      <div class="bio-overlay"><strong>Ice</strong>What else is there to say?</div>
-    </div>
-
-
-
-    <div class="grid-item" tabindex="0" data-bio="The Met is just so pretty.">
-      <img src="The Met.jpg" alt="The Met">
-      <div class="bio-overlay"><strong>The Met</strong>The Met is just so pretty.</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="Gay shit">
-      <img src="The met 2.jpg" alt="The Met 2">
-      <div class="bio-overlay"><strong>The Met 2</strong>Type shit</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="The Met">
-      <img src="The Met 3.jpg" alt="The Met 3">
-      <div class="bio-overlay"><strong>The Met 3</strong>The Met</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="Isabella Stewart Gardner Museum, August 7, 2026">
-      <img src="Isabella.jpg" alt="Isabella">
-      <div class="bio-overlay"><strong>Isabella</strong>Isabella Stewart Gardner Museum, August 7, 2026</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="Boston">
-      <img src="garedn.jpg" alt="Garden">
-      <div class="bio-overlay"><strong>Garden</strong>Boston</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="IS THIS NOT GIVING 'BRAND NEW DAY' BUT MAKE IT BOSTON?">
-      <img src="Boston.jpg" alt="Boston">
-      <div class="bio-overlay"><strong>Boston</strong>IS THIS NOT GIVING 'BRAND NEW DAY' BUT MAKE IT BOSTON?</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="Boston">
-      <img src="boston 2.jpg" alt="Boston 2">
-      <div class="bio-overlay"><strong>Boston 2</strong>Boston</div>
-    </div>
-
-   <div class="grid-item" tabindex="0" data-bio="Will Fourth of July">
-      <img src="Will 4th of July.jpg" alt="Will Fourth of July">
-      <div class="bio-overlay"><strong>Will Fourth of July</strong>Will Fourth of July</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="Will Fourth of July">
-      <img src="Will 4th of July-2.jpg" alt="Will Fourth of July">
-      <div class="bio-overlay"><strong>Will Fourth of July</strong>Will Fourth of July</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="Will Fourth of July">
-      <img src="Will 4th of July-3.jpg" alt="Will Fourth of July">
-      <div class="bio-overlay"><strong>Will Fourth of July</strong>Will Fourth of July</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="Will Fourth of July">
-      <img src="Will 4th of July-5.jpg" alt="Will Fourth of July">
-      <div class="bio-overlay"><strong>Will Fourth of July</strong>Will Fourth of July</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="Will Fourth of July">
-      <img src="Will 4th of July-6.jpg" alt="Will Fourth of July">
-      <div class="bio-overlay"><strong>Will Fourth of July</strong>Will Fourth of July</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="SD">
-      <img src="SD.jpg" alt="SD">
-      <div class="bio-overlay"><strong>SD</strong>SD</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="SD">
-      <img src="SD-2.jpg" alt="SD">
-      <div class="bio-overlay"><strong>SD</strong>SD</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="SD">
-      <img src="SD-3.jpg" alt="SD">
-      <div class="bio-overlay"><strong>SD</strong>SD</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="SD">
-      <img src="SD-4.jpg" alt="SD">
-      <div class="bio-overlay"><strong>SD</strong>SD</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="SD">
-      <img src="SD-5.jpg" alt="SD">
-      <div class="bio-overlay"><strong>SD</strong>SD</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="SD">
-      <img src="SD-6.jpg" alt="SD">
-      <div class="bio-overlay"><strong>SD</strong>SD</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="SD">
-      <img src="SD-7.jpg" alt="SD">
-      <div class="bio-overlay"><strong>SD</strong>SD</div>
-    </div>
-    
-    <div class="grid-item" tabindex="0" data-bio="SD">
-      <img src="SD-8.jpg" alt="SD">
-      <div class="bio-overlay"><strong>SD</strong>SD</div>
-    </div>
-    
-    <div class="grid-item" tabindex="0" data-bio="SD">
-      <img src="SD-9.jpg" alt="SD">
-      <div class="bio-overlay"><strong>SD</strong>SD</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="Big Fishy">
-      <img src="big fish.jpg" alt="big guy">
-      <div class="bio-overlay"><strong>Big Fishy</strong>:o</div>
-    </div> 
  
-    <div class="grid-item" tabindex="0" data-bio="more stuff idk yet.">
-      <img src="neon fishy.jpg" alt="neon fishy">
-      <div class="bio-overlay"><strong> Neon Fishy</strong>not edible do not eat neon fish.</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="squirrel!!!">
-      <img src="squrrl.jpg" alt="Squirrel">
-      <div class="bio-overlay"><strong>Squirrel</strong>squirrel!!!</div>
-    </div>
-
-    <div class="grid-item" tabindex="0" data-bio="Erica 6">
-      <img src="Erica 6.jpg" alt="Erica 6">
-      <div class="bio-overlay"><strong>Erica 6</strong>I wonder....</div>
+  <div class="grid-item" tabindex="0" data-bio="">
+    <img src="Erica 1.jpg" alt="Erica">
+    <div class="bio-overlay"><strong>Erica</strong></div>
   </div>
+
+  <div class="grid-item" tabindex="0" data-bio="more stuff idk yet.">
+    <img src="Erica 2.jpg" alt="Erica 2">
+    <div class="bio-overlay"><strong>Erica 2</strong>more stuff idk yet.</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="blah blah blah.">
+    <img src="Erica 4.jpg" alt="Erica 4">
+    <div class="bio-overlay"><strong>Erica 4</strong>blah blah blah.</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="ERICAAAAAA">
+    <img src="Erica 5.jpg" alt="Erica 5">
+    <div class="bio-overlay"><strong>Erica 5</strong>ERICAAAAAA</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="Erica 6">
+    <img src="Erica 6.jpg" alt="Erica 6">
+    <div class="bio-overlay"><strong>Erica 6</strong>I wonder....</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="Erica 7">
+    <img src="Erica 7.png" alt="Erica 7">
+    <div class="bio-overlay"><strong>Erica 7</strong>Erica 7</div>
+  </div>
+
+
+ 
+  <div class="grid-item" tabindex="0" data-bio="The Met is just so pretty.">
+    <img src="The Met.jpg" alt="The Met">
+    <div class="bio-overlay"><strong>The Met</strong>The Met is just so pretty.</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="Gay shit">
+    <img src="The met 2.jpg" alt="The Met 2">
+    <div class="bio-overlay"><strong>The Met 2</strong>Type shit</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="The Met">
+    <img src="The Met 3.jpg" alt="The Met 3">
+    <div class="bio-overlay"><strong>The Met 3</strong>The Met</div>
+  </div>
+
+
+
+  <div class="grid-item" tabindex="0" data-bio="IS THIS NOT GIVING 'BRAND NEW DAY' BUT MAKE IT BOSTON?">
+    <img src="Boston.jpg" alt="Boston">
+    <div class="bio-overlay"><strong>Boston</strong>IS THIS NOT GIVING 'BRAND NEW DAY' BUT MAKE IT BOSTON?</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="Boston">
+    <img src="boston 2.jpg" alt="Boston 2">
+    <div class="bio-overlay"><strong>Boston 2</strong>Boston</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="more stuff idk yet.">
+    <img src="Mit.jpg" alt="Arc">
+    <div class="bio-overlay"><strong>Mit</strong> TONY STARK BUILT THIS IN A CAVE. WITH A BOX OF SCRAPS</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="Boston">
+    <img src="garedn.jpg" alt="Garden">
+    <div class="bio-overlay"><strong>Garden</strong>Boston</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="blank">
+    <img src="Boston Freeway.jpg" alt="Boston Freeway">
+    <div class="bio-overlay"><strong></strong></div>
+  </div>
+
+
+ 
+  <div class="grid-item" tabindex="0" data-bio="SD">
+    <img src="SD.jpg" alt="SD">
+    <div class="bio-overlay"><strong>SD</strong>SD1</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="SD">
+    <img src="SD-2.jpg" alt="SD">
+    <div class="bio-overlay"><strong>SD</strong>SD</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="SD">
+    <img src="SD-3.jpg" alt="SD">
+    <div class="bio-overlay"><strong>SD</strong>SD3</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="SD">
+    <img src="SD-4.jpg" alt="SD">
+    <div class="bio-overlay"><strong>SD</strong>SD</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="SD">
+    <img src="SD-5.jpg" alt="SD">
+    <div class="bio-overlay"><strong>SD</strong>SD5</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="SD">
+    <img src="SD-6.jpg" alt="SD">
+    <div class="bio-overlay"><strong>SD</strong>SD6</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="SD">
+    <img src="SD-7.jpg" alt="SD">
+    <div class="bio-overlay"><strong>SD</strong>SD7</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="SD">
+    <img src="SD-8.jpg" alt="SD">
+    <div class="bio-overlay"><strong>SD</strong>SD8</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="SD">
+    <img src="SD-9.jpg" alt="SD">
+    <div class="bio-overlay"><strong>SD</strong>SD9</div>
+  </div>
+
+
+ 
+  <div class="grid-item" tabindex="0" data-bio="Will Fourth of July 1">
+    <img src="Will 4th of July.jpg" alt="Will Fourth of July">
+    <div class="bio-overlay"><strong>Will Fourth of July</strong>Will Fourth of July1 </div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="Will Fourth of July2">
+    <img src="Will 4th of July-2.jpg" alt="Will Fourth of July">
+    <div class="bio-overlay"><strong>Will Fourth of July</strong>Will Fourth of July2</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="Will Fourth of July3">
+    <img src="Will 4th of July-3.jpg" alt="Will Fourth of July">
+    <div class="bio-overlay"><strong>Will Fourth of July</strong>Will Fourth of July3</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="Will Fourth of July4">
+    <img src="Will 4th of July-5.jpg" alt="Will Fourth of July">
+    <div class="bio-overlay"><strong>Will Fourth of July</strong>Will Fourth of July4</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="Will Fourth of July5">
+    <img src="Will 4th of July-6.jpg" alt="Will Fourth of July">
+    <div class="bio-overlay"><strong>Will Fourth of July</strong>Will Fourth of July5</div>
+  </div>
+
+
+
+  <div class="grid-item" tabindex="0" data-bio="blank">
+    <img src="dogo.jpg" alt="dog">
+    <div class="bio-overlay"><strong></strong></div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="squirrel!!!">
+    <img src="squrrl.jpg" alt="Squirrel">
+    <div class="bio-overlay"><strong>Squirrel</strong>squirrel!!!</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="blank">
+    <img src="Meerkat.jpg" alt="Meerkat">
+    <div class="bio-overlay"><strong></strong></div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="Big Fishy">
+    <img src="big fish.jpg" alt="big guy">
+    <div class="bio-overlay"><strong>Big Fishy</strong>:o</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="more stuff idk yet.">
+    <img src="neon fishy.jpg" alt="neon fishy">
+    <div class="bio-overlay"><strong> Neon Fishy</strong>not edible do not eat neon fish.</div>
+  </div>
+
+
+ 
+  <div class="grid-item" tabindex="0" data-bio="blank">
+    <img src="Disneyland.jpg" alt="Disneyland">
+    <div class="bio-overlay"><strong></strong></div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="blank">
+    <img src="Space Needle.jpg" alt="Space Needle">
+    <div class="bio-overlay"><strong></strong></div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="blank">
+    <img src="Monertay .jpg" alt="Monertay">
+    <div class="bio-overlay"><strong></strong></div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="blank">
+    <img src="Solo Sailing.jpg" alt="solo sailing">
+    <div class="bio-overlay"><strong></strong></div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="blank">
+    <img src="Garden.jpg" alt="Garden">
+    <div class="bio-overlay"><strong></strong></div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="blank">
+    <img src="Springsteen.jpg" alt="Springsteen">
+    <div class="bio-overlay"><strong></strong></div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="blank">
+    <img src="Tennis.jpg" alt="Tennis">
+    <div class="bio-overlay"><strong></strong></div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="blank">
+    <img src="Tennist.jpg" alt="Tennis">
+    <div class="bio-overlay"><strong></strong></div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="blank">
+    <img src="Hogw.jpg" alt="Hogw">
+    <div class="bio-overlay"><strong></strong></div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="forks">
+    <img src="forks.jpg" alt="forks">
+    <div class="bio-overlay"><strong>Forks</strong>Forks</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="Dicks">
+    <img src="Dicks.jpg" alt="Dicks">
+    <div class="bio-overlay"><strong>Dicks</strong>Dicks</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="Orbiter">
+    <img src="Orbiter.png" alt="Orbiter">
+    <div class="bio-overlay"><strong>Im an Astronut</strong>Youre the Moon.</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="Just Fuck Ice">
+    <img src="FUCK ice.jpg" alt="Fuck Ice">
+    <div class="bio-overlay"><strong>Ice</strong>What else is there to say?</div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="blank">
+    <img src="Ice.jpg" alt="Ice">
+    <div class="bio-overlay"><strong></strong></div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="blank">
+    <img src="Pub Mark.jpg" alt="Pub Mark">
+    <div class="bio-overlay"><strong></strong></div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="blank">
+    <img src="Pub Mark 2.jpg" alt="Pub Mark 2">
+    <div class="bio-overlay"><strong></strong></div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="blank">
+    <img src="bathroom map.jpg" alt="map">
+    <div class="bio-overlay"><strong></strong></div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="blank">
+    <img src="Peace.jpg" alt="Peace">
+    <div class="bio-overlay"><strong></strong></div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="blank">
+    <img src="Katie Lin-2026.png" alt="Katie Lin 2026">
+    <div class="bio-overlay"><strong></strong></div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="blank">
+    <img src="Flos.jpg" alt="Flos">
+    <div class="bio-overlay"><strong></strong></div>
+  </div>
+
+  <div class="grid-item" tabindex="0" data-bio="blank">
+    <img src="Disp.jpg" alt="Disp">
+    <div class="bio-overlay"><strong></strong></div>
+  </div>
+
+</div>
 
   <div class="lightbox-modal" id="lightboxModal">
     <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
@@ -551,8 +667,5 @@
       if (e.key === 'Escape') closeLightbox();
     });
   </script>
-
-
-
 </body>
 </html>
