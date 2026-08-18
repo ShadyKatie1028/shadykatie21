@@ -17,7 +17,7 @@
     <div class="admin-box">
         <h2 style="margin-top: 0; text-align: center;">Publish a New Blog Post</h2>
         
-        <form action="https://hook.us2.make.com/adeqwj6dlg40uknbij22col6pkwohhxn" method="POST">
+        <form id="blogForm" action="https://hook.us2.make.com/adeqwj6dlg40uknbij22col6pkwohhxn" method="POST" target="hidden_iframe">
             
             <label for="title">Post Title</label>
             <input type="text" id="title" name="post_title" required placeholder="e.g., Hadestown on Broadway!">
@@ -25,9 +25,27 @@
             <label for="content">Post Content (Paragraph Text)</label>
             <textarea id="content" name="post_content" rows="8" required placeholder="Type your inside thoughts here..."></textarea>
 
-            <button type="submit">Publish to Website & Blast Email</button>
+            <button type="button" id="submitBtn">Publish to Website & Blast Email</button>
         </form>
     </div>
+
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+    <script>
+        // Use type="button" and trigger submit manually to GUARANTEE zero page reloads
+        document.getElementById('submitBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const form = document.getElementById('blogForm');
+            if (form.checkValidity()) {
+                form.submit();
+                alert('Published successfully!');
+                form.reset();
+            } else {
+                form.reportValidity();
+            }
+        });
+    </script>
 
 </body>
 </html>
