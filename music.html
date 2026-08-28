@@ -4,192 +4,221 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shady's Blog</title>
-    <style>
-        body {
-            background-image: url('music-background.jpg'); 
-            background-repeat: repeat-y;
-            background-position: center top;
-            background-size: 100% auto;
-            background-attachment: scroll;
-            background-color: #616e34; 
-            font-family: Georgia, serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 40px 20px;
+   <style>
+    body {
+        background-image: url('music-background.jpg'); 
+        background-repeat: repeat-y;
+        background-position: center top;
+        background-size: 100% auto;
+        background-attachment: scroll;
+        background-color: #616e34; 
+        font-family: Georgia, serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 40px 20px;
+    }
+
+        * {
+        color: #D3D3D3 !important;
+        text-shadow: 1px 1px 2px rgba(80, 80, 80, 0.6);
+    }
+
+    header {
+        text-align: center;
+        max-width: 850px;
+        margin: 0 auto 30px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+        font-weight: normal;
+        margin: 0 0 10px;
+    }
+
+    header p {
+        font-style: italic;
+        margin: 0;
+    }
+
+    .page-wrapper {
+        max-width: 850px;
+        margin: 0 auto;
+        display: flex;
+        gap: 35px;
+        align-items: flex-start;
+    }
+
+    .music-sidebar {
+        flex: 0 0 165px;
+        text-align: center;
+        position: relative;
+    }
+
+    .music-sidebar img {
+        width: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        border-radius: 6px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        margin-bottom: 8px;
+    }
+
+    .text-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 165px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        box-sizing: border-box;
+        background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0));
+        opacity: 0;
+        transition: opacity 0.25s ease;
+        pointer-events: none;
+    }
+
+    .music-sidebar:hover .text-overlay {
+        opacity: 1;
+    }
+
+    .overlay-text {
+        margin: 0;
+        font-size: 0.72rem;
+        line-height: 1.4;
+        color: #ffffff !important;
+        text-align: center;
+        text-shadow: none;
+    }
+
+    .music-info {
+        font-size: 0.85rem;
+        margin-bottom: 8px;
+    }
+
+    .music-title {
+        font-weight: bold;
+        display: block;
+    }
+
+    .music-title a {
+        text-decoration: none;
+    }
+
+    .music-title a:hover {
+        text-decoration: underline;
+    }
+
+    .music-artist {
+        font-size: 0.78rem;
+    }
+
+    .mp3-controls {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin: 8px 0 12px;
+    }
+
+    .mp3-btn {
+        background: none;
+        border: 1px solid #d4cebe;
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.65rem;
+        transition: all 0.2s ease;
+    }
+
+    .mp3-btn:hover {
+        background: #e8e3d5;
+    }
+
+    .fav-songs {
+        text-align: left;
+        border-top: 1px solid #e0dbd1;
+        padding-top: 10px;
+    }
+
+    .fav-songs h3 {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 0 0 6px;
+        font-weight: normal;
+    }
+
+    .fav-songs ol {
+        margin: 0;
+        padding-left: 15px;
+        font-size: 0.78rem;
+    }
+
+    .fav-songs li {
+        margin-bottom: 3px;
+    }
+
+    .container {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .blog-post {
+        margin-bottom: 60px;
+    }
+
+    .post-meta {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 80px;
+        font-size: 0.85rem;
+        border-top: 1px solid #e0dbd1;
+        padding-top: 20px;
+    }
+
+    hr {
+        border: none;
+        border-top: 1px solid #e0dbd1; 
+        margin: 40px 0;
+    }
+
+    .logo-btn img {
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        border: 1px solid #ffffff;
+        background-color: #ffffff;
+        display: block;
+        padding: 6px;          
+        box-sizing: border-box; 
+        object-fit: contain;   
+    }
+
+    @media (max-width: 650px) {
+        .page-wrapper {
+            flex-direction: column;
         }
-
-      * {
-    color: #D3D3D3 !important;
-    text-shadow: 
-        -1px -1px 0 rgba(0,0,0,0.6),
-         1px -1px 0 rgba(0,0,0,0.6),
-        -1px  1px 0 rgba(0,0,0,0.6),
-      }
-
-        header {
-            text-align: center;
-            max-width: 850px;
+        .music-sidebar {
+            width: 100%;
+            max-width: 200px;
             margin: 0 auto 30px;
         }
+    }
+</style>
 
-        header h1 {
-            font-size: 2rem;
-            font-weight: normal;
-            margin: 0 0 10px;
-        }
 
-        header p {
-            font-style: italic;
-            margin: 0;
-        }
-
-        .page-wrapper {
-            max-width: 850px;
-            margin: 0 auto;
-            display: flex;
-            gap: 35px;
-            align-items: flex-start;
-        }
-
-        .music-sidebar {
-            flex: 0 0 165px;
-            text-align: center;
-        }
-
-        .music-sidebar img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            border-radius: 6px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            margin-bottom: 8px;
-        }
-
-        .music-info {
-            font-size: 0.85rem;
-            margin-bottom: 8px;
-        }
-
-        .music-title {
-            font-weight: bold;
-            display: block;
-        }
-
-        .music-title a {
-            text-decoration: none;
-        }
-
-        .music-title a:hover {
-            text-decoration: underline;
-        }
-
-        .music-artist {
-            font-size: 0.78rem;
-        }
-
-        .mp3-controls {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin: 8px 0 12px;
-        }
-
-        .mp3-btn {
-            background: none;
-            border: 1px solid #d4cebe;
-            border-radius: 50%;
-            width: 28px;
-            height: 28px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.65rem;
-            transition: all 0.2s ease;
-        }
-
-        .mp3-btn:hover {
-            background: #e8e3d5;
-        }
-
-        .fav-songs {
-            text-align: left;
-            border-top: 1px solid #e0dbd1;
-            padding-top: 10px;
-        }
-
-        .fav-songs h3 {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0 0 6px;
-            font-weight: normal;
-        }
-
-        .fav-songs ol {
-            margin: 0;
-            padding-left: 15px;
-            font-size: 0.78rem;
-        }
-
-        .fav-songs li {
-            margin-bottom: 3px;
-        }
-
-        .container {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .blog-post {
-            margin-bottom: 60px;
-        }
-
-        .post-meta {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 80px;
-            font-size: 0.85rem;
-            border-top: 1px solid #e0dbd1;
-            padding-top: 20px;
-        }
-
-        hr {
-            border: none;
-            border-top: 1px solid #e0dbd1; 
-            margin: 40px 0;
-        }
-
-        .logo-btn img {
-            width: 40px;
-            height: 40px;
-            border-radius: 100%;
-            border: 1px solid #ffffff;
-            background-color: #ffffff;
-            display: block;
-            padding: 6px;          
-            box-sizing: border-box; 
-            object-fit: contain;   
-        }
-
-        @media (max-width: 650px) {
-            .page-wrapper {
-                flex-direction: column;
-            }
-            .music-sidebar {
-                width: 100%;
-                max-width: 200px;
-                margin: 0 auto 30px;
-            }
-        }
-        
-    </style>
 </head>
 <body>
 
@@ -208,11 +237,14 @@
 
     <div class="page-wrapper">
         <aside class="music-sidebar">
-            <img src="Those Eyes.jpeg" alt="Album Cover">
+            <img src="ZB.png" alt="Album Cover">
+            <div class="text-overlay">
+                <p class="overlay-text">"There ain't no love a boy can find, you'll feel her in a room if you was blind. There ain't a thing a man can do, she'll only love you for you"</p>
+            </div>
             
             <div class="music-info">
-                <span class="music-title"><a href="https://youtu.be/b_CpWmkhwq0?si=tkxkWRH9BEBUoC6P" target="_blank">Those Eyes</a></span>
-                <span class="music-artist">New West</span>
+                <span class="music-title"><a href="https://youtu.be/dM_aZOAeLso?si=lCbYdSrqryT_godm" target="_blank">Snaller Acts</a></span>
+                <span class="music-artist">Zach Bryan</span>
             </div>
 
             <div class="mp3-controls">
@@ -224,8 +256,8 @@
             <div class="fav-songs">
                 <h3>Fav Songs</h3>
                 <ol>
-                    <li>Those Eyes - New West</li>
-                    <li>Wait for Me - Hadestown</li>
+                    <li>Smaller Acts - Zach Bruyan</li>
+                    <li>Peace - Taylor Swift</li>
                     <li>Lonesome Is A State Of Mind - DJO </li>
                     
                 </ol>
