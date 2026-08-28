@@ -13,18 +13,15 @@
             background-attachment: scroll;
             background-color: #616e34; 
             font-family: Georgia, serif;
+            font-size: 20px;
             line-height: 1.6;
             margin: 0;
             padding: 40px 20px;
         }
 
-      * {
-    color: #D3D3D3 !important;
-    text-shadow: 
-        -1px -1px 0 rgba(0,0,0,0.6),
-         1px -1px 0 rgba(0,0,0,0.6),
-        -1px  1px 0 rgba(0,0,0,0.6),
-      }
+        * {
+            color: #e0dfdf !important;
+        }
 
         header {
             text-align: center;
@@ -63,6 +60,40 @@
             border-radius: 6px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
             margin-bottom: 8px;
+        }
+
+        .text-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .overlay-text {
+            visibility: hidden;
+            opacity: 0;
+            background-color: rgba(0, 0, 0, 0.65);
+            color: #fff !important;
+            padding: 12px 14px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-style: normal;
+            line-height: 1.4;
+            text-align: center;
+            width: 85%;
+            transition: opacity 0.2s ease;
+            margin: 0;
+        }
+
+        .music-sidebar-img-wrap:hover .overlay-text {
+            visibility: visible;
+            opacity: 1;
         }
 
         .music-info {
@@ -208,11 +239,16 @@
 
     <div class="page-wrapper">
         <aside class="music-sidebar">
-            <img src="Those Eyes.jpeg" alt="Album Cover">
-            
+            <div class="music-sidebar-img-wrap" style="position: relative;">
+                <img src="Zach_Bryan.png" alt="Album Cover">
+                <div class="text-overlay">
+                    <p class="overlay-text">"You'd feel her in a room if you was blind"</p>
+                </div>
+            </div>
+
             <div class="music-info">
-                <span class="music-title"><a href="https://youtu.be/b_CpWmkhwq0?si=tkxkWRH9BEBUoC6P" target="_blank">Those Eyes</a></span>
-                <span class="music-artist">New West</span>
+                <span class="music-title"><a href="https://youtu.be/dM_aZOAeLso?si=lCbYdSrqryT_godm" target="_blank">Snaller Acts</a></span>
+                <span class="music-artist">Zach Bryan</span>
             </div>
 
             <div class="mp3-controls">
@@ -224,23 +260,32 @@
             <div class="fav-songs">
                 <h3>Fav Songs</h3>
                 <ol>
-                    <li>Those Eyes - New West</li>
-                    <li>Wait for Me - Hadestown</li>
-                    <li>Lonesome Is A State Of Mind - DJO </li>
-                    
+                    <li>Smaller Acts - Zach Bruyan</li>
+                    <li>Peace - Taylor Swift</li>
+                    <li>Lonesome Is A State Of Mind - DJO</li>
                 </ol>
             </div>
         </aside>
 
-
-
-
-    <main class="container">
+        <main class="container">
             <article class="blog-post">
-                <div class="post-meta">August 23, 2026 </div>
+                <div class="post-meta">August 27, 2026</div>
+                <h2>My Intro to Classic Rock</h2>
+                <p>Recently I had started watching the hit CW show from like 2000 something, Supernatural. The person I have started watching with kept commenting on my lack of the music being played so as i do, i asked for a playlist. so here i am weeks later with a TEN HOUR PLAYLIST, not that im complaining. So here will be the ranking of the playlist, will be out of ten ranking and maybe a tiny idea a thought or two about said song. This will be an updating list and as I update the new addition will be highlighted with an 'EDIT' label in the beginning.</p>
+                <p>Playlist rating starting here:</p>
+                <p>Juxe Box Hero - Foreigner; its a song that for sure, its not bad, its just not my taste but if someone put it on i wouldnt turn it off 5/10.</p>
+                <p>Hot Blooded - Foreigner; ditto for the other song, a little better bc i like the guitar and bass riff in the beginning 6/10</p>
+                <p>Fells Like the First Time - Foreigner; hey this is in pitch perfect!! 7/10</p>
+                <p>Slow Ride - Foghat - I feel like i know this song...? 6/10</p>
+                <p>08/27/2026 alright thats all for that playlist, i miss my folk music, BRING IN NOAH AND ZACH!</p>
 
+            </article>
 
+            <hr>
 
+            <article class="blog-post">
+                <div class="post-meta">August 23, 2026</div>
+                <h2>Noah Kahan SF Concert</h2>
                 <p>OK here are my full thoughts of the Noah Kahan Concert in SF. 
                     <br> First the Set List: 
                     <br>
@@ -281,26 +326,25 @@
                     <br> The only thing i will say is that Noah ended up cutting like 2 or 3 songs, one of them being She Calls Me Back, and I am so disappointed i couldnt do 6-7 with him. but other than that i understand why he cut his show short. Bros been sick for like a week, hope he gets better soon. If you plan on going to this concert, a) emotional therapy before and after b) drink lots of water c) bring tissues.
             </article>
 
-        
-<hr>
-            <main class="container">
+            <hr>
+
             <article class="blog-post">
-                <div class="post-meta">August 16, 2026 </div>
-                <p>Going to Noahn Kahn on Friday...So excited </p> 
+                <div class="post-meta">August 16, 2026</div>
+                <p>Going to Noahn Kahn on Friday...So excited</p>
             </article>
 
             <hr>
-            <main class="container">
+
             <article class="blog-post">
                 <div class="post-meta">August 15, 2026 • New Song</div>
-                <p>Been loving <a href="https://youtu.be/b_CpWmkhwq0?si=tkxkWRH9BEBUoC6P"><em>Those Eyes</em> </a> by New West recently...</p> 
+                <p>Been loving <a href="https://youtu.be/b_CpWmkhwq0?si=tkxkWRH9BEBUoC6P"><em>Those Eyes</em></a> by New West recently...</p>
             </article>
 
-<hr>
+            <hr>
 
             <article class="blog-post">
                 <div class="post-meta">August 15, 2026</div>
-                <p>This is where I will update you guys on what songs Ive been liking, thoughts on new albums/songs/eps or song recommendations that yall have given me. As well as song lyrics that stood out to me, and/or that have been stuck in my head.</p> 
+                <p>This is where I will update you guys on what songs Ive been liking, thoughts on new albums/songs/eps or song recommendations that yall have given me. As well as song lyrics that stood out to me, and/or that have been stuck in my head.</p>
             </article>
         </main>
     </div>
