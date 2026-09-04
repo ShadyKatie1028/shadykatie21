@@ -311,7 +311,23 @@
         </main>
 
         <footer>
-            <p>2026 Shady's Blog.</p>
+                
+            <p><script>
+// Counter is available as a global variable
+const counter = new Counter({ workspace: 'your-workspace-slug' });
+
+counter.up('your-counter-slug')
+  .then(result => {
+	// for debugging purposes
+	console.log('Counter result:', result);
+	console.log(`Visits: ${result.data.up_count}`);
+	// update the counter display
+	document.getElementById('counter').textContent = result.data.up_count;
+  })
+  .catch(err => console.error(err));
+</script>
+
+<div>visits:  <span id="counter"></span></div>2026 Shady's Blog.</p>
         </footer>
 
     </div>
