@@ -262,7 +262,7 @@
             <article class="blog-post">
                 <div class="post-meta">August 16, 2026 • Updates</div>
                     <p>Charlie Says Hi Guys, and hes hoping everyone is having a better day than he is. He got his ears looked at today AND a bath. sheesh poor guy.</p>
-                        <img src="Charlie.png" alt="Chuck" class="post-img">
+                        <img src="Charlie.jpg" alt="Chuck" class="post-img">
             </article>
 
             <hr>
@@ -309,24 +309,22 @@
 
 
         </main>
+<footer>
+    <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
+    <script>
+      const counter = new Counter({ workspace: 'shadykatie21' });
 
-        <footer>
-            <script type="module">
-  import { Counter } from 'https://cdn.jsdelivr.net/npm/counterapi/dist/counter.esm.min.js';
+      counter.up('page-views')
+        .then(result => {
+          console.log(`Page views: ${result.value}`);
+          document.getElementById('counter').textContent = result.value;
+        })
+        .catch(error => console.error('Counter error:', error.message));
+    </script>
 
-  const counter = new Counter({ workspace: 'shadykatie21' });
-
-  counter.up('page-views')
-    .then(result => {
-      console.log(`Page views: ${result.value}`);
-      document.getElementById('counter').textContent = result.value;
-    })
-    .catch(error => console.error('Counter error:', error.message));
-</script>
-
-<div>Views: <span id="counter">Loading...</span></div>
-            <p>2026 Shady's Blog.</p>
-        </footer>
+    <div>Views: <span id="counter">Loading...</span></div>
+    <p>&copy; 2026 Shady's Blog.</p>
+</footer>
 
     </div>
 
