@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shady's Blog - Help</title>
+    </head>
+
+    <body>
+        <div class="hero-header" style="display: flex; align-items: center; gap: 12px; justify-content: flex-start;">
+            <a href="index.html" style="display:inline-flex; align-items:center; text-decoration:none;">
+                <img src="LOGO.png" alt="Logo" width="25" height="25">
+            </a>
+            <h1 class="hero-title" style="font-size: 100%; margin: 0 0 0 auto">Shady's Blog</h1>
+        </div>
+
+        <div class="hero-header">
+            <hr style="margin: 5px 0 5px;">
+            <h3 class="hero-title" style="text-align: center; margin: 0;">Resource Page</h3>   
+        </div>
+
+        <p style="text-align: center;">This is for anyone who would like to know more about creating their own webstie or blog :)</p>
+        <p style="text-align: center;">The first thing youd need is to set up a <a href="https://github.com/" target="_blank">GitHub</a> account, and then you can use GitHub Pages to host your website for free. You can also use a custom domain name if you have one, or you can use the default GitHub Pages domain. I used <a href="https://www.namecheap.com/" target="_blank">Namecheap</a> to purchase my domain name. It was only a couple of dollars.</p>
+        <p style="text-align: center;">For the deisgn of the website I, was lucky to have a 5 hour train ride so I had a few hours to brainstorm and sketch out the design of the website. As well as using pintrest, the help of my friends, and tiktok to get some inspo.</p> 
+
+        <hr>
+        <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+            <figure style="margin: 0; text-align: center;">
+                <img src="sketches/Sketches.jpg" alt="Sketch of website design" height="200" style="max-width: 100%; border: 1px solid #ccc; border-radius: 4px;">
+                <figcaption>Sketch for Blog Page</figcaption>
+            </figure>
+            <figure style="margin: 0; text-align: center;">
+                <img src="sketches/Sketches-2.jpg" alt="Sketch of website design" width="300" height="200" style="max-width: 100%; border: 1px solid #ccc; border-radius: 4px;">
+                <figcaption>Sketch for Music and Book Page</figcaption>
+            </figure>
+            <figure style="margin: 0; text-align: center;">
+                <img src="sketches/Sketches-3.jpg" alt="Sketch of website design" width="300" height="200" style="max-width: 100%; border: 1px solid #ccc; border-radius: 4px;">
+                <figcaption>Sketch for Home page and Photo Page</figcaption>
+            </figure>
+            <figure style="margin: 0; text-align: center;">
+                <img src="sketches/Sketches-4.jpg" alt="Sketch of website design" width="300" height="200" style="max-width: 100%; border: 1px solid #ccc; border-radius: 4px;">
+                <figcaption>Sketch #2 for Photo Page</figcaption>
+            </figure>
+        </div>
+<hr>
+
+            
+        <p style="text-align: center; margin-top: 20px;">For the visit counter, I used <a href="https://kittenluv1.neocities.org/resources" target="_blank">Erica's resource page</a> so I'll just copy and paste here:</p>
+        <ol style="max-width: 700px; margin: 0 auto 20px; line-height: 1.8;">
+            <li>Create an account on CounterAPI.</li>
+            <li>Create a workspace, and create a counter within that workspace.</li>
+            <li>Add this code to your HTML to update and display the visit counter:</li>
+        </ol>
+
+        <pre style="max-width: 700px; margin: 0 auto 20px; padding: 16px; background: #f5f5f5; border-radius: 8px; overflow-x: auto; text-align: left; white-space: pre-wrap; word-break: break-word;"><code>&lt;script&gt;
+// Counter is available as a global variable
+const counter = new Counter({ workspace: 'your-workspace-slug' });
+
+counter.up('your-counter-slug')
+  .then(result =&gt; {
+    // for debugging purposes
+    console.log('Counter result:', result);
+    console.log(`Visits: ${result.data.up_count}`);
+    // update the counter display
+    document.getElementById('counter').textContent = result.data.up_count;
+  })
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;</code></pre>
+
