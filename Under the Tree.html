@@ -81,7 +81,7 @@
             margin-top: 80px;
             font-size: 0.85rem;
             color: #888888;
-            border-top: 1px solid #ceccc9;
+            border-top: 1px solid #c2c1bf;
             padding-top: 20px;
         }
 
@@ -346,6 +346,12 @@
 
         <main>
 
+            <article class="blog-post">
+                <p>where can i get some popcorn shrimp?</p>
+            </article>
+
+            <hr> 
+            
 <article class="blog-post">
                 <div class="post-meta">September 5, 2026 • Updates</div>
                 <p>pfft what emo loser go into my website and posted that sad shit wtf? #stillthegoat</p>
@@ -568,18 +574,18 @@
 
     <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
     <script>
-            const viewCounter = new Counter({ workspace: 'shadykatie21' });
-            const counterDisplay = document.getElementById('counter');
-            const displayOffset = 96;
+        const viewCounter = new Counter({ workspace: 'shadykatie21' });
+        const counterDisplay = document.getElementById('counter');
+        const displayOffset = 96;
 
-            viewCounter.up('page-views')
-                .then(result => {
-                    counterDisplay.textContent = displayOffset + result.data.up_count;
-                })
-                .catch(error => {
-                    counterDisplay.textContent = 'Unavailable';
-                    console.error('Counter error:', error.message);
-                });
+        viewCounter.up('page-views')
+            .then(result => {
+                counterDisplay.textContent = displayOffset + result.value;
+            })
+            .catch(error => {
+                counterDisplay.textContent = 'Counter setup needed';
+                console.error('Counter error:', error.message);
+            });
     </script>
 </footer>
 
