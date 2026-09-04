@@ -563,20 +563,24 @@
     </div>
 
 <footer>
+        <div>Views: <span id="counter">Loading...</span></div>
+        <p>&copy; 2026 Shady's Blog.</p>
+
     <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
     <script>
-      const counter = new Counter({ workspace: 'shadykatie21' });
+            const viewCounter = new Counter({ workspace: 'shadykatie21' });
+            const counterDisplay = document.getElementById('counter');
+            const displayOffset = 162;
 
-      counter.up('page-views')
-        .then(result => {
-          console.log(`Page views: ${result.value}`);
-          document.getElementById('counter').textContent = result.value;
-        })
-        .catch(error => console.error('Counter error:', error.message));
+            viewCounter.up('page-views')
+                .then(result => {
+                    counterDisplay.textContent = displayOffset + result.data.up_count;
+                })
+                .catch(error => {
+                    counterDisplay.textContent = 'Unavailable';
+                    console.error('Counter error:', error.message);
+                });
     </script>
-
-    <div>Views: <span id="counter">Loading...</span></div>
-    <p>&copy; 2026 Shady's Blog.</p>
 </footer>
 
 
