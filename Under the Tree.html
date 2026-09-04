@@ -114,16 +114,6 @@
 
 
 <body>
-   <a href="books.html" class="side-link">
-    <div class="side-link-card">
-        <img src="War of the Worlds.jpg" alt="War of the Worlds">
-        <div class="side-link-shawdowbox"> <span> Photos  &rarr;</span> 
-        </div> </div> </a>
-    </div>
-   </a>
-
-
-
     <div class="hero-header">
         <a href="index.html" class="logo-btn">
             <img src="LOGO.png" alt="Logo">
@@ -252,9 +242,9 @@
                 <div class="post-meta">August 16, 2026</div>
                 <h2>New Tattoos</h2>
                     <p>recently got 3 more new tattos...what that makes 10 now?? Wow am i cool yet?</p>
-                <img src="Tattoo.jpg" alt="tattoo1" class="post-img" style="width: 75%; flex: 2; height: auto; aspect-ratio: 4/3; object-fit: cover; border-radius: 4px;">
+                <img src="Tattoo.png" alt="tattoo1" class="post-img" style="width: 75%; flex: 2; height: auto; aspect-ratio: 4/3; object-fit: cover; border-radius: 4px;">
                     <p>The first one was a goldfish. As Coach Lasso said, "You know what the happiest animal on Earth is? It's a goldfish. You know why? Got a ten-second memory. Be a goldfish." Which is just a reminder to let things go. </p>
-                <img src="Tattoo2.jpg" alt="tattoo2" class="post-img" style="width: 75%; flex: 2; height: auto; aspect-ratio: 4/3; object-fit: cover; border-radius: 4px;">
+                <img src="Tattoo2.png" alt="tattoo2" class="post-img" style="width: 75%; flex: 2; height: auto; aspect-ratio: 4/3; object-fit: cover; border-radius: 4px;">
                     <p> The second one is a T-rex from Meet the Robinsons, which is about an orphan who spends his whole life thinking about the family that abandons him, and thoughout the movie, he learns that if he just keeps moving forward his family will come. </p>
                 <img src="Tattoo3.png" alt="tattoo3" class="post-img" style="width: 75%; flex: 2; height: auto; aspect-ratio: 4/3; object-fit: cover; border-radius: 4px;">
                     <p> The last one is obvious, i like baking and i bake a lot of cookies.</p>
@@ -282,7 +272,7 @@
                     <h2><a>Hadestown</a></h2>
                         <div class="photo-column" style="display: flex; gap: 10px; width: 100%; box-sizing: border-box;">
                             <img src="Hadestown.png" alt="Hadestown" style="width: 0; flex: 2; height: auto; aspect-ratio: 4/3; object-fit: cover; border-radius: 4px;">
-                            <img src="Hadestown1.jpg" alt="Hadestown" style="width: 0; flex: 1; height: auto; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px;">
+                            <img src="Hadestown1.png" alt="Hadestown" style="width: 0; flex: 1; height: auto; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px;">
                         </div>
                 <p>As most of you guys know, when I went to New York, I went to see Hadestown on Broadway. And it was spectacular. The set was breathtaking and the singing had so much emotion behind it. Well yesterday I went to see the pro shot, for the non-theater kids reading this, it's just the show recorded professionally. And let me just say, wow, they were somehow able to capture the depth and hypnotic feeling that you can only get when watching a show live. I caught myself doing the head tilting thing I do when I'm only watching a live show, just in a trance. Alas, I do believe watching the show is still worth it, you will never be able to recreate the energy and immersion that a broadway show should have. </p>
             </article>
@@ -321,23 +311,23 @@
         </main>
 
         <footer>
-                
-            <p><script>
-// Counter is available as a global variable
-const counter = new Counter({ workspace: 'your-workspace-slug' });
+            <script type="module">
+  import { Counter } from 'https://cdn.jsdelivr.net/npm/counterapi/dist/counter.esm.min.js';
 
-counter.up('your-counter-slug')
-  .then(result => {
-	// for debugging purposes
-	console.log('Counter result:', result);
-	console.log(`Visits: ${result.data.up_count}`);
-	// update the counter display
-	document.getElementById('counter').textContent = result.data.up_count;
-  })
-  .catch(err => console.error(err));
+  // Create a counter client (V2 API — the only available version)
+  const counter = new Counter({ workspace: 'shadykatie21' });
+
+  // Increment a page view counter
+  counter.up('page-views')
+    .then(result => {
+      console.log(`Page views: ${result.value}`);
+      document.getElementById('counter').textContent = result.value;
+    })
+    .catch(error => console.error('Counter error:', error.message));
 </script>
 
-<div>visits:  <span id="counter"></span></div>2026 Shady's Blog.</p>
+<div>Views: <span id="counter">Loading...</span></div>
+            <p>2026 Shady's Blog.</p>
         </footer>
 
     </div>
