@@ -19,6 +19,17 @@
   background: transparent;
 }
 
+.photos-header {
+  flex-direction: column;
+  position: relative;
+}
+
+.photos-header .logo-btn {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+
 .logo-btn {
   display: inline-flex;
   align-items: center;
@@ -132,6 +143,37 @@
   margin: 0 auto 40px;
   max-width: 1000px;
   padding: 0 10px;
+}
+
+.photo-column {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.photo-column img {
+  width: 0;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.photo-column img:first-child {
+  flex: 2;
+  aspect-ratio: 4 / 3;
+}
+
+.photo-column img:last-child {
+  flex: 1;
+  aspect-ratio: 3 / 4;
+}
+
+.post-img--narrow {
+  width: 75%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 4px;
 }
 
 .grid-item {
@@ -278,17 +320,17 @@
 </head>
 
 <body>
-  <div class="hero-header" style="display: flex; flex-direction: column; align-items: center; position: relative;">
-    <a href="index.html" class="logo-btn" style="position: absolute; left: 20px; top: 20px;">
+  <div class="hero-header photos-header">
+    <a href="index.html" class="logo-btn">
       <img src="LOGO.png" alt="Logo">
     </a>
-    <h1 style="margin: 0 0 10px 0;">My Photos</h1>
-    <p style="margin: 0; max-width: 600px; text-align: center;">Welcome to the photos page! Here is where I'll share my favorite moments and camera shots.</p>
+    <h1>My Photos</h1>
+    <p>Welcome to the photos page! Here is where I'll share my favorite moments and camera shots.</p>
   </div>
 
-  <hr style="border: none; height: 2px; background: black; margin: 0px 0;">
+  <hr class="page-divider">
 
-  <h2 style="text-align:center; margin-top: 40px;">Featured Gallery</h2>
+  <h2 class="section-title">Featured Gallery</h2>
   <div class="polaroid-gallery">
     <div class="polaroid" tabindex="0" data-bio="Perseus with the Head of Medusa, The Met, Aug 5, 2026">
       <div class="bio-overlay">Perseus with the Head of Medusa, Italian/rome, 1804-1806</div>
@@ -312,7 +354,7 @@
     </div>
   </div>
 
-  <hr style="border: none; height: 2px; background: black; margin: 40px 0;">
+  <hr class="page-divider page-divider--spaced">
 <div class="photo-grid">
   <div class="grid-item" tabindex="0" data-bio="">
     <img src="SF-Giants-2.jpg" alt="Flos" loading="lazy">

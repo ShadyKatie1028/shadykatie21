@@ -115,6 +115,25 @@
             align-items: flex-start;
         }
 
+        .clip {
+            position: absolute;
+            z-index: 999;
+            height: auto;
+        }
+
+        .birds-clip {
+            top: 20px;
+            left: 300px;
+            width: 175px;
+        }
+
+        .shady-clip {
+            top: -25px;
+            left: 923px;
+            width: 200px;
+            height: 238px;
+        }
+
 
       .sidebar {
     position: absolute;
@@ -191,6 +210,22 @@
         margin: 0;
      }
 
+      .note-text--handwritten {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 150px;
+          font-family: 'Caveat', cursive;
+          font-size: 25px;
+          text-align: center;
+      }
+
+      .note-text a,
+      .post-body a {
+          color: #0b5502;
+          text-decoration: underline;
+      }
+
 @media (max-width: 1170px) {
     .sticky-sidebar {
         display: none;
@@ -206,6 +241,44 @@
     position: relative;
     margin-top: 10px;
     text-align: center;
+}
+
+.sidebar-heading {
+    font-weight: bold;
+    text-align: center;
+    margin: 0 0 10px;
+}
+
+.photo-column {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.photo-column img {
+    width: 0;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.photo-column img:first-child {
+    flex: 2;
+    aspect-ratio: 4 / 3;
+}
+
+.photo-column img:last-child {
+    flex: 1;
+    aspect-ratio: 3 / 4;
+}
+
+.post-img--narrow {
+    width: 75%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 4px;
 }
 
 .sidebar-img {
@@ -230,24 +303,9 @@
 
 
 
-<img src="birds.png" alt="Scrapbook clip" style="
-  position: absolute; 
-  top: 20px; 
-  left: 300px; 
-  width: 175px; 
-  height: auto; 
-  z-index: 999;
-">
+<img src="birds.png" alt="Scrapbook clip" class="clip birds-clip">
 
-<img src="Shady.png" alt="Scrapbook clip" style="
-    position: absolute;
-    top: -25px; 
-    left: 923px; 
-    width: 200px; 
-    height: 238px; 
-    z-index: 999;
-    margin: 0;
-">
+<img src="Shady.png" alt="Scrapbook clip" class="clip shady-clip">
     <div class="container">
 
         <header>
@@ -264,12 +322,12 @@
 
 
         <div class="sidebar">
-            <p style="font-weight: bold; text-align: center; margin: 0 0 10px 0;">What Ive Been Reading:</p>
-                <hr style ="margin: 0;">
-            <div class="sidebar-img-wrap" style="position: relative; margin-top: 10px;">
+            <p class="sidebar-heading">What Ive Been Reading:</p>
+                <hr class="sidebar-divider">
+            <div class="sidebar-img-wrap">
                 <a href="books.html">
                     <img src="The War of The Worlds.jpg" alt="Sidebar Image">
-                <hr style ="margin: -6px;">
+                <hr class="sidebar-divider sidebar-divider--tight">
                 </a>
             </div>
         </div>
@@ -278,9 +336,9 @@
     <img src="washi tape.png" alt="Washi Tape" class="washi-tape">
     <p class="note-heading">Note to Self:</p>
 
-    <p class="note-text" style="font-family: 'Caveat', cursive; font-size: 25px; display: flex; justify-content: center; align-items: center; text-align: center; min-height: 150px; margin:0;">
+    <p class="note-text note-text--handwritten">
         <span>
-            Go Check Out <a href="https://kittenluv1.com/blog/2026/" style="color: #0b5502; text-decoration: underline;">Erica's Blog!</a>
+            Go Check Out <a href="https://kittenluv1.com/blog/2026/">Erica's Blog!</a>
         </span>
     </p>    
     </div>
@@ -288,8 +346,24 @@
 
         <main>
 
+<article class="blog-post">
+                <div class="post-meta">September 5, 2026 • Updates</div>
+                <p>pfft what emo loser go into my website and posted that sad shit wtf? #stillthegoat</p>
+                <p>Anyways, i posted my <a href="music.html">dream Role Model set list</a> so go check that out!</p>
+                </article>  
+            
+            <hr>
+
+            <article class="blog-post">
+                <div class="post-meta">September 5, 2026 • Updates</div>
+                <h2>This is getting embarrassing</h2>
+                <p>unrequited or unspoken? what if its time to just...forget? I cant read your mind, just tell me before i give up.</p>
+                </article>
+
+                <hr>
+
         <article class="blog-post">
-                <div class="post-meta">September 2, 2026 • Updates</div>
+                <div class="post-meta">September 3, 2026 • Updates</div>
                 <h2>Yall Odda See The Odyssey </h2>
                 <p>Unfortunately I wasn't able to reread Homer's Odyssey before seeing the movie, but Erica and I were able to get tickets for the 70mm screening in Sacramento. And WOW. 10/10 yall gotta see!!!!</p>
                 <p>First things fisrt</p>
@@ -333,9 +407,9 @@
                     <p>only like 14 left. I did though, fix the camera my dad brought home like 2 years ago for me (then proceeded to scream in my face about how useless photography is). The camera is a Yashica Electro 35mm film camera, which if it sounds familiar, is the same camera Andrew Garfeild's Peter Parker uses in the first of his Spiderman movies. Well actually mines older, his is a GSN or sm, which came out in 1973 and mine came out in 1966. So suck it parker *said in J. Jonah. Jameson's voice*. Im proud of myself for finally doing this though, of course I took the time where I couldve done my 6 classes of homework but wtv its worth it. We wont know if it works till i finish this roll and develop it. Which btw birthday coming up. BUY ME FILM!!!! If i get one more text of "oooooooh what should i get you" since yall cant get me drinks. <strong>FILM PLEASE I NEED!!!!</strong></p>
                     <p>...I use Kodak Ultramax 400, but i LOVE kodak portra 400. every film photographer loves portra 400 trust.</p>
                     <p>The first photo is a photo of the kind of camera that I have, and the second photo is obvi andrews camera</p>
-                 <div class="photo-column" style="display: flex; gap: 10px; width: 100%; box-sizing: border-box;">
-                            <img src="Yashica E35.jpg" alt="My Camera" style="width: 0; flex: 2; height: auto; aspect-ratio: 4/3; object-fit: cover; border-radius: 4px;">
-                            <img src="Yashica E35 GSN.jpg" alt="Andrew's Camera" style="width: 0; flex: 1; height: auto; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px;">
+                 <div class="photo-column">
+                            <img src="Yashica E35.jpg" alt="My Camera">
+                            <img src="Yashica E35 GSN.jpg" alt="Andrew's Camera">
                         </div>
             </article>
 
@@ -377,9 +451,9 @@
                 <div class="post-meta"> August 23, 2026 • Updates</div>
                     <h2> Yooooo its been a crazy week!</h2>
                     <p>And by crazy I mean all Ive done is work. pickleball, and then saw an amazing concert at Oracle Park.</p>
-                     <div class="photo-column" style="display: flex; gap: 10px; width: 100%; box-sizing: border-box;">
-                            <img src="Noah Kahan fit 1.JPG" alt="Noah Kahan" style="width: 0; flex: 2; height: auto; aspect-ratio: 4/3; object-fit: cover; border-radius: 4px;">
-                            <img src="Noah Kahan fit 2.JPG" alt="Noah Kahan" style="width: 0; flex: 1; height: auto; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px;">
+                    <div class="photo-column">
+                        <img src="Noah Kahan fit 1.JPG" alt="Noah Kahan">
+                        <img src="Noah Kahan fit 2.JPG" alt="Noah Kahan">
                         </div>
                     <p>I wont be talking about the conert TOO much here, that will probably be in the music page. But while at the concert the digi cam broke so I will be getting a new one of those, hopefully before I start going to kings games and the Role Model concert. But here was the fit from the concert.</p>
                     <a href="music.html">Read more about the concert and my thoughts about it.</a>
@@ -391,7 +465,7 @@
  <article class="blog-post">
                 <div class="post-meta">August 17, 2026 • Updates</div>
                 <h2>More Updates</h2>
-                    <p>Hey y'all, I did a complete overhaul on the <a href="books.html" style="color: #0b5502; text-decoration: underline;">books page</a>, as well as added more photos to the <a href="photos.html" style="color: #0b5502; text-decoration: underline;">Photos tab</a>. Have fun exploring!</p>          
+                    <p>Hey y'all, I did a complete overhaul on the <a href="books.html">books page</a>, as well as added more photos to the <a href="photos.html">Photos tab</a>. Have fun exploring!</p>
                 </article>
 
 
@@ -418,11 +492,11 @@
                 <div class="post-meta">August 16, 2026</div>
                 <h2>New Tattoos</h2>
                     <p>recently got 3 more new tattos...what that makes 10 now?? Wow am i cool yet?</p>
-                <img src="Tattoo.jpg" alt="tattoo1" class="post-img" style="width: 75%; flex: 2; height: auto; aspect-ratio: 4/3; object-fit: cover; border-radius: 4px;">
+                <img src="Tattoo.jpg" alt="tattoo1" class="post-img post-img--narrow">
                     <p>The first one was a goldfish. As Coach Lasso said, "You know what the happiest animal on Earth is? It's a goldfish. You know why? Got a ten-second memory. Be a goldfish." Which is just a reminder to let things go. </p>
-                <img src="Tattoo2.jpg" alt="tattoo2" class="post-img" style="width: 75%; flex: 2; height: auto; aspect-ratio: 4/3; object-fit: cover; border-radius: 4px;">
+                <img src="Tattoo2.jpg" alt="tattoo2" class="post-img post-img--narrow">
                     <p> The second one is a T-rex from Meet the Robinsons, which is about an orphan who spends his whole life thinking about the family that abandons him, and thoughout the movie, he learns that if he just keeps moving forward his family will come. </p>
-                <img src="Tattoo3.png" alt="tattoo3" class="post-img" style="width: 75%; flex: 2; height: auto; aspect-ratio: 4/3; object-fit: cover; border-radius: 4px;">
+                <img src="Tattoo3.png" alt="tattoo3" class="post-img post-img--narrow">
                     <p> The last one is obvious, i like baking and i bake a lot of cookies.</p>
             </article>
 
@@ -446,9 +520,9 @@
             <article class="blog-post">
                 <div class="post-meta">August 15, 2026 • Updates</div>
                     <h2>Hadestown</h2>
-                        <div class="photo-column" style="display: flex; gap: 10px; width: 100%; box-sizing: border-box;">
-                            <img src="Hadestown.jpg" alt="Hadestown" style="width: 0; flex: 2; height: auto; aspect-ratio: 4/3; object-fit: cover; border-radius: 4px;">
-                            <img src="Hadestown1.jpg" alt="Hadestown" style="width: 0; flex: 1; height: auto; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px;">
+                        <div class="photo-column">
+                            <img src="Hadestown.jpg" alt="Hadestown">
+                            <img src="Hadestown1.jpg" alt="Hadestown">
                         </div>
                 <p>As most of you guys know, when I went to New York, I went to see Hadestown on Broadway. And it was spectacular. The set was breathtaking and the singing had so much emotion behind it. Well yesterday I went to see the pro shot, for the non-theater kids reading this, it's just the show recorded professionally. And let me just say, wow, they were somehow able to capture the depth and hypnotic feeling that you can only get when watching a show live. I caught myself doing the head tilting thing I do when I'm only watching a live show, just in a trance. Alas, I do believe watching the show is still worth it, you will never be able to recreate the energy and immersion that a broadway show should have. </p>
             </article>

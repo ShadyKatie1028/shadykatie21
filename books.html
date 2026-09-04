@@ -130,6 +130,27 @@
             z-index: 10;
         }
 
+        .book-billy { width: 22px; height: 115px; }
+        .book-world-war-z { width: 32px; height: 128px; }
+        .book-raisin { width: 22px; height: 115px; }
+        .book-hail-mary { width: 34px; height: 128px; }
+        .book-tuesdays { width: 22px; height: 112px; }
+        .book-animal-farm { width: 20px; height: 108px; }
+        .book-create-dangerously { width: 26px; height: 116px; }
+        .book-monte-cristo { width: 40px; height: 135px; }
+        .book-land { width: 28px; height: 126px; }
+        .book-catcher { width: 25px; height: 120px; }
+        .book-stranger { width: 22px; height: 115px; }
+        .book-old-man { width: 26px; height: 118px; }
+        .book-funny-story { width: 30px; height: 125px; }
+        .book-jottings { width: 20px; height: 108px; }
+        .book-mice-and-men { width: 22px; height: 114px; }
+        .book-gatsby { width: 26px; height: 124px; }
+        .book-young-poet { width: 22px; height: 112px; }
+        .book-dead-poets { width: 25px; height: 120px; }
+        .book-dull-people { width: 21px; height: 110px; }
+        .book-heaven { width: 25px; height: 120px; }
+
         .book-stack {
             display: flex;
             flex-direction: column-reverse;
@@ -324,13 +345,13 @@
         <div class="bookshelf-sidebar">
             
             <div class="shelf">
-                <div class="css-book sp-penguin-black tilt-wall-left" style="width: 22px; height: 115px;" 
-                     onclick="openBookModal('Billy Budd, Sailor', 'Herman Melville', '1924', 'billy_budd.jpg', 3.5, 'No', 'Low-key if you read this in the month of June, it has lots of implications of Billy being gay. The book was kinda boring to me but it\'s short enough that you can read it in one sitting.)">BILLY BUDD</div>
-                <div class="css-book sp-wwz-exact" style="width: 32px; height: 128px;" 
-                     onclick="openBookModal('World War Z', 'Max Brooks', '2006', 'world_war_z.jpg', 4, 'Yes', 'The )">WORLD WAR Z</div>
-                <div class="css-book sp-raisin-exact" style="width: 22px; height: 115px;" 
+                <div class="css-book book-billy sp-penguin-black tilt-wall-left"
+                     onclick="openBookModal('Billy Budd, Sailor', 'Herman Melville', '1924', 'billy_budd.jpg', 3.5, 'No', '')">BILLY BUDD</div>
+                <div class="css-book book-world-war-z sp-wwz-exact"
+                     onclick="openBookModal('World War Z', 'Max Brooks', '2006', 'world_war_z.jpg', 4, 'Yes', '')">WORLD WAR Z</div>
+                <div class="css-book book-raisin sp-raisin-exact"
                      onclick="openBookModal('A Raisin in the Sun', 'Lorraine Hansberry', '1959', 'raisin_sun.jpg', 5, 'No', '')">RAISIN IN THE SUN</div>
-                <div class="css-book sp-hailmary-exact" style="width: 34px; height: 128px;" 
+                <div class="css-book book-hail-mary sp-hailmary-exact"
                      onclick="openBookModal('Project Hail Mary', 'Andy Weir', '2021', 'hail_mary.jpg', 5, 'Yes', '')">PROJECT HAIL MARY</div>
                 
                 <div class="book-stack stack-right">
@@ -349,22 +370,22 @@
                          onclick="openBookModal('The Pearl', 'John Steinbeck', '1947', 'the_pearl.jpg', 4, 'No', '')">THE PEARL</div>
                 </div>
 
-                <div class="css-book sp-tuesdays-exact" style="width: 22px; height: 112px;" 
+                <div class="css-book book-tuesdays sp-tuesdays-exact"
                      onclick="openBookModal('Tuesdays with Morrie', 'Mitch Albom', '1997', 'tuesdays_morrie.jpg', 5, 'No', '')">TUESDAYS WITH MORRIE</div>
-                <div class="css-book sp-animalfarm-exact" style="width: 20px; height: 108px;" 
+                <div class="css-book book-animal-farm sp-animalfarm-exact"
                      onclick="openBookModal('Animal Farm', 'George Orwell', '1945', 'animal_farm.jpg', 5, 'No', '')">ANIMAL FARM</div>
-                <div class="css-book sp-createdanger-exact tilt-wall-right" style="width: 26px; height: 116px;" 
+                <div class="css-book book-create-dangerously sp-createdanger-exact tilt-wall-right"
                      onclick="openBookModal('Create Dangerously', 'Edwidge Danticat', '2010', 'create_dangerously.jpg', 5, 'N/A', '')">CREATE DANGEROUSLY</div>
             </div>
 
             <div class="shelf">
-                <div class="css-book sp-montecristo-exact tilt-wall-left" style="width: 40px; height: 135px;" 
+                <div class="css-book book-monte-cristo sp-montecristo-exact tilt-wall-left"
                      onclick="openBookModal('The Count of Monte Cristo', 'Alexandre Dumas', '1844', 'monte_cristo.jpg', 5, 'No', '')">COUNT OF MONTE CRISTO</div>
-                <div class="css-book sp-land-exact" style="width: 28px; height: 126px;" 
+                <div class="css-book book-land sp-land-exact"
                      onclick="openBookModal('How Much Land Does a Man Need?', 'Leo Tolstoy', '1886', 'how_much_land.jpg', 4, 'N/A', '')">HOW MUCH LAND</div>
-                <div class="css-book sp-catcher-exact" style="width: 25px; height: 120px;" 
+                <div class="css-book book-catcher sp-catcher-exact"
                      onclick="openBookModal('The Catcher in the Rye', 'J.D. Salinger', '1951', 'catcher_rye.jpg', 4, 'No', '')">CATCHER IN THE RYE</div>
-                <div class="css-book sp-stranger-exact tilt-wall-right" style="width: 22px; height: 115px;" 
+                <div class="css-book book-stranger sp-stranger-exact tilt-wall-right"
                      onclick="openBookModal('The Stranger', 'Albert Camus', '1942', 'the_stranger.jpg', 5, 'No', '')">THE STRANGER</div>
             </div>
 
@@ -376,29 +397,29 @@
                          onclick="openBookModal('The Perks of Being a Wallflower', 'Stephen Chbosky', '1999', 'wallflower.jpg', 5, 'Yes', '')">WALLFLOWER</div>
                 </div>
 
-                <div class="css-book sp-oldman-exact" style="width: 26px; height: 118px;" 
+                <div class="css-book book-old-man sp-oldman-exact"
                      onclick="openBookModal('The Old Man and the Sea', 'Ernest Hemingway', '1952', 'old_man_sea.jpg', 2.5, 'No', '')">OLD MAN & THE SEA</div>
-                <div class="css-book sp-funnystory-exact tilt-wall-right" style="width: 30px; height: 125px;" 
+                <div class="css-book book-funny-story sp-funnystory-exact tilt-wall-right"
                      onclick="openBookModal('It\'s Kind of a Funny Story', 'Ned Vizzini', '2006', 'funny_story.jpg', 3.5, 'No', '')">IT'S KIND OF A FUNNY STORY</div>
             </div>
 
             <div class="shelf">
-                <div class="css-book sp-vintage-paper tilt-wall-left" style="width: 20px; height: 108px;" 
+                <div class="css-book book-jottings sp-vintage-paper tilt-wall-left"
                      onclick="openBookModal('Sketchy Doubtful Incomplete Jottings', 'Fernando Pessoa', '1982', 'jottings.jpg', 4, 'N/A', '')">SKETCHY JOTTINGS</div>
-                <div class="css-book sp-ofmicemen-exact" style="width: 22px; height: 114px;" 
+                <div class="css-book book-mice-and-men sp-ofmicemen-exact"
                      onclick="openBookModal('Of Mice and Men', 'John Steinbeck', '1937', 'mice_and_men.jpg', 5, 'No', '')">OF MICE AND MEN</div>
-                <div class="css-book sp-gatsby-exact" style="width: 26px; height: 124px;" 
+                <div class="css-book book-gatsby sp-gatsby-exact"
                      onclick="openBookModal('The Great Gatsby', 'F. Scott Fitzgerald', '1925', 'gatsby.jpg', 5, 'Yes', '')">THE GREAT GATSBY</div>
-                <div class="css-book sp-youngpoet-exact" style="width: 22px; height: 112px;" 
+                <div class="css-book book-young-poet sp-youngpoet-exact"
                      onclick="openBookModal('Letters to a Young Poet', 'Rainer Maria Rilke', '1929', 'young_poet.jpg', 5, 'N/A', '')">LETTERS TO A YOUNG POET</div>
-                <div class="css-book sp-deadpoets-exact tilt-wall-right" style="width: 25px; height: 120px;" 
+                <div class="css-book book-dead-poets sp-deadpoets-exact tilt-wall-right"
                      onclick="openBookModal('Dead Poets Society', 'N.H. Kleinbaum', '1989', 'dead_poets.jpg', 5, 'Yes', '')">DEAD POETS SOCIETY</div>
             </div>
 
             <div class="shelf">
-                <div class="css-book sp-dullpeople-exact tilt-wall-left" style="width: 21px; height: 110px;" 
+                <div class="css-book book-dull-people sp-dullpeople-exact tilt-wall-left"
                      onclick="openBookModal('Only Dull People Are Brilliant at Breakfast', 'Oscar Wilde', '2016', 'dull_people.jpg', 4, 'N/A', '')">ONLY DULL PEOPLE</div>
-                <div class="css-book sp-heaven5-exact" style="width: 25px; height: 120px;" 
+                <div class="css-book book-heaven sp-heaven5-exact"
                      onclick="openBookModal('The Five People You Meet in Heaven', 'Mitch Albom', '2003', 'heaven_5.jpg', 5, 'No', '')">5 PEOPLE YOU MEET IN HEAVEN</div>
             </div>
 

@@ -72,18 +72,29 @@
         margin-bottom: 8px;
     }
 
+    .music-sidebar-img-wrap {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+    }
+
+    .music-sidebar-img-wrap img {
+        height: 100%;
+        margin-bottom: 0;
+    }
+
     .text-overlay {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        height: 165px;
+        height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 10px;
         box-sizing: border-box;
-        background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0));
+        background: rgba(0, 0, 0, 0.45);
         opacity: 0;
         transition: opacity 0.25s ease;
         pointer-events: none;
@@ -182,6 +193,10 @@
         margin-bottom: 60px;
     }
 
+    .set-list-post p {
+        margin: 0 0 6px;
+    }
+
     .post-meta {
         font-size: 0.8rem;
         text-transform: uppercase;
@@ -195,6 +210,20 @@
         font-size: 0.85rem;
         border-top: 1px solid #e0dbd1;
         padding-top: 20px;
+    }
+
+    .music-footer {
+        max-width: 850px;
+        margin: 80px auto 0;
+    }
+
+    .page-rule {
+        max-width: 850px;
+        margin: 0 auto;
+    }
+
+    .center-heading {
+        text-align: center;
     }
 
     hr {
@@ -227,194 +256,6 @@
         }
     }
 
-
-
-
-        header p {
-            font-style: italic;
-            margin: 0;
-        }
-
-        .page-wrapper {
-            max-width: 850px;
-            margin: 0 auto;
-            display: flex;
-            gap: 35px;
-            align-items: flex-start;
-        }
-
-        .music-sidebar {
-            flex: 0 0 165px;
-            text-align: center;
-        }
-
-        .music-sidebar img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            border-radius: 6px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            margin-bottom: 8px;
-        }
-
-        .text-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: none;
-        }
-
-        .overlay-text {
-            visibility: hidden;
-            opacity: 0;
-            background-color: rgba(0, 0, 0, 0.65);
-            color: #fff !important;
-            padding: 12px 14px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-family: 'Courier New', Courier, monospace;
-            font-style: normal;
-            line-height: 1.4;
-            text-align: center;
-            width: 85%;
-            transition: opacity 0.2s ease;
-            margin: 0;
-        }
-
-        .music-sidebar-img-wrap:hover .overlay-text {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        .music-info {
-            font-size: 0.85rem;
-            margin-bottom: 8px;
-        }
-
-        .music-title {
-            font-weight: bold;
-            display: block;
-        }
-
-        .music-title a {
-            text-decoration: none;
-        }
-
-        .music-title a:hover {
-            text-decoration: underline;
-        }
-
-        .music-artist {
-            font-size: 0.78rem;
-        }
-
-        .mp3-controls {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin: 8px 0 12px;
-        }
-
-        .mp3-btn {
-            background: none;
-            border: 1px solid #d4cebe;
-            border-radius: 50%;
-            width: 28px;
-            height: 28px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.65rem;
-            transition: all 0.2s ease;
-        }
-
-        .mp3-btn:hover {
-            background: #e8e3d5;
-        }
-
-        .fav-songs {
-            text-align: left;
-            border-top: 1px solid #e0dbd1;
-            padding-top: 10px;
-        }
-
-        .fav-songs h3 {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0 0 6px;
-            font-weight: normal;
-        }
-
-        .fav-songs ol {
-            margin: 0;
-            padding-left: 15px;
-            font-size: 0.78rem;
-        }
-
-        .fav-songs li {
-            margin-bottom: 3px;
-        }
-
-        .container {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .blog-post {
-            margin-bottom: 60px;
-        }
-
-        .post-meta {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 80px;
-            font-size: 0.85rem;
-            border-top: 1px solid #e0dbd1;
-            padding-top: 20px;
-        }
-
-        hr {
-            border: none;
-            border-top: 1px solid #e0dbd1; 
-            margin: 40px 0;
-        }
-
-        .logo-btn img {
-            width: 40px;
-            height: 40px;
-            border-radius: 100%;
-            border: 1px solid #ffffff;
-            background-color: #ffffff;
-            display: block;
-            padding: 6px;          
-            box-sizing: border-box; 
-            object-fit: contain;   
-        }
-
-        @media (max-width: 650px) {
-            .page-wrapper {
-                flex-direction: column;
-            }
-            .music-sidebar {
-                width: 100%;
-                max-width: 200px;
-                margin: 0 auto 30px;
-            }
-        }
-        
     </style>
 </head>
 <body>
@@ -430,22 +271,22 @@
         <p>With some headphones.</p>
     </header>
 
-    <div style="max-width: 850px; margin: 0 auto;"><hr></div>
+    <div class="page-rule"><hr></div>
 
     <div class="page-wrapper">
         <aside class="music-sidebar">
 
-            <div class="music-sidebar-img-wrap" style="position: relative;">
+            <div class="music-sidebar-img-wrap">
                 <img src="Zach_Bryan.png" alt="Album Cover">
                 <div class="text-overlay">
                     <p class="overlay-text">"You'd feel her in a room if you was blind"</p>
                 </div>
             </div>
 
-            
+
 
             <div class="music-info">
-                <span class="music-title"><a href="https://youtu.be/dM_aZOAeLso?si=lCbYdSrqryT_godm" target="_blank">Snaller Acts</a></span>
+                <span class="music-title"><a href="https://youtu.be/dM_aZOAeLso?si=lCbYdSrqryT_godm" target="_blank">Smaller Acts</a></span>
                 <span class="music-artist">Zach Bryan</span>
             </div>
 
@@ -456,17 +297,53 @@
             </div>
 
             <div class="fav-songs">
-                <h3>Fav Songs</h3>
+                <h3 class="center-heading">Fav Songs aka<br> songs that resemble my life now</h3>
                 <ol>
-                    <li>Smaller Acts - Zach Bruyan</li>
+                    <li>Smaller Acts - Zach Bryan</li>
                     <li>Peace - Taylor Swift</li>
+                    <li>Good Thing - Role Model</li>
                     <li>Lonesome Is A State Of Mind - DJO</li>
-                    <li>Lonesome Is A State Of Mind - DJO </li>
+                    <li>Thinking Of You - Katy Perry </li>
+
                 </ol>
             </div>
         </aside>
 
         <main class="container">
+            <article class="blog-post set-list-post">
+                <div class="post-meta">September 5, 2026</div>
+                <h2>My DREAM Role Model: Chuck On Tour Set List</h2>
+                <p>Ill be going to the Chuck On Tour concert in October at The Greek, and im so excited!</p>
+                <p>Heres My Dream Set List</p>
+                <p>His last concert was like 18 songs so im just going to do 18-20 songs</p>
+                <p>1."Girl in New York"</p>
+                <p>2."Forever&More"</p>
+                <p>3."If Jesus Saves, She's My Type"</p>
+                <p>4."Neverletyougo"	</p>
+                <p>5."Cross Your Mind"</p>
+                <p>6."Look at That Woman"</p>
+                <p>7. Sally, When the Wine Runs Out</p>
+                <p>8. The Longest Goodbye</p>
+                <p>9. "Oh, Gemini"</p>
+                <p>10. "The Dinner"</p>
+                <p>11. "Slut Era Interlude"</p>
+                <p>12. "Something, Somehow, Someday"</p>
+                <p>13. "Old Recliners"	</p>
+                <p>14. "Some Protector"	</p>
+                <p>15. "Love I You"	</p>
+                <p>16. "Chasing Midnight"	</p>
+                <p>17. "Good Thing"	</p>
+                <p>18. "The Wedding"</p>
+                <p>19. "Stain"</p>
+                <p>20. "Joy"</p>
+                <p>21."Chuck's Mantra"</p>
+                <p>22. "High Hopes 3000"</p>
+                <p>23. "So For Gone" and brings out Lizzy McAlpine</p>
+                <p>uh oh thats too many songs....oh well ig he has to just play every single song off his discography</p>
+                </article>
+
+                <hr>
+
             <article class="blog-post">
                 <div class="post-meta">August 27, 2026</div>
                 <h2>My Intro to Classic Rock</h2>
@@ -548,7 +425,7 @@
         </main>
     </div>
 
-    <footer style="max-width: 850px; margin: 80px auto 0;">
+    <footer class="music-footer">
         <p>2026 Shady's Blog.</p>
     </footer>
 
