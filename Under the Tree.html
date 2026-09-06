@@ -532,6 +532,19 @@
     box-shadow: 0 2px 8px rgba(74, 64, 56, 0.08);
 }
 
+.guestbook-recent-widget {
+    position: absolute;
+    top: 1120px;
+    left: -280px;
+    width: 250px;
+    background-color: #fffcf7;
+    border: 1px solid #e5dcc9;
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(74, 64, 56, 0.08);
+}
+
 .guestbook-heading {
     color: #3d3227;
     font-size: 1.15rem;
@@ -609,6 +622,39 @@
     min-height: 1.2em;
 }
 
+.guestbook-recent {
+    border-top: 1px solid #e5dcc9;
+    margin: 14px 0 12px;
+    padding-top: 12px;
+}
+
+.guestbook-recent h3 {
+    color: #3d3227;
+    font-size: 0.85rem;
+    margin: 0 0 8px;
+}
+
+.guestbook-recent-note {
+    border-top: 1px solid #eee6d8;
+    color: #3d3227;
+    font-size: 0.78rem;
+    margin-top: 8px;
+    padding-top: 8px;
+}
+
+.guestbook-recent-note strong {
+    color: #8a7d6d;
+    display: block;
+    font-size: 0.72rem;
+    margin-bottom: 2px;
+}
+
+.guestbook-recent-empty {
+    color: #8a7d6d;
+    font-size: 0.78rem;
+    margin: 0;
+}
+
 .guestbook-widget > a {
     color: #6b7a4f;
     display: block;
@@ -623,7 +669,8 @@
 }
 
 @media (max-width: 1170px) {
-    .guestbook-widget {
+    .guestbook-widget,
+    .guestbook-recent-widget {
         display: none;
     }
 }
@@ -696,6 +743,11 @@
                 <p class="guestbook-status" id="guestbook-status" aria-live="polite"></p>
             </form>
             <a href="Guestbook.html">View all notes &rarr;</a>
+        </aside>
+
+        <aside class="guestbook-recent-widget" aria-label="Recent guestbook notes">
+            <h2 class="guestbook-heading">Recent notes</h2>
+            <div id="guestbook-recent-notes" aria-live="polite"></div>
         </aside>
        
 <div class="sticky-sidebar">
@@ -988,14 +1040,39 @@
     const blogGuestbookStatus = document.querySelector('#guestbook-status');
     const blogGuestName = document.querySelector('#blog-guest-name');
     const blogGuestAnonymous = document.querySelector('#blog-guest-anonymous');
-    const blogGuestbookStorageKey = 'shady-katie-guestbook';
+    const recentNotes = document.querySelector('#guestbook-recent-notes');
+    const supabaseUrl = 'https://wdezdqtlzzfpdnmgxfpq.supabase.co';
+    const supabaseKey = 'sb_publishable_006ZLgVNmBJFl_LVQNjGwQ_Pt0_d2VV';
 
-    function getBlogGuestbookEntries() {
+    async function loadRecentNotes() {
         try {
-            const savedEntries = JSON.parse(localStorage.getItem(blogGuestbookStorageKey) || '[]');
-            return Array.isArray(savedEntries) ? savedEntries : [];
+            const response = await fetch(`${supabaseUrl}/rest/v1/guestbook?select=name,message,created_at&order=created_at.desc&limit=3`, {
+                headers: { apikey: supabaseKey, Authorization: `Bearer ${supabaseKey}` }
+            });
+            if (!response.ok) throw new Error('Could not load notes.');
+            const savedEntries = await response.json();
+            recentNotes.replaceChildren();
+
+            if (savedEntries.length === 0) {
+                const emptyMessage = document.createElement('p');
+                emptyMessage.className = 'guestbook-recent-empty';
+                emptyMessage.textContent = 'No notes yet.';
+                recentNotes.append(emptyMessage);
+                return;
+            }
+
+            savedEntries.forEach((savedEntry) => {
+                const note = document.createElement('article');
+                note.className = 'guestbook-recent-note';
+                const author = document.createElement('strong');
+                author.textContent = savedEntry.name;
+                const message = document.createElement('span');
+                message.textContent = savedEntry.message;
+                note.append(author, message);
+                recentNotes.append(note);
+            });
         } catch (error) {
-            return [];
+            recentNotes.textContent = 'Notes could not be loaded.';
         }
     }
 
@@ -1005,23 +1082,37 @@
         if (blogGuestAnonymous.checked) blogGuestName.value = '';
     });
 
-    blogGuestbookForm.addEventListener('submit', (event) => {
+    blogGuestbookForm.addEventListener('submit', async (event) => {
         event.preventDefault();
-        const savedEntries = getBlogGuestbookEntries();
         const name = document.querySelector('#blog-guest-name').value.trim();
         const message = document.querySelector('#blog-guest-message').value.trim();
-
-        savedEntries.unshift({
-            name: blogGuestAnonymous.checked ? 'Anonymous' : name,
-            message,
-            date: new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+        const response = await fetch(`${supabaseUrl}/rest/v1/guestbook`, {
+            method: 'POST',
+            headers: {
+                apikey: supabaseKey,
+                Authorization: `Bearer ${supabaseKey}`,
+                'Content-Type': 'application/json',
+                Prefer: 'return=minimal'
+            },
+            body: JSON.stringify({
+                name: blogGuestAnonymous.checked ? 'Anonymous' : name,
+                message
+            })
         });
-        localStorage.setItem(blogGuestbookStorageKey, JSON.stringify(savedEntries));
+
+        if (!response.ok) {
+            blogGuestbookStatus.textContent = 'Could not save your note.';
+            return;
+        }
+
         blogGuestbookForm.reset();
         blogGuestName.disabled = false;
         blogGuestName.required = true;
         blogGuestbookStatus.textContent = 'Thank you for signing!';
+        loadRecentNotes();
     });
+
+    loadRecentNotes();
 </script>
 
 
