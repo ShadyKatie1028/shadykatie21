@@ -297,6 +297,25 @@
     color: #aaaaaa;
 }
 
+.update-list {
+    margin: 12px 0;
+    padding-left: 24px;
+}
+
+.new-shiny {
+    background: linear-gradient(90deg, #a0522d 0%, #f6d365 45%, #a0522d 70%);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: bold;
+    animation: shine 2.4s linear infinite;
+}
+
+@keyframes shine {
+    to { background-position: 200% center; }
+}
+
         .washi-tape {
         position: absolute;
         top: -62px;
@@ -406,12 +425,13 @@
     position: absolute;
     top: 220px;
     left: -280px;
-    width: 240px;
+    width: 250px;
     background-color: #fffcf7;
     border: 1px solid #e5dcc9;
     border-radius: 8px;
-    padding: 18px;
+    padding: 16px 18px;
     box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(74, 64, 56, 0.08);
 }
 
 @media (max-width: 1170px) {
@@ -426,25 +446,25 @@
     align-items: center;
     gap: 6px;
     font-weight: bold;
-    font-size: 1.1rem;
-    color: #3d3447;
-    margin: 0 0 14px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #b0aca3;
+    font-size: 1.15rem;
+    color: #3d3227;
+    margin: 0 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd3c0;
 }
 
 .currently-user {
     font-style: italic;
     font-weight: bold;
     font-size: 0.95rem;
-    color: #a0522d;
+    color: #3d3227;
     margin: 0 0 4px;
 }
 
 .currently-time {
     font-style: normal;
     font-weight: normal;
-    color: #a89c8a;
+    color: #8a7d6d;
     font-size: 0.85rem;
 }
 
@@ -470,7 +490,142 @@
     gap: 10px;
     font-size: 0.9rem;
     color: #4a4038;
-    padding: 8px 0;
+    line-height: 1.35;
+    padding: 5px 0;
+}
+
+.currently-list li span {
+    flex: 0 0 18px;
+    text-align: center;
+}
+
+.currently-list li.currently-subitem {
+    display: block;
+    padding: 0 0 5px 28px;
+    color: #4a4038;
+    font-size: 0.85rem;
+}
+
+.currently-widget > a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #6b7a4f;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.currently-widget > a:hover {
+    text-decoration: underline;
+}
+
+.guestbook-widget {
+    position: absolute;
+    top: 700px;
+    left: -280px;
+    width: 250px;
+    background-color: #fffcf7;
+    border: 1px solid #e5dcc9;
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(74, 64, 56, 0.08);
+}
+
+.guestbook-heading {
+    color: #3d3227;
+    font-size: 1.15rem;
+    margin: 0 0 8px;
+    text-align: center;
+}
+
+.guestbook-widget p {
+    color: #8a7d6d;
+    font-size: 0.9rem;
+    margin: 0 0 12px;
+    text-align: center;
+}
+
+.guestbook-widget label {
+    color: #3d3227;
+    display: block;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin: 8px 0 3px;
+}
+
+.guestbook-widget input,
+.guestbook-widget textarea {
+    background: #fffdf8;
+    border: 1px solid #d8cdbb;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #3d3227;
+    font: inherit;
+    font-size: 0.8rem;
+    padding: 6px 7px;
+    width: 100%;
+}
+
+.guestbook-widget textarea {
+    min-height: 70px;
+    resize: vertical;
+}
+
+.guestbook-widget button {
+    background: #a0522d;
+    border: 0;
+    border-radius: 4px;
+    color: #fffaf2;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.8rem;
+    margin-top: 10px;
+    padding: 7px 10px;
+    width: 100%;
+}
+
+.guestbook-widget button:hover {
+    background: #853f22;
+}
+
+.guestbook-anonymous {
+    align-items: center;
+    color: #3d3227;
+    display: flex;
+    font-size: 0.78rem;
+    gap: 5px;
+    margin-top: 8px;
+}
+
+.guestbook-anonymous input {
+    width: auto;
+}
+
+.guestbook-status {
+    color: #6b7a4f !important;
+    font-size: 0.78rem !important;
+    margin: 8px 0 0 !important;
+    min-height: 1.2em;
+}
+
+.guestbook-widget > a {
+    color: #6b7a4f;
+    display: block;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+}
+
+.guestbook-widget a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 1170px) {
+    .guestbook-widget {
+        display: none;
+    }
 }
 
 
@@ -507,17 +662,41 @@
 
 
         <div class="currently-widget">
-    <p class="currently-heading" style="text-align: center;">Currently...</p>
-    <p class="currently-user">shadykatie21 <span class="currently-time" id="currentlyTime" data-posted="2026-09-06T00:34:00">· just now</span></p>
-    <p class="currently-status">Tired but not eepy...?</p>
-    <hr>
-    <ul class="currently-list">
-        <li><span title="Currently Listening to">🎵</span> - Let Me Love You by NEYO</li>
-        <li><span title="Currently Watching">📺</span> - FX's Adults</li>
-        <li><span title="Currently Reading">📖</span> - Romeo And Juliet by Shakespeare and The War of The Worlds by H.G. Wells</li>
-        <li><span title="Currently Shooting with">📷</span> - Minolta Maxxum 5 (Kodak Gold 400), Nikon Z6 (digital), Yashica Electra 35 (Fujifilm 200)</li>
-    </ul>
-</div>
+            <p class="currently-heading">Currently...</p>
+            <p class="currently-user">
+                shadykatie21
+                <span class="currently-time" id="currentlyTime" data-posted="2026-09-06T00:34:00">· just now</span>
+            </p>
+            <p class="currently-status">Tired but not eepy...?</p>
+            <hr>
+            <ul class="currently-list">
+                <li><span title="Currently Listening to">🎵</span>Let Me Love You by NEYO</li>
+                <li><span title="Currently Watching">📺</span>FX's Adults</li>
+                <li><span title="Currently Reading">📖</span>Romeo And Juliet by Shakespeare</li>
+                <li class="currently-subitem">The War of The Worlds by H.G. Wells</li>
+                <li><span title="Currently Shooting with">📷</span>Minolta Maxxum 5 (Kodak Gold 400)</li>
+                <li class="currently-subitem">Nikon Z6 (digital)</li>
+                <li class="currently-subitem">Yashica Electra 35 (Fujifilm 200)</li>
+            </ul>
+        </div>
+
+        <aside class="guestbook-widget" aria-label="Guestbook">
+            <h2 class="guestbook-heading">Guestbook</h2>
+            <p>Leave a little note before you go.</p>
+            <form id="blog-guestbook-form">
+                <label for="blog-guest-name">Name</label>
+                <input id="blog-guest-name" maxlength="40" required autocomplete="name">
+                <label class="guestbook-anonymous">
+                    <input id="blog-guest-anonymous" type="checkbox">
+                    Sign anonymously
+                </label>
+                <label for="blog-guest-message">Message</label>
+                <textarea id="blog-guest-message" maxlength="500" required></textarea>
+                <button type="submit">Sign guestbook</button>
+                <p class="guestbook-status" id="guestbook-status" aria-live="polite"></p>
+            </form>
+            <a href="Guestbook.html">View all notes &rarr;</a>
+        </aside>
        
 <div class="sticky-sidebar">
     <img src="washi tape.png" alt="Washi Tape" class="washi-tape">
@@ -534,12 +713,11 @@
         <div class="todo-box">
             <ul class="todo-list" id="todoList">
             <li><span class="checkbox"></span><span class="todo-text">Send some emails</span></li>
-            <li><span class="checkbox"></span><span class="todo-text">buy film</span></li>
-            <li class="done"><span class="checkbox"></span><span class="todo-text">start FX's Adults</span></li>
+            <li class="done"><span class="checkbox"></span><span class="todo-text">Add Guestbooks</span></li>
             <li class="done"><span class="checkbox"></span><span class="todo-text">fix currently list</span></li>
             <li class="done"><span class="checkbox"></span><span class="todo-text">Make a To Do list</span></li>
-            <li><span class="checkbox"></span><span class="todo-text">fix layout</span></li>
-            <li class="done"><span class="checkbox"></span><span class="todo-text">Fix favicon</span></li>
+            <li class="done"><span class="checkbox"></span><span class="todo-text">fix layout</span></li>
+            <li><span class="checkbox"></span><span class="todo-text">Add more whimsy</span></li>
             </ul>
         </div>
         </div>
@@ -547,6 +725,33 @@
 
 
         <main>
+
+            <article class="blog-post">
+                <div class="post-meta">September 6, 2026 • Updates</div>
+                <h2>Genuinely Major Updated to the Blog</h2>
+                <ul class="update-list">
+                  
+                    <li>A tiny bit of whimsy to the top</li>
+                    <li>*New* Post</li>
+                    <li class="new-shiny">*New* To Do list</li>
+                    <li class="new-shiny">*New* "Currently" Widget</li>
+                    <li class="new-shiny">*NEW* Guestbook!</li>
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Check it out! You can now add messages and leave your mark on my site! please check it out. 
+                </ul>
+                  
+                </p>
+            </article>
+
+
+<article class="blog-post">
+    <div class="post-meta"> September 6, 2026 • Updates</div>
+    <h2>Eventful last two nights</h2>
+    <p>I got some sick ass photos of my friends, genuinly some of the best photos ive taken for awhile. We went to try a dumpling house like 30 mins away, and then we went to the lake so they could smoke a joinnt and I could smoke my cigarettes. And SOMEONE had a great idea to go walk around our old highschool during a football game, so that brought up werid emotions....</p>
+    <p>And then tonight my mom threw some church party? so Erica and I just went out, took some photos of her skating and went to walamrt??? Because thats what you do in a small town. And we found two foam swords and, the two girls who just watched The Odyssey, we sword faught. I genuinely started laughing like I used to. This kid came up, can not be older than 10 years old and he was so nervous and asked us if he could play with us. And i turned him down and i started feeling terrible. I shouldve just said yes.</p>
+    <p>Today at lunch I saw an ad for a Texas senator or some shit and was claming that China was buying up land in Texas? yeah im not sure, it seems like Anti-Chinese Propaganda is coming back! YAY!...</p>
+</article>
+
+<hr>
 
             <article class="blog-post">
                 <div class="post-meta">September 5, 2026</div>
@@ -565,9 +770,8 @@
 
             <article class="blog-post">
                 <div class="post-meta">September 5, 2026 • Updates</div>
-                <h2>This is getting embarrassing</h2>
-                <p>unrequited or unspoken? what if its time to just...forget? I cant read your mind, just tell me before i give up.</p>
-                </article>
+                    <p> uh wtf guys.</p>
+            </article>
 
                 <hr>
 
@@ -773,33 +977,53 @@
     </div>
 
 <footer>
-        <div>Views: <span id="counter">Loading...</span></div>
-        <p>&copy; 2026 Shady's Blog.</p>
+<script type="text/javascript" src="https://counter.websiteout.com/js/18/0/48/0"></script>        
+<p>&copy; 2026 Shady's Blog.</p>
 
     <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
-    <script>
-        const currentlyTime = document.getElementById('currentlyTime');
-        const postedAt = new Date(currentlyTime.dataset.posted);
-        const minutesAgo = Math.floor((Date.now() - postedAt) / 60000);
-
-        currentlyTime.textContent = minutesAgo < 1
-            ? '· just now'
-            : `· ${minutesAgo < 60 ? minutesAgo + ' minute' + (minutesAgo === 1 ? '' : 's') : Math.floor(minutesAgo / 60) + ' hour' + (Math.floor(minutesAgo / 60) === 1 ? '' : 's')} ago`;
-
-        const viewCounter = new Counter({ workspace: 'shadykatie21' });
-        const counterDisplay = document.getElementById('counter');
-        const displayOffset = 96;
-
-        viewCounter.up('page-views')
-            .then(result => {
-                counterDisplay.textContent = displayOffset + result.value;
-            })
-            .catch(error => {
-                counterDisplay.textContent = 'Counter setup needed';
-                console.error('Counter error:', error.message);
-            });
-    </script>
+  
 </footer>
+
+<script>
+    const blogGuestbookForm = document.querySelector('#blog-guestbook-form');
+    const blogGuestbookStatus = document.querySelector('#guestbook-status');
+    const blogGuestName = document.querySelector('#blog-guest-name');
+    const blogGuestAnonymous = document.querySelector('#blog-guest-anonymous');
+    const blogGuestbookStorageKey = 'shady-katie-guestbook';
+
+    function getBlogGuestbookEntries() {
+        try {
+            const savedEntries = JSON.parse(localStorage.getItem(blogGuestbookStorageKey) || '[]');
+            return Array.isArray(savedEntries) ? savedEntries : [];
+        } catch (error) {
+            return [];
+        }
+    }
+
+    blogGuestAnonymous.addEventListener('change', () => {
+        blogGuestName.disabled = blogGuestAnonymous.checked;
+        blogGuestName.required = !blogGuestAnonymous.checked;
+        if (blogGuestAnonymous.checked) blogGuestName.value = '';
+    });
+
+    blogGuestbookForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const savedEntries = getBlogGuestbookEntries();
+        const name = document.querySelector('#blog-guest-name').value.trim();
+        const message = document.querySelector('#blog-guest-message').value.trim();
+
+        savedEntries.unshift({
+            name: blogGuestAnonymous.checked ? 'Anonymous' : name,
+            message,
+            date: new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+        });
+        localStorage.setItem(blogGuestbookStorageKey, JSON.stringify(savedEntries));
+        blogGuestbookForm.reset();
+        blogGuestName.disabled = false;
+        blogGuestName.required = true;
+        blogGuestbookStatus.textContent = 'Thank you for signing!';
+    });
+</script>
 
 
 </body>

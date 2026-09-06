@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon_ico/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_ico/favicon-32x32.png">
+    <title>Guestbook | Shady's Blog</title>
+    <style>
+        :root {
+            --paper: #fef9f0;
+            --page: #efe8d9;
+            --ink: #3d3227;
+            --muted: #8a7d6d;
+            --line: #e5dcc9;
+            --accent: #a0522d;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background: var(--page);
+            color: var(--ink);
+            font-family: Georgia, serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 760px; margin: 0 auto; }
+
+        .site-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .site-nav a { color: var(--accent); text-decoration: none; }
+        .site-nav a:hover { text-decoration: underline; }
+
+        header { text-align: center; margin-bottom: 36px; }
+        h1 { font-size: clamp(2rem, 6vw, 3.2rem); font-weight: normal; margin: 0 0 8px; }
+        header p { color: var(--muted); font-style: italic; margin: 0; }
+
+        .panel {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(74, 64, 56, 0.07);
+            padding: 26px;
+            margin-bottom: 28px;
+        }
+
+        label { display: block; font-weight: bold; margin-bottom: 6px; }
+        input, textarea {
+            width: 100%;
+            border: 1px solid #d8cdbb;
+            border-radius: 5px;
+            background: #fffdf8;
+            color: var(--ink);
+            font: inherit;
+            padding: 11px 12px;
+        }
+
+        input:focus, textarea:focus { border-color: var(--accent); outline: 2px solid rgba(160, 82, 45, 0.2); }
+        textarea { min-height: 130px; resize: vertical; }
+        .field { margin-bottom: 18px; }
+        .hint { color: var(--muted); font-size: 0.85rem; margin: 5px 0 0; }
+        .anonymous-option { align-items: center; display: flex; gap: 8px; margin: 0 0 18px; }
+        .anonymous-option input { width: auto; }
+        .anonymous-option label { font-weight: normal; margin: 0; }
+
+        button {
+            background: var(--accent);
+            border: 0;
+            border-radius: 5px;
+            color: #fffaf2;
+            cursor: pointer;
+            font: inherit;
+            padding: 11px 18px;
+        }
+
+        button:hover { background: #853f22; }
+        button:focus { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+        .entries-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+        .entries-heading h2 { font-size: 1.35rem; font-weight: normal; margin: 0; }
+        #entry-count { color: var(--muted); font-size: 0.85rem; }
+        .entry { border-top: 1px solid var(--line); padding: 18px 0 4px; }
+        .entry:first-child { margin-top: 18px; }
+        .entry-meta { color: var(--muted); font-size: 0.85rem; margin: 0 0 5px; }
+        .entry p { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+        .empty { color: var(--muted); font-style: italic; margin: 18px 0 0; }
+
+        footer { border-top: 1px solid #c2c1bf; color: var(--muted); font-size: 0.85rem; margin-top: 60px; padding-top: 20px; text-align: center; }
+
+        @media (max-width: 520px) {
+            body { padding: 25px 14px; }
+            .site-nav { margin-bottom: 42px; }
+            .panel { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="site-nav" aria-label="Main navigation">
+            <a href="index.html">&larr; Shady's Blog</a>
+            <a href="Under the Tree.html">Under the Tree</a>
+        </nav>
+
+        <header>
+            <h1>Guestbook</h1>
+            <p>Leave a little note before you go.</p>
+        </header>
+
+        <main>
+            <form class="panel" id="guestbook-form">
+                <div class="field">
+                    <label for="guest-name">Name</label>
+                    <input id="guest-name" name="name" maxlength="40" required autocomplete="name" placeholder="What should I call you?">
+                </div>
+                <div class="anonymous-option">
+                    <input id="guest-anonymous" type="checkbox">
+                    <label for="guest-anonymous">Sign anonymously</label>
+                </div>
+                <div class="field">
+                    <label for="guest-message">Message</label>
+                    <textarea id="guest-message" name="message" maxlength="500" required placeholder="Say hello..."></textarea>
+                    <p class="hint"><span id="character-count">0</span>/500 characters</p>
+                </div>
+                <button type="submit">Sign the guestbook</button>
+            </form>
+
+            <section class="panel" aria-labelledby="entries-title">
+                <div class="entries-heading">
+                    <h2 id="entries-title">Notes from visitors</h2>
+                    <span id="entry-count"></span>
+                </div>
+                <div id="entries" aria-live="polite"></div>
+            </section>
+        </main>
+
+        <footer>
+            Messages are currently saved in this browser only.
+        </footer>
+    </div>
+
+    <script>
+        const form = document.querySelector('#guestbook-form');
+        const nameInput = document.querySelector('#guest-name');
+        const messageInput = document.querySelector('#guest-message');
+        const anonymousInput = document.querySelector('#guest-anonymous');
+        const characterCount = document.querySelector('#character-count');
+        const entries = document.querySelector('#entries');
+        const entryCount = document.querySelector('#entry-count');
+        const storageKey = 'shady-katie-guestbook';
+
+        function getEntries() {
+            try {
+                const savedEntries = JSON.parse(localStorage.getItem(storageKey));
+                return Array.isArray(savedEntries) ? savedEntries : [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function renderEntries() {
+            const savedEntries = getEntries();
+            entries.replaceChildren();
+            entryCount.textContent = `${savedEntries.length} ${savedEntries.length === 1 ? 'note' : 'notes'}`;
+
+            if (savedEntries.length === 0) {
+                const emptyMessage = document.createElement('p');
+                emptyMessage.className = 'empty';
+                emptyMessage.textContent = 'Be the first person to sign it.';
+                entries.append(emptyMessage);
+                return;
+            }
+
+            savedEntries.forEach((savedEntry) => {
+                const article = document.createElement('article');
+                article.className = 'entry';
+
+                const meta = document.createElement('p');
+                meta.className = 'entry-meta';
+                meta.textContent = `${savedEntry.name} · ${savedEntry.date}`;
+
+                const message = document.createElement('p');
+                message.textContent = savedEntry.message;
+
+                article.append(meta, message);
+                entries.append(article);
+            });
+        }
+
+        messageInput.addEventListener('input', () => {
+            characterCount.textContent = messageInput.value.length;
+        });
+
+        anonymousInput.addEventListener('change', () => {
+            nameInput.disabled = anonymousInput.checked;
+            nameInput.required = !anonymousInput.checked;
+            if (anonymousInput.checked) nameInput.value = '';
+        });
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const savedEntries = getEntries();
+            savedEntries.unshift({
+                name: anonymousInput.checked ? 'Anonymous' : nameInput.value.trim(),
+                message: messageInput.value.trim(),
+                date: new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+            });
+            localStorage.setItem(storageKey, JSON.stringify(savedEntries));
+            form.reset();
+            nameInput.disabled = false;
+            nameInput.required = true;
+            characterCount.textContent = '0';
+            renderEntries();
+        });
+
+        renderEntries();
+    </script>
+</body>
+</html>
