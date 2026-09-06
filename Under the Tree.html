@@ -499,12 +499,14 @@
     text-align: center;
 }
 
-.currently-list a {
+.currently-list li > a {
+    align-items: flex-start;
     color: inherit;
+    display: inline-flex;
     text-decoration: none;
 }
 
-.currently-list a:hover {
+.currently-list li > a:hover {
     color: #6b7a4f;
     text-decoration: underline;
 }
@@ -722,16 +724,16 @@
             <p class="currently-heading">Currently...</p>
             <p class="currently-user">
                 shadykatie21
-                <span class="currently-time" id="currentlyTime" data-posted="2026-09-06T00:34:00">· just now</span>
+                <span class="currently-time" data-posted="2026-09-06T00:34:00">· just now</span>
             </p>
-            <p class="currently-status">Tired but not eepy...?</p>
+            <p class="currently-status">I did all this last night...?</p>
             <hr>
             <ul class="currently-list">
-                <li><a href="music.html"><span title="Currently Listening to">🎵</span>Let Me Love You by NEYO</a></li>
-                <li><a href="index.html"><span title="Currently Watching">📺</span>FX's Adults</a></li>
-                <li><a href="books.html"><span title="Currently Reading">📖</span>Romeo And Juliet by Shakespeare</a></li>
+                <li><a href="music.html"><span title="Currently Listening to">🎵</span></a>Let Me Love You by NEYO</li>
+                <li><a href="index.html"><span title="Currently Watching">📺</span></a>FX's Adults</li>
+                <li><a href="books.html"><span title="Currently Reading">📖</span></a>Romeo And Juliet by Shakespeare</li>
                 <li class="currently-subitem">The War of The Worlds by H.G. Wells</li>
-                <li><a href="photos.html"><span title="Currently Shooting with">📷</span>Minolta Maxxum 5 (Kodak Gold 400)</a></li>
+                <li><a href="photos.html"><span title="Currently Shooting with">📷</span></a> Minolta Maxxum 5 (Kodak Gold 400)</li>
                 <li class="currently-subitem">Nikon Z6 (digital)</li>
                 <li class="currently-subitem">Yashica Electra 35 (Fujifilm 200)</li>
             </ul>
@@ -1046,6 +1048,18 @@
 </footer>
 
 <script>
+    const currentlyTime = document.querySelector('.currently-time');
+    const postedAt = new Date(currentlyTime.dataset.posted);
+
+    function updateCurrentlyTime() {
+        const minutes = Math.max(0, Math.floor((Date.now() - postedAt) / 60000));
+        const text = minutes < 1 ? 'just now' : minutes < 60 ? `${minutes}m ago` : `${Math.floor(minutes / 60)}h ago`;
+        currentlyTime.textContent = `· ${text}`;
+    }
+
+    updateCurrentlyTime();
+    setInterval(updateCurrentlyTime, 60000);
+
     const blogGuestbookForm = document.querySelector('#blog-guestbook-form');
     const blogGuestbookStatus = document.querySelector('#guestbook-status');
     const blogGuestName = document.querySelector('#blog-guest-name');
