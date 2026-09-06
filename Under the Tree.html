@@ -16,7 +16,7 @@
 
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             position: relative;
         }
@@ -24,7 +24,7 @@
         header {
             text-align: center;
             margin-bottom: 60px;
-        }
+    }
 
         header h1 {
             font-size: 2rem;
@@ -91,15 +91,15 @@
             margin-top: 20px;
         }
         .logo-btn img {
-        width: 40px;
-        height: 40px;
-        border-radius: 100%;
-        border: 1px solid #ffffff;
-        background-color: #ffffff;
-        display: block;
-        padding: 6px;          
-        box-sizing: border-box; 
-        object-fit: contain;   
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            border: 1px solid #ffffff;
+            background-color: #ffffff;
+            display: block;
+            padding: 6px;          
+            box-sizing: border-box; 
+            object-fit: contain;   
         }
         .beehiiv-container {
                 margin: 20px auto 10px;
@@ -122,26 +122,29 @@
         }
 
         .birds-clip {
-            top: 20px;
-            left: 300px;
-            width: 175px;
+            position: absolute;
+            top: -90px;
+            left: 50px;
+            width: auto;
+            height: 250px;
         }
 
         .shady-clip {
-            top: -25px;
-            left: 923px;
-            width: 200px;
-            height: 238px;
+            position: absolute;
+            top: -97px;
+            right: 60px;
+            width: auto;
+            height: 230px;
         }
 
 
       .sidebar {
-    position: absolute;
-    top: 220px;
-    left: calc(-1 * ((100vw - 800px) / 4) - 82.5px);
-    width: 200px;
-    height: fit-content;
-}
+        position: absolute;
+        top: 220px;
+        left: -260px;
+        width: 200px;
+        height: fit-content;
+     }
 
       @media (max-width: 1170px) {
     .sidebar {
@@ -170,7 +173,7 @@
 
        .sticky-sidebar {
         position: absolute;
-        right: calc(-1 * ((100vw - 800px) / 4) - 82.5px);
+        right: -260px;
         top: 220px;
         width: 230px;
         height: 230px;
@@ -181,6 +184,100 @@
         z-index: 1000;
         box-sizing: border-box;
     }
+
+        .todo-widget {
+    position: absolute;
+    right: -260px;
+    top: 480px;
+    width: 230px;
+    background-color: #ffffff;
+    padding: 15px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    box-sizing: border-box;
+    z-index: 999;
+}
+
+        @media (max-width: 1170px){
+            .todo-widget {
+                display: none;
+            }
+        }
+
+        .todo-heading {
+    font-weight: bold;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0 0 12px 0;
+    color: #333333;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.todo-box {
+    border: 1px dashed #b0aca3;
+    border-radius: 4px;
+    padding: 10px 12px;
+}
+
+        .todo-list {
+            list-style: none;
+           margin: 0;
+           padding: 0;
+        }
+
+        .todo-list li{
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            padding: 6px 4px;
+            border-bottom: 1px dashed #d8d8d8;
+            cursor: pointer;
+            color: #333333;
+        }
+
+      .todo-list li:last-child {
+    border-bottom: none;
+}
+
+.todo-list li .checkbox {
+    flex-shrink: 0;
+    width: 15px;
+    height: 15px;
+    border: 1.5px solid #999999;
+    border-radius: 3px;
+    margin-top: 2px;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.todo-list li.done .checkbox{
+    border-color: #b8b3a8;
+    background-color: #e8e5dd;
+}
+
+.todo-list li.done .checkbox {
+    border-color: #b8b3a8;
+    background-color: #e8e5dd;
+}
+.todo-list li.done .checkbox::after {
+    content: "✓";
+    position: absolute;
+    top: -3px;
+    left: 1px;
+    font-size: 12px;
+    color: #999999;
+}
+
+.todo-list li.done .todo-text {
+    text-decoration: line-through;
+    color: #aaaaaa;
+}
 
         .washi-tape {
         position: absolute;
@@ -292,9 +389,8 @@
 </head>
 
 
-
 <body>
-    <div class="hero-header">
+    <div class="header">
         <a href="index.html" class="logo-btn">
             <img src="LOGO.png" alt="Logo">
         </a>
@@ -303,11 +399,11 @@
 
 
 
+
+    <div class="container">
 <img src="birds.png" alt="Scrapbook clip" class="clip birds-clip">
 
 <img src="Shady.png" alt="Scrapbook clip" class="clip shady-clip">
-    <div class="container">
-
         <header>
             <h1>Under the Tree</h1>
             <p>Updates, random thoughts, honeslty a glorified tumblr.</p>
@@ -341,6 +437,20 @@
             Go Check Out <a href="https://kittenluv1.com/blog/2026/">Erica's Blog!</a>
         </span>
     </p>    
+
+    <div class="todo-widget">
+        <p class="todo-heading"> To Do List:</p>
+        <div class="todo-box">
+            <ul class="todo-list" id="todoList">
+            <li><span class="checkbox"></span><span class="todo-text">Send some emails</span></li>
+            <li><span class="checkbox"></span><span class="todo-text">buy film</span></li>
+            <li><span class="checkbox"></span><span class="todo-text">develop last 2 rolls of film</span></li>
+            <li><span class="checkbox"></span><span class="todo-text">figure out popcorn shrimp situation</span></li>
+            <li><span class="checkbox"></span><span class="todo-text">Make a To Do list</span></li>
+            <li><span class="checkbox"></span><span class="todo-text">fix layout</span></li>
+            </ul>
+        </div>
+        </div>
     </div>
 
 
