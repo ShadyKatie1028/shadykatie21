@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon_ico/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_ico/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="favicon_ico/apple-touch-icon.png">
+    <link rel="manifest" href="favicon_ico/site.webmanifest">
     <title>Shady's Blog</title>
     <style>
         body {
-            background-color: #e2e2e2; 
+            background-color: #efe8d9; 
             color: #333333;
             font-family: Georgia, serif;
             line-height: 1.6;
@@ -33,18 +38,24 @@
         }
 
         header p {
-            color: #777777;
+            color: #8a7d6d;
             font-style: italic;
             margin: 0;
         }
 
         .blog-post {
+            background-color: #fef9f0;
+            border: 1px solid #e5dcc9;
+            border-radius: 10px;
+            padding: 24px 28px;
             margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(74, 64, 56, 0.07);
+
         }
 
         .post-meta {
             font-size: 0.8rem;
-            color: #999999;
+            color: #a89c8a;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 8px;
@@ -57,8 +68,12 @@
         }
 
         .blog-post h2 a {
-            color: #222222;
+            color: #3d3227;
             text-decoration: none;
+        }
+
+        .blog-post > *:last-child {
+            margin-bottom: 0;
         }
 
         .post-img {
@@ -69,8 +84,7 @@
         }
 
         .read-more {
-            display: inline-block;
-            color: #8b5a2b;
+            color: #a0522d;
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: bold;
@@ -80,14 +94,14 @@
             text-align: center;
             margin-top: 80px;
             font-size: 0.85rem;
-            color: #888888;
+            color: #a89c8a;
             border-top: 1px solid #c2c1bf;
             padding-top: 20px;
         }
 
         hr {
             border: none;
-            border-top: 1px solid #aaaaaa; 
+            border-top: 1px solid #ddd3c0; 
             margin-top: 20px;
         }
         .logo-btn img {
@@ -162,6 +176,9 @@
             min-width: 0;
         }
 
+        main > hr {
+            display: none;
+        }
         .sidebar img {
             width: 100%;
             aspect-ratio: 3/5;
@@ -187,15 +204,16 @@
 
         .todo-widget {
     position: absolute;
-    right: -260px;
-    top: 480px;
+    right: -60px;
+    top: 450px;
     width: 230px;
-    background-color: #ffffff;
+    background-color: #fef9f0;
     padding: 15px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
     border-radius: 6px;
     box-sizing: border-box;
     z-index: 999;
+    transform: rotate(-7.51deg);
 }
 
         @media (max-width: 1170px){
@@ -319,7 +337,7 @@
 
       .note-text a,
       .post-body a {
-          color: #0b5502;
+          color: #6b7a4f;
           text-decoration: underline;
       }
 
@@ -384,6 +402,77 @@
     border-radius: 2px;
 }
 
+.currently-widget {
+    position: absolute;
+    top: 220px;
+    left: -280px;
+    width: 240px;
+    background-color: #fffcf7;
+    border: 1px solid #e5dcc9;
+    border-radius: 8px;
+    padding: 18px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 1170px) {
+    .currently-widget {
+        display: none;
+    }
+}
+
+.currently-heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #3d3447;
+    margin: 0 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #b0aca3;
+}
+
+.currently-user {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: #a0522d;
+    margin: 0 0 4px;
+}
+
+.currently-time {
+    font-style: normal;
+    font-weight: normal;
+    color: #a89c8a;
+    font-size: 0.85rem;
+}
+
+.currently-status {
+    font-size: 0.95rem;
+    color: #4a4038;
+    margin: 0 0 6px;
+}
+
+.currently-widget hr {
+    margin: 0 0 2px;
+}
+
+.currently-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.currently-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #4a4038;
+    padding: 8px 0;
+}
+
 
 </style>
 </head>
@@ -417,16 +506,18 @@
 
 
 
-        <div class="sidebar">
-            <p class="sidebar-heading">What Ive Been Reading:</p>
-                <hr class="sidebar-divider">
-            <div class="sidebar-img-wrap">
-                <a href="books.html">
-                    <img src="The War of The Worlds.jpg" alt="Sidebar Image">
-                <hr class="sidebar-divider sidebar-divider--tight">
-                </a>
-            </div>
-        </div>
+        <div class="currently-widget">
+    <p class="currently-heading" style="text-align: center;">Currently...</p>
+    <p class="currently-user">shadykatie21 <span class="currently-time" id="currentlyTime" data-posted="2026-09-06T00:34:00">· just now</span></p>
+    <p class="currently-status">Tired but not eepy...?</p>
+    <hr>
+    <ul class="currently-list">
+        <li><span title="Currently Listening to">🎵</span> - Let Me Love You by NEYO</li>
+        <li><span title="Currently Watching">📺</span> - FX's Adults</li>
+        <li><span title="Currently Reading">📖</span> - Romeo And Juliet by Shakespeare and The War of The Worlds by H.G. Wells</li>
+        <li><span title="Currently Shooting with">📷</span> - Minolta Maxxum 5 (Kodak Gold 400), Nikon Z6 (digital), Yashica Electra 35 (Fujifilm 200)</li>
+    </ul>
+</div>
        
 <div class="sticky-sidebar">
     <img src="washi tape.png" alt="Washi Tape" class="washi-tape">
@@ -444,10 +535,11 @@
             <ul class="todo-list" id="todoList">
             <li><span class="checkbox"></span><span class="todo-text">Send some emails</span></li>
             <li><span class="checkbox"></span><span class="todo-text">buy film</span></li>
-            <li><span class="checkbox"></span><span class="todo-text">develop last 2 rolls of film</span></li>
-            <li><span class="checkbox"></span><span class="todo-text">figure out popcorn shrimp situation</span></li>
-            <li><span class="checkbox"></span><span class="todo-text">Make a To Do list</span></li>
+            <li class="done"><span class="checkbox"></span><span class="todo-text">start FX's Adults</span></li>
+            <li class="done"><span class="checkbox"></span><span class="todo-text">fix currently list</span></li>
+            <li class="done"><span class="checkbox"></span><span class="todo-text">Make a To Do list</span></li>
             <li><span class="checkbox"></span><span class="todo-text">fix layout</span></li>
+            <li class="done"><span class="checkbox"></span><span class="todo-text">Fix favicon</span></li>
             </ul>
         </div>
         </div>
@@ -496,6 +588,7 @@
                 <p> alright i hope yall are having a great week, im tired, but yall should go see the movie. especially if you can see it in 70mm. Also lwk i might be eligible for a history AA? so who knows maybe ill change majors.</p>
                 <p>Im sorry for the long post, and i hope you guys like the new design, small changes but its a sneak peek for what more is to come. There a new <a href="photos.html">photos</a> too! Okay Goodnight! *cue Taylor Swifts Lover, my exit song*.</p>
                 
+        </article>
                 
                 <hr>
             <article class="blog-post">
@@ -685,6 +778,14 @@
 
     <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
     <script>
+        const currentlyTime = document.getElementById('currentlyTime');
+        const postedAt = new Date(currentlyTime.dataset.posted);
+        const minutesAgo = Math.floor((Date.now() - postedAt) / 60000);
+
+        currentlyTime.textContent = minutesAgo < 1
+            ? '· just now'
+            : `· ${minutesAgo < 60 ? minutesAgo + ' minute' + (minutesAgo === 1 ? '' : 's') : Math.floor(minutesAgo / 60) + ' hour' + (Math.floor(minutesAgo / 60) === 1 ? '' : 's')} ago`;
+
         const viewCounter = new Counter({ workspace: 'shadykatie21' });
         const counterDisplay = document.getElementById('counter');
         const displayOffset = 96;
