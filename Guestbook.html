@@ -82,6 +82,7 @@
         }
 
         button:hover { background: #853f22; }
+        button:disabled { opacity: 0.6; cursor: default; }
         button:focus { outline: 2px solid var(--ink); outline-offset: 2px; }
 
         .entries-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
@@ -92,6 +93,7 @@
         .entry-meta { color: var(--muted); font-size: 0.85rem; margin: 0 0 5px; }
         .entry p { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
         .empty { color: var(--muted); font-style: italic; margin: 18px 0 0; }
+        .form-error { color: #a0322d; font-size: 0.85rem; margin: 10px 0 0; display: none; }
 
         footer { border-top: 1px solid #c2c1bf; color: var(--muted); font-size: 0.85rem; margin-top: 60px; padding-top: 20px; text-align: center; }
 
@@ -130,6 +132,7 @@
                     <p class="hint"><span id="character-count">0</span>/500 characters</p>
                 </div>
                 <button type="submit">Sign the guestbook</button>
+                <p class="form-error" id="form-error">Something went wrong saving your note. Please try again.</p>
             </form>
 
             <section class="panel" aria-labelledby="entries-title">
@@ -141,12 +144,12 @@
             </section>
         </main>
 
-        <footer>
-            Messages are currently saved in this browser only.
-        </footer>
+        <footer>Messages are shared with everyone who visits this guestbook.</footer>
     </div>
 
     <script>
+        const supabaseUrl = 'https://wdezdqtlzzfpdnmgxfpq.supabase.co';
+        const supabaseKey = 'sb_publishable_006ZLgVNmBJFl_LVQNjGwQ_Pt0_d2VV';
         const form = document.querySelector('#guestbook-form');
         const nameInput = document.querySelector('#guest-name');
         const messageInput = document.querySelector('#guest-message');
@@ -154,22 +157,19 @@
         const characterCount = document.querySelector('#character-count');
         const entries = document.querySelector('#entries');
         const entryCount = document.querySelector('#entry-count');
-        const storageKey = 'shady-katie-guestbook';
+        const formError = document.querySelector('#form-error');
 
-        function getEntries() {
-            try {
-                const savedEntries = JSON.parse(localStorage.getItem(storageKey));
-                return Array.isArray(savedEntries) ? savedEntries : [];
-            } catch (error) {
-                return [];
-            }
+        async function getEntries() {
+            const response = await fetch(`${supabaseUrl}/rest/v1/guestbook?select=name,message,created_at&order=created_at.desc`, {
+                headers: { apikey: supabaseKey, Authorization: `Bearer ${supabaseKey}` }
+            });
+            if (!response.ok) throw new Error('Could not load notes.');
+            return response.json();
         }
 
-        function renderEntries() {
-            const savedEntries = getEntries();
+        function renderEntries(savedEntries) {
             entries.replaceChildren();
             entryCount.textContent = `${savedEntries.length} ${savedEntries.length === 1 ? 'note' : 'notes'}`;
-
             if (savedEntries.length === 0) {
                 const emptyMessage = document.createElement('p');
                 emptyMessage.className = 'empty';
@@ -177,21 +177,29 @@
                 entries.append(emptyMessage);
                 return;
             }
-
             savedEntries.forEach((savedEntry) => {
                 const article = document.createElement('article');
                 article.className = 'entry';
-
                 const meta = document.createElement('p');
                 meta.className = 'entry-meta';
-                meta.textContent = `${savedEntry.name} · ${savedEntry.date}`;
-
+                meta.textContent = `${savedEntry.name} · ${new Date(savedEntry.created_at).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}`;
                 const message = document.createElement('p');
                 message.textContent = savedEntry.message;
-
                 article.append(meta, message);
                 entries.append(article);
             });
+        }
+
+        async function loadEntries() {
+            try {
+                renderEntries(await getEntries());
+            } catch (error) {
+                entries.replaceChildren();
+                const errorMessage = document.createElement('p');
+                errorMessage.className = 'empty';
+                errorMessage.textContent = 'Notes could not be loaded right now.';
+                entries.append(errorMessage);
+            }
         }
 
         messageInput.addEventListener('input', () => {
@@ -204,23 +212,34 @@
             if (anonymousInput.checked) nameInput.value = '';
         });
 
-        form.addEventListener('submit', (event) => {
+        form.addEventListener('submit', async (event) => {
             event.preventDefault();
-            const savedEntries = getEntries();
-            savedEntries.unshift({
-                name: anonymousInput.checked ? 'Anonymous' : nameInput.value.trim(),
-                message: messageInput.value.trim(),
-                date: new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+            formError.style.display = 'none';
+            const response = await fetch(`${supabaseUrl}/rest/v1/guestbook`, {
+                method: 'POST',
+                headers: {
+                    apikey: supabaseKey,
+                    Authorization: `Bearer ${supabaseKey}`,
+                    'Content-Type': 'application/json',
+                    Prefer: 'return=minimal'
+                },
+                body: JSON.stringify({
+                    name: anonymousInput.checked ? 'Anonymous' : nameInput.value.trim(),
+                    message: messageInput.value.trim()
+                })
             });
-            localStorage.setItem(storageKey, JSON.stringify(savedEntries));
+            if (!response.ok) {
+                formError.style.display = 'block';
+                return;
+            }
             form.reset();
             nameInput.disabled = false;
             nameInput.required = true;
             characterCount.textContent = '0';
-            renderEntries();
+            await loadEntries();
         });
 
-        renderEntries();
+        loadEntries();
     </script>
 </body>
 </html>
