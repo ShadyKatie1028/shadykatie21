@@ -1185,58 +1185,11 @@
 
                 <div class="entries-calendar">
                     <p class="entries-calendar-heading">my blog entries</p>
-                    <p class="entries-calendar-month">September 2026</p>
-
-                    <div class="entries-calendar-grid">
-                        <div class="dow">S</div><div class="dow">M</div><div class="dow">T</div>
-                        <div class="dow">W</div><div class="dow">T</div><div class="dow">F</div><div class="dow">S</div>
-
-                        <div class="day-cell"></div>
-                        <div class="day-cell"></div>
-                        <div class="day-cell has-post"><a class="day-num" href="#post-2026-09-01">1</a></div>
-                        <div class="day-cell"><span class="day-num">2</span></div>
-                        <div class="day-cell has-post"><a class="day-num" href="#post-2026-09-03">3</a></div>
-                        <div class="day-cell"><span class="day-num">4</span></div>
-                        <div class="day-cell has-post"><a class="day-num" href="#post-2026-09-05-1">5</a></div>
-
-                        <div class="day-cell has-post"><a class="day-num" href="#post-2026-09-06-1">6</a></div>
-                        <div class="day-cell"><span class="day-num">7</span></div>
-                        <div class="day-cell has-post"><a class="day-num" href="#post-2026-09-08">8</a></div>
-                        <div class="day-cell"><span class="day-num">9</span></div>
-                        <div class="day-cell has-post"><a class="day-num" href="#post-2026-09-10">10</a></div>
-                        <div class="day-cell today"><span class="day-num">11</span></div>
-                        <div class="day-cell"><span class="day-num">12</span></div>
-
-                        <div class="day-cell"><span class="day-num">13</span></div>
-                        <div class="day-cell"><span class="day-num">14</span></div>
-                        <div class="day-cell"><span class="day-num">15</span></div>
-                        <div class="day-cell"><span class="day-num">16</span></div>
-                        <div class="day-cell"><span class="day-num">17</span></div>
-                        <div class="day-cell"><span class="day-num">18</span></div>
-                        <div class="day-cell"><span class="day-num">19</span></div>
-
-                        <div class="day-cell"><span class="day-num">20</span></div>
-                        <div class="day-cell"><span class="day-num">21</span></div>
-                        <div class="day-cell"><span class="day-num">22</span></div>
-                        <div class="day-cell"><span class="day-num">23</span></div>
-                        <div class="day-cell"><span class="day-num">24</span></div>
-                        <div class="day-cell"><span class="day-num">25</span></div>
-                        <div class="day-cell"><span class="day-num">26</span></div>
-
-                        <div class="day-cell"><span class="day-num">27</span></div>
-                        <div class="day-cell"><span class="day-num">28</span></div>
-                        <div class="day-cell"><span class="day-num">29</span></div>
-                        <div class="day-cell"><span class="day-num">30</span></div>
-                    </div>
+                    <p class="entries-calendar-month" id="entries-calendar-month"></p>
+                    <div class="entries-calendar-grid" id="entries-calendar-grid"></div>
 
                     <hr class="entries-calendar-divider">
-
-                    <ul class="entries-calendar-list">
-                        <li><span class="heart">♡</span><a href="#post-2026-09-10">sheesh guys my neck really hurts today...</a></li>
-                        <li><span class="heart">♡</span><a href="#post-2026-09-08">A. Sabalenka VS L. Noskova</a></li>
-                        <li><span class="heart">♡</span><a href="#post-2026-09-06-2">Genuinely Major Updated to the Blog</a></li>
-                        <li><span class="heart">♡</span><a href="#post-2026-09-06-3">Eventful last two nights</a></li>
-                    </ul>
+                    <ul class="entries-calendar-list" id="entries-calendar-list"></ul>
                 </div>
             </div>
         </div>
@@ -1264,6 +1217,101 @@
 
     updateCurrentlyTime();
     setInterval(updateCurrentlyTime, 60000);
+
+    const calendarMonth = document.querySelector('#entries-calendar-month');
+    const calendarGrid = document.querySelector('#entries-calendar-grid');
+    const calendarList = document.querySelector('#entries-calendar-list');
+    const calendarSources = ['music.html'];
+
+    function getCalendarPosts(root, source = '') {
+        return [...root.querySelectorAll('.blog-post')]
+        .map((post, index) => {
+            const dateText = post.querySelector('.post-meta')?.textContent.match(/[A-Z][a-z]+\s+\d{1,2},\s+\d{4}/)?.[0];
+            if (!dateText) return null;
+            const date = new Date(`${dateText} 12:00:00`);
+            if (Number.isNaN(date.getTime())) return null;
+            const id = post.id || `post-${date.toISOString().slice(0, 10)}-${index}`;
+            if (!post.id && !source) post.id = id;
+            return { date, post, href: source ? `${source}#${id}` : `#${id}` };
+        })
+        .filter(Boolean);
+    }
+
+    let calendarPosts = getCalendarPosts(document);
+
+    function renderCalendar() {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = today.getMonth();
+        const monthPosts = calendarPosts.filter(({ date }) => date.getFullYear() === year && date.getMonth() === month);
+        const postsByDay = new Map();
+        monthPosts.forEach(({ date, href }) => {
+            const day = date.getDate();
+            if (!postsByDay.has(day)) postsByDay.set(day, []);
+            postsByDay.get(day).push(href);
+        });
+
+        calendarMonth.textContent = today.toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
+        calendarGrid.replaceChildren();
+        ['S', 'M', 'T', 'W', 'T', 'F', 'S'].forEach((label) => {
+            const heading = document.createElement('div');
+            heading.className = 'dow';
+            heading.textContent = label;
+            calendarGrid.append(heading);
+        });
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        for (let index = 0; index < firstDay + daysInMonth; index += 1) {
+            const dayCell = document.createElement('div');
+            dayCell.className = 'day-cell';
+            if (index >= firstDay) {
+                const day = index - firstDay + 1;
+                const dayPosts = postsByDay.get(day) || [];
+                const dayNumber = document.createElement(dayPosts.length ? 'a' : 'span');
+                dayNumber.className = 'day-num';
+                dayNumber.textContent = day;
+                if (dayPosts.length) {
+                    dayCell.classList.add('has-post');
+                    dayNumber.href = dayPosts[0];
+                    dayNumber.title = `${dayPosts.length} blog entr${dayPosts.length === 1 ? 'y' : 'ies'}`;
+                }
+                if (day === today.getDate()) dayCell.classList.add('today');
+                dayCell.append(dayNumber);
+            }
+            calendarGrid.append(dayCell);
+        }
+
+        calendarList.replaceChildren();
+        monthPosts.slice(0, 4).forEach(({ post, href }) => {
+            const item = document.createElement('li');
+            const heart = document.createElement('span');
+            heart.className = 'heart';
+            heart.textContent = '♡';
+            const link = document.createElement('a');
+            link.href = href;
+            link.textContent = post.querySelector('h2, h4, p:not(.post-meta)')?.textContent.trim().slice(0, 60) || 'Blog entry';
+            item.append(heart, link);
+            calendarList.append(item);
+        });
+    }
+
+    async function loadCalendarSources() {
+        const sourcePosts = await Promise.all(calendarSources.map(async (source) => {
+            try {
+                const response = await fetch(source);
+                if (!response.ok) return [];
+                const sourceDocument = new DOMParser().parseFromString(await response.text(), 'text/html');
+                return getCalendarPosts(sourceDocument, source);
+            } catch (error) {
+                return [];
+            }
+        }));
+        calendarPosts = calendarPosts.concat(sourcePosts.flat());
+        renderCalendar();
+    }
+
+    loadCalendarSources();
 
     const blogGuestbookForm = document.querySelector('#blog-guestbook-form');
     const blogGuestbookStatus = document.querySelector('#guestbook-status');
