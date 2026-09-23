@@ -12,272 +12,242 @@
     </head>
 
     <style>
+        html { scroll-behavior: smooth; }
+
+        * { box-sizing: border-box; }
+
         body {
             margin: 0;
-            background-color: #ffffff;
-            font-family: serif;
-            color: aliceblue;
+            background: #f4efe8;
+            font-family: Georgia, "Times New Roman", serif;
+            color: #ffffff;
         }
 
         .hero-header {
             position: absolute;
             top: 0;
-            left: 0%;
+            left: 0;
             z-index: 1000;
+           
         }
 
-       .hero-background {
+        .hero-header img {
+            width: 100px;
+            height: auto;
+        }
+
+        .hero-background,
+        .hero-background2,
+        .hero-background3,
+        .hero-background4 {
             position: relative;
             min-height: 100vh;
-            background-image: url('Postcard-Background-Sd.jpg');
-            background-size: 100% 100%;
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 110px 24px 60px;
+        }
 
+        .hero-background::before,
+        .hero-background2::before,
+        .hero-background3::before,
+        .hero-background4::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(12, 15, 18, 0.26);
+        }
+
+        .hero-background {
+            background-image: url('Postcard-Background-SD.jpg');
         }
 
         .hero-background2 {
-            position: relative;
-            min-height: 100vh;
-            background-image: url(Postcard-Background-Seattle.jpg);
-            background-size: 100% 100%;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+            background-image: url('Postcard-Background-Seattle.jpg');
         }
 
-          .hero-background3 {
-            position: relative;
-            min-height: 100vh;
-            background-image: url(Postcard-Background-Boston.jpg);
-            background-size: 100% 100%;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+        .hero-background3 {
+            background-image: url('Postcard-Background-Boston.jpg');
         }
-          .hero-background4 {
-            position: relative;
-            min-height: 100vh;
-            background-image: url(Postcard-Background-NY.jpg);
-            background-size: 100% 100%;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+
+        .hero-background4 {
+            background-image: url('Postcard-Background-NY.jpg');
         }
-          
-        .forground-photo {
-            position: absolute;
-            top: 120px;
-            left: 50%;
-            
-        }
+
         .positioned-text {
-            position: absolute;
-            top: 35%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
+            position: relative;
+            z-index: 2;
+            width: min(92vw, 980px);
             text-align: center;
-            font-family: sans-serif;
+            font-family: "Trebuchet MS", Arial, sans-serif;
         }
 
-
-        .Planehome {
-            position: absolute;
-            top: 0;
-            left: 25px;
-            z-index: 1000;
-            width: 25px;
-            height: 45px;
-            display: block;
-             clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
-            filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.4));
+        .positioned-text h1,
+        .positioned-text h2 {
+            margin: 0 0 20px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.45);
+            font-size: clamp(2rem, 4vw, 4.2rem);
         }
 
-        .blogs-main {
-            flex: 1;
+        .positioned-text p {
+            margin: 0;
+            font-size: clamp(0.8rem, 1.5vw, 1.1rem);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .postcard-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 1.6fr;
+            align-items: center;
+            gap: 28px;
+            margin-top: 28px;
+        }
+
+        .postcard-image {
             display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .post{
-          background-color: rgba(0, 0, 0, 0.35); 
-          border-radius: 8px;
-          padding: 30px;
-          border: 1px solid rgba(0, 0, 0, 0.08); 
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .vintage-postcard { 
+            align-items: center;
+            justify-content: center;
             width: 100%;
-            max-width: 500px;
-            background-color: #faf6ee;
-            border: 1px soild #e3dacb;
-            border-radius: 2px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            box-sizing: border-box;
-            font-family: sans-serif;
         }
-    
-    .postcard-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: 20px;
-    } 
 
-    .postcard-title {
-        font-size: 20px;
-        font-weight: 700;
-        letter-spacing: 4px;
-        color: #5c554a;
-        border-bottom: 2px soild #5c554a;
-        padding-bottom: 2px;
-    }
-
-    .stamp-box {
-        width: 60px;
-        height: 75px;
-        border: 1px dashed #a89f91;
-        display: flex;
-        align-items: center;
-        justify-self: center;
-        font-size: 10px;
-        color: #a89f91;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    .postcard-body {
-        display: flex;
-        gap: 20px;
-    }
-
-
-    .postcard-message {
-        flex: 1.2;
-        border-right: 1px solid #e2dacb;
-        padding-right: 15px;
-    } 
-
-    .handwritten {
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 13px;
-        line-height: 1.6;
-        color: #2b2925;
-        margin: 0;
-    }
-
-    .postcard-address { 
-        flex: 0.8;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 20px;
-    }
-
-    .address-line { 
-        border-bottom: 1px soild #c9beae;
-        width: 100%;
-        height: 15px;
-    }
-
-    .postcard-location-date {
-        font-size: 11px;
-        letter-spacing: 1px;
-        color: #8a8072;
-        text-transform: uppercase;
-        margin-bottom: 15px;
-    }
-
-    @media (max-width: 600px) {
-    .postcard-body { flex-direction: column;}
-    .postcard-message {
-        border-right: none;
-        border-bottom: 1px solid #e2dacb;
-        padding-right: 0;
-        padding-bottom: 15px;
-    }
-    }
-
-
-    .coontainer {
-        position: relative; 
-    }
-
-
-
-        .postcard-photo {
-            position: fixed;
-            left: 750px;
-                        top: 200px;
+        .postcard-image img {
+            display: block;
+            width: min(100%, 350px);
+            height: auto;
+            box-shadow: 0 18px 30px rgba(0, 0, 0, 0.24);
+            border: 0px solid rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.2);
         }
-</style>
+
+        .postcard-image.back img {
+            width: min(100%, 510px);
+            transform: rotate(2.5deg);
+        }
+
+        .postcard-image.front img {
+            transform: rotate(-4deg) translateY(18px);
+        }
+
+        .postcard-caption {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 18px;
+            border: 0px solid rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.08);
+            letter-spacing: 0.14em;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            color: #f7f1ea;
+        }
+
+        .postcard-location-date {
+            margin-top: 19px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #f0e9df;
+            text-transform: uppercase;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+        }
+
+        @media (max-width: 760px) {
+            .postcard-layout {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .postcard-image.front img,
+            .postcard-image.back img {
+                transform: none;
+                width: min(84vw, 450px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-header {
+                padding: 10px 12px;
+            }
+
+            .hero-header img {
+                width: 52px;
+            }
+
+            .positioned-text h1,
+            .positioned-text h2 {
+                letter-spacing: 0.1em;
+            }
+        }
+    </style>
 </head>
 
-<header>
-  
-
-</header>
-
-
-
-
 <body>
-
-    <div class="hero-header" style="display: flex; align-items: center; gap: 12px; justify-content: flex-start;">
-        <a href="index.html" style="display: inline-flex; align-items: center; text-decoration: none;">
-            <img src="Plane-Icon.png" alt="Plane" width="80px" height="auto">
+    <div class="hero-header">
+        <a href="index.html" aria-label="Back to home" style="display: inline-flex; align-items: center; text-decoration: none;">
+            <img src="Plane-Icon.png" alt="Plane" width="80" height="auto">
         </a>
     </div>
 
-
-
-
-
-    <div class="hero-background">
+    <section class="hero-background" aria-label="San Diego postcard section">
         <div class="positioned-text">
-            
-            <h1>Text</h1>
-             <div class="postcard-photo">
-             <img src="BackSDPostcard.png" alt="Lifeguard." width="400px" length="auto" position="absolute" left="500px">
-                </div>  
-            <p>More Text</p>
-            <div class="postcard-location-date"> San Diego June 2026</div>
-            <div class="postcard-header"></div>
-            <div class="stamp-box">Postage</div>
+            <h1>San Diego</h1>
+            <div class="postcard-layout">
+                <div class="postcard-image front">
+                    <img src="BackSDPostcard.png" alt="San Diego postcard front image">
+                </div>
+                <div class="postcard-image back">
+                    <img src="SDPostcard.png" alt="San Diego postcard back image">
+                </div>
+            </div>
+            <div class="postcard-location-date">📍San Diego • June 2026</div>
         </div>
+    </section>
 
-        
-    </div>
-
-
-
-    <div class="hero-background2" loading="lazy">
+    <section class="hero-background2" aria-label="Seattle postcard section" loading="lazy">
         <div class="positioned-text">
-            <h1>stuff</h1>
-            <p>more stuff</p>
+            <h2>Seattle</h2>
+            <div class="postcard-layout">
+            <div class="postcard-image front">
+                <img src="SeattleCard.png" alt="Seattle Postcard">
+            </div>
+            <div class="postcard-image back">
+                <img src="SeattleLetter.png" alt="Seattle postcard back">
+            </div>
+            </div>
+            <div class="postcard-location-date">📍Seattle • July 2026</div>
         </div>
-    </div>
+    </section>
 
-    <div class="hero-background3" loading="lazy">
+    <section class="hero-background3" aria-label="Boston postcard section" loading="lazy">
         <div class="positioned-text">
-            <h2>Testing Text</h2>
-            <p> Yawn</p>
-        </div>
-    </div>
+            <h2>Boston</h2>
+            <div class="postcard-layout">
+                <div class=" postcard-image front">
+                                        <img src="BostonPost.png">
 
-    <div class="hero-background4" loading="lazy">
+                </div>
+                <div class="postcard-image back">
+                                        <img src="Boston Poscard.png">
+
+                </div>
+            </div>
+            <div class="postcard-location-date">📍Boston • August 2026 </div>
+        </div>
+    </section>
+
+    <section class="hero-background4" aria-label="New York postcard section" loading="lazy">
         <div class="positioned-text">
-            <h2>Testing testing </h2>
-            <p>teXTing</p>
+            <h2>New York</h2>
+            <div class="postcard-location-date">📍New York • August 2026 </div>
         </div>
-    </div>
-
-
+    </section>
 </body>
 
 
