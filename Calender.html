@@ -45,10 +45,14 @@
     }
 
     .page-shell {
-        width: min(94vw, 900px);
-        height: min(650px, 90vh);
+         position: absolute;
+           top: 50%;
+           left: 50%;
+    margin-left: 0;
+           transform: translate(-50%, -50%);
+        width: 900px;
+        height: 650px;
         padding: 26px 40px;
-        position: relative;
         overflow: visible;
         border: 1px solid var(--panel-border);
         backdrop-filter: blur(3px);
@@ -67,7 +71,7 @@
         z-index: 0;
     }
 
-    .page-shell > :not(.panel-bg-img):not(.calclip) {
+    .page-shell > :not(.panel-bg-img):not(.calclip):not(.calendar-overlay):not(.scrapbook-item) {
         position: relative;
         z-index: 1;
     }
@@ -166,7 +170,15 @@
     }
     
     .cell.photo {padding: 0;}
-    .cell.photo .img {position: absolute; inset: 0; background-size: cover; background-position: center;}
+    .cell.photo .img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: 1;
+    }
     .cell.photo .num {
         position: relative; z-index: 2; color: #fff;
         background: rgba(0, 0, 0, 0.35); padding: 0 4px; border-radius: 2px; display: inline-block; margin: 4px;
@@ -178,13 +190,25 @@
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
     }
 
+    .cell-photo-small {
+        position: absolute;
+        right: 4px;
+        bottom: 3px;
+        z-index: 2;
+        width: 52px;
+        height: auto;
+        object-fit: cover;
+        transform: rotate(18deg);
+    }
 
-@media (max-width: 560px) {
-    .page-shell {padding: 40px 20px 26px;}
-    .cell {min-height: 54px;}
-    .cell .note { font-size: 0.9rem;}
-    .dow {font-size: 0.6rem;}
-}
+    .film-restock-note {
+        position: relative;
+        z-index: 3;
+        max-width: 45px;
+        line-height: 1;
+    }
+
+
 
 .calclip {
         position: absolute;
@@ -195,6 +219,56 @@
         pointer-events: none;
         z-index: 3;
     }
+
+    .scrapbook-item {
+        position: absolute;
+        z-index: 4;
+        pointer-events: none;
+    }
+
+    .scrapbook-item img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .overlay-tape {
+        top: 110px;
+        left: -35px;
+        width: 130px;
+        transform: rotate(-12deg);
+    }
+
+    .overlay-pin {
+        top: 465px;
+        left: 112px;
+        width: 58px;
+        transform: rotate(-13deg);
+        filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, 0.28));
+    }
+    .thumbtack {
+        position: absolute;
+        top: -20px;
+        left: 56%;
+        width: 42px;
+        transform: translateX(-50%) rotate(-8deg);
+        z-index: 3;
+        pointer-events: none;
+    }
+
+    .thumbtack img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .washitape-item {
+        top: 150px;
+        left: 480px;
+        width: 45px;
+        transform: rotate(-12deg);
+    }
+
 .logo-btn img {
         width: 40px;
         height: 40px;
@@ -214,6 +288,28 @@
         z-index: 1002;
         display: block;
     }
+
+    .giants-patch {
+        top: 465px;
+        left: 100px;
+        width: 115px;
+        transform: rotate(-16deg);
+        filter: drop-shadow(3px 4px 3px rgba(0, 0, 0, 0.3));
+    }
+
+    .cars-photo {
+        top: 275px;
+        left: 325px;
+        width: 100px;
+        transform: rotate(13deg);
+    }
+
+    .odyssey-stub {
+        top: 170px;
+        left: 470px;
+        width: 78px;
+        transform: rotate(-13deg);
+    }
 </style>
 <body>
 
@@ -226,8 +322,27 @@
         <div class="calclip">
             <img src="calclip.png" alt="calclip" width="230" height="auto">
         </div>
+            <div class="scrapbook-item giants-patch">
+            <img src="sf giants.png" alt="San Francisco Giants logo">
+        </div>
+        <div class="scrapbook-item overlay-pin">
+            <img src="Safety pin.png" alt="">
+        </div>
 
+       
 
+        <div class="scrapbook-item odyssey-stub">
+            <img src="odyssey.jpg" alt="Odyssey card">
+        </div>
+ <div class="scrapbook-item washitape-item">
+            <img src="Washi tape.png" alt="">
+        </div>
+        <div class="scrapbook-item cars-photo">
+            <img src="Cars.jpg" alt="cars">
+            <div class="thumbtack">
+                    <img src="thumbtack.png" alt="">
+            </div>
+        </div>
         <h1 id="monthLabel"><span class="month-number">09</span>September</h1>
         
         <p class="subline" id="yearLabel"></p>
@@ -243,48 +358,91 @@
 
             <div class="cell empty"></div>
             <div class="cell empty"></div>
-            <div class="cell" data-date="2026-09-01"><span class="num">1</span></div>
-            <div class="cell" data-date="2026-09-02"><span class="num">2</span></div>
-            <div class="cell" data-date="2026-09-03"><span class="num">3</span></div>
-            <div class="cell" data-date="2026-09-04"><span class="num">4</span></div>
+            <div class="cell" data-date="2026-09-01"><span class="num">1.</span></div>
+            <div class="cell" data-date="2026-09-02"><span class="num">2.</span></div>
+
+
+
+            <div class="cell" data-date="2026-09-03"><span class="num">3.</span>
+                <span class="note" style="text-align: right; font-size: 1.25rem;">The <br> Oddassy <br> In 70mm!</span>
+            </div>
+
+                <div class="cell photo" data-date="2026-09-04">
+                    <img class="img" src="Service Recept.jpg" alt="Service receipt">
+                    <span class="num">4.</span>
+            </div>
                 
-            <div class="cell" data-date="2026-09-05"><span class="num">5</span></div>
-            <div class="cell" data-date="2026-09-06"><span class="num">6</span></div>
-            <div class="cell" data-date="2026-09-07"><span class="num">7</span></div>
-            <div class="cell" data-date="2026-09-08"><span class="num">8</span></div>
-            <div class="cell" data-date="2026-09-09"><span class="num">9</span></div>
+            <div class="cell" data-date="2026-09-05"><span class="num">5.</span></div>
+            <div class="cell" data-date="2026-09-06"><span class="num">6.</span></div>
+            <div class="cell" data-date="2026-09-07"><span class="num">7.</span></div>
+            <div class="cell" data-date="2026-09-08">
+                <span class="num">8.</span>
+                <span class="note" style="text-align: left; font-size: 1.25rem;">Cars <br> Rerun</span>
+
+            </div>
+            
+            <div class="cell" data-date="2026-09-09"><span class="num">9.</span></div>
         
-            <div class="cell" data-date="2026-09-10"><span class="num">10</span></div>
-            <div class="cell" data-date="2026-09-11"><span class="num">11</span></div>
-            <div class="cell" data-date="2026-09-12"><span class="num">12</span></div>
-            <div class="cell" data-date="2026-09-13"><span class="num">13</span></div>
-            <div class="cell" data-date="2026-09-14"><span class="num">14</span></div>
-            <div class="cell" data-date="2026-09-15"><span class="num">15</span></div>
-            <div class="cell" data-date="2026-09-16"><span class="num">16</span></div>
-            <div class="cell" data-date="2026-09-17"><span class="num">17</span></div>
-            <div class="cell" data-date="2026-09-18"><span class="num">18</span></div>
-            <div class="cell" data-date="2026-09-19"><span class="num">19</span></div>
-            <div class="cell" data-date="2026-09-20"><span class="num">20</span></div>
-            <div class="cell" data-date="2026-09-21"><span class="num">21</span></div>
-            <div class="cell" data-date="2026-09-22"><span class="num">22</span></div>
-            <div class="cell" data-date="2026-09-23"><span class="num">23</span></div>
-            <div class="cell" data-date="2026-09-24"><span class="num">24</span></div>
-            <div class="cell" data-date="2026-09-25"><span class="num">25</span></div>
-            <div class="cell" data-date="2026-09-26"><span class="num">26</span></div>
-            <div class="cell" data-date="2026-09-27"><span class="num">27</span></div>
-            <div class="cell" data-date="2026-09-28"><span class="num">28</span>
-                <span class="note"> End Game Encore!</span></div>
-            <div class="cell" data-date="2026-09-29"><span class="num">29</span></div>
-            <div class="cell" data-date="2026-09-30"><span class="num">30</span></div>
+            <div class="cell" data-date="2026-09-10"><span class="num">10.</span></div>
+            <div class="cell" data-date="2026-09-11"><span class="num">11.</span></div>
+           
+            <div class="cell photo" data-date="2026-09-12" title="Ryan Beatty Concert!">
+                <img class="img" src="ryan beatty.jpg" alt="Ryan Beatty concert">
+                <span class="num">12.</span>
+            </div>
+        
+
+
+
+            <div class="cell" data-date="2026-09-13"><span class="num">13.</span></div>
+            <div class="cell" data-date="2026-09-14"><span class="num">14.</span></div>
+            <div class="cell" data-date="2026-09-15">
+                <span class="num">15.</span>
+                <span class="note">HARRY STYLE PRESALE!</span>
+            </div>
+            <div class="cell" data-date="2026-09-16"><span class="num">16.</span></div>
+            <div class="cell" data-date="2026-09-17"><span class="num">17.</span></div>
+            
+            <div class="cell photo" data-date="2026-09-18" title="Mahjong Night!!">
+                <img class="img" src="mahjong.HEIC" alt="mahjong night">
+                <span class="num">18.</span>
+                
+            </div>
+            
+            <div class="cell" data-date="2026-09-19"><span class="num">19.</span></div>
+            <div class="cell" data-date="2026-09-20"><span class="num">20.</span></div>
+          
+            <div class="cell game-night" data-date="2026-09-21">
+                <span class="num">21.</span>
+                <span class="note" style="text-align: right; font-size: 1.65rem;">Giants <br> Game!</span>
+            </div>
+            <div class="cell" data-date="2026-09-22"><span class="num">22.</span></div>
+            <div class="cell" data-date="2026-09-23"><span class="num">23.</span></div>
+            <div class="cell" data-date="2026-09-24"><span class="num">24.</span></div>
+            <div class="cell" data-date="2026-09-25">
+                <span class="num">25.</span>
+                <span class="note film-restock-note">Film Restock Day!</span>
+                <img class="cell-photo-small" src="FILMMMM.png" alt="Film photo" >
+            </div>
+
+            <div class="cell" data-date="2026-09-26"><span class="num">26.</span>
+                <span class="note">Mid Autumn Festival!!</span>
+            </div>
+            
+            <div class="cell" data-date="2026-09-27"><span class="num">27.</span></div>
+            <div class="cell" data-date="2026-09-28"><span class="num">28.</span>
+                <span class="note" style="font-size: 1.65rem;"> End Game Encore!</span></div>
+            <div class="cell" data-date="2026-09-29"><span class="num">29.</span></div>
+            <div class="cell" data-date="2026-09-30"><span class="num">30.</span></div>
 
                     
         </div>
     </main>
 
     <script>
-        const todayISO = new Date().toLocaleDateString('sv-SE'); // gives YYYY-MM-DD in local time
-    const todayCell = document.querySelector(`.cell[data-date="${todayISO}"]`);
-    if (todayCell) todayCell.classList.add('today');
+        const todayISO = new Date().toLocaleDateString('sv-SE');
+        const todayCell = document.querySelector(`.cell[data-date="${todayISO}"]`);
+        if (todayCell) todayCell.classList.add('today');
     </script>
     </body>
 </html>
