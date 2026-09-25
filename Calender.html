@@ -9,15 +9,20 @@
     <link rel="apple-touch-icon" href="favicon_ico/apple-touch-icon.png">
     <link rel="manifest" href="favicon_ico/site.webmanifest">
     <title>Shady's Blog</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 <style>
     :root {
-        --page-bg: #efe8d9;
-        --panel-bg: rgba(255, 255, 255, 0.22);
-        --panel-border: rgba(255, 255, 255, 0.38);
-        --text-main: #f7f4ee;
-        --text-soft: rgba(247, 244, 238, 0.8);
-    }
+    --page-bg: #efe8d9;
+    --panel-bg: rgba(255, 255, 255, 0.22);
+    --panel-border: rgba(255, 255, 255, 0.38);
+    --text-main: #000;
+    --text-soft: #000;
+}
 
     * {
         box-sizing: border-box;
@@ -29,47 +34,259 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: 'Caveat';
         background-color: var(--page-bg);
         background-image: linear-gradient(rgba(84, 97, 110, 0.38), rgba(59, 74, 94, 0.34)), url("Sept,4.2.jpg");
         background-repeat: no-repeat;
-        background-position: center center;
+        background-position: center 15%;
         background-size: cover;
         background-attachment: fixed;
         color: var(--text-main);
     }
 
     .page-shell {
-        width: min(90vw, 760px);
-        padding: 48px 38px;
+        width: min(94vw, 900px);
+        height: min(650px, 90vh);
+        padding: 26px 40px;
+        position: relative;
+        overflow: hidden;
         border: 1px solid var(--panel-border);
-        background: var(--panel-bg);
         backdrop-filter: blur(3px);
         -webkit-backdrop-filter: blur(3px);
         box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15);
         text-align: center;
     }
 
+    .panel-bg-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.70;
+        z-index: 0;
+    }
+
+    .page-shell > :not(.panel-bg-img) {
+        position: relative;
+        z-index: 1;
+    }
+
+
     h1 {
-        margin: 0 0 12px;
+        position: relative;
+        margin: 0 0 6px;
         font-size: clamp(2.3rem, 5vw, 4rem);
         letter-spacing: 0.08em;
         text-transform: uppercase;
         font-weight: 700;
+        text-align: right; padding-right: 20px;
     }
 
-    p {
-        margin: 0;
+    .month-number {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1em;
+        font-weight: 650;
+        letter-spacing: 0.02em;
+    }
+
+    .subline {
+        margin: 0 0 6px;
         font-size: 1.05rem;
         line-height: 1.7;
         color: var(--text-soft);
+        letter-spacing: 0.04rem;
+        text-transform: uppercase; 
+        font-size: 0.85rem;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0;
+        background: transparent;
+        text-align: left;
+    }
+
+    .dow {
+        font-size: 0.7rem;
+        letter-spacing: 0.06rem;
+        text-transform: uppercase;
+        color: #000;
+        text-align: center;
+        background: transparent;
+        border: 0;
+        padding-bottom: 4px;
+    }
+
+    .cell {
+        position: relative;
+        min-height: 97px;
+        min-width: auto;
+        border: 0;
+        border-right: 1px solid #000;
+        border-bottom: 1px solid #000;
+        padding: 6px 7px;
+        overflow: hidden;
+    }
+
+    .cell:nth-child(n + 8):nth-child(-n + 14) {
+        border-top: 1px solid #000;
+    }
+
+    .cell:nth-child(7n + 1) {
+        border-left: 1px solid #000;
+    }
+
+    .grid::after {
+        content: "important dates";
+        grid-column: span 3;
+        min-height: 97px;
+        border-right: 1px solid #000;
+        border-bottom: 1px solid #000;
+    }
+
+    .cell .num {font-size: 1.4rem; color: #1A1A1A  ; font-weight: 900; text-shadow: 0 1px 3px rgba(0, 0, 0,0.35);}
+    .cell.today .num {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 18px; height: 18px; border-radius: 50%;
+        background: #c86d75; color: #1A1A1A; font-weight: 700;
+        }
+        
+    .cell .note {
+        display: block;
+        font-family: 'Caveat';
+        font-size: 1.2rem;
+        line-height: 1.15;
+        color: var(--text-main);
+        margin-top: 0px;
+    }
+    
+    .cell.photo {padding: 0;}
+    .cell.photo .img {position: absolute; inset: 0; background-size: cover; background-position: center;}
+    .cell.photo .num {
+        position: relative; z-index: 2; color: #fff;
+        background: rgba(0, 0, 0, 0.35); padding: 0 4px; border-radius: 2px; display: inline-block; margin: 4px;
+    }
+
+    .cell.photo .caption {
+        position: absolute; bottom: 4px; left: 6px; right: 6px; z-index: 2;
+        color: #fff; font-family: 'Caveat'; font-size: 0.95em;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    }
+
+
+@media (max-width: 560px) {
+    .page-shell {padding: 40px 20px 26px;}
+    .cell {min-height: 54px;}
+    .cell .note { font-size: 0.9rem;}
+    .dow {font-size: 0.6rem;}
+}
+
+.calclip {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        transform: translateX(-50%) rotate(1deg);
+        width: -10px;
+        height: 3px;
+        opacity: 1;
+        pointer-events: none;
+        z-index: 1001;
+    }
+.logo-btn img {
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        border: 1px solid #ffffff;
+        background-color: #ffffff;
+        display: block;
+        padding: 6px;          
+        box-sizing: border-box; 
+        object-fit: contain;   
+    }
+
+    .logo-btn {
+        position: fixed;
+        top: 16px;
+        left: 16px;
+        z-index: 1002;
+        display: block;
     }
 </style>
-
 <body>
+
+    <a href="index.html" class="logo-btn">
+        <img src="LOGO.png" alt="Logo">
+    </a>
+
+    <div class="calclip">
+        <img src="calclip.png" alt="calclip" width="230px" height="auto">
+    </div>
     <main class="page-shell">
-        <h1>Calendar</h1>
-        <p>Coming soon</p>
+        <img class="panel-bg-img" src="Calbackground2.jpg" alt="">
+
+
+        <h1 id="monthLabel"><span class="month-number">09</span>September</h1>
+        
+        <p class="subline" id="yearLabel"></p>
+        
+        <div class="grid" id="grid">
+            <div class="dow">Sunday</div>
+            <div class="dow">Monday</div>
+            <div class="dow">Tuesday</div>
+            <div class="dow">Wednesday</div>
+            <div class="dow">Thursday</div>
+            <div class="dow">Friday</div>
+            <div class="dow">Saturday</div>
+
+            <div class="cell empty"></div>
+            <div class="cell empty"></div>
+            <div class="cell" data-date="2026-09-01"><span class="num">1</span></div>
+            <div class="cell" data-date="2026-09-02"><span class="num">2</span></div>
+            <div class="cell" data-date="2026-09-03"><span class="num">3</span></div>
+            <div class="cell" data-date="2026-09-04"><span class="num">4</span></div>
+                
+            <div class="cell" data-date="2026-09-05"><span class="num">5</span></div>
+            <div class="cell" data-date="2026-09-06"><span class="num">6</span></div>
+            <div class="cell" data-date="2026-09-07"><span class="num">7</span></div>
+            <div class="cell" data-date="2026-09-08"><span class="num">8</span></div>
+            <div class="cell" data-date="2026-09-09"><span class="num">9</span></div>
+        
+            <div class="cell" data-date="2026-09-10"><span class="num">10</span></div>
+            <div class="cell" data-date="2026-09-11"><span class="num">11</span></div>
+            <div class="cell" data-date="2026-09-12"><span class="num">12</span></div>
+            <div class="cell" data-date="2026-09-13"><span class="num">13</span></div>
+            <div class="cell" data-date="2026-09-14"><span class="num">14</span></div>
+            <div class="cell" data-date="2026-09-15"><span class="num">15</span></div>
+            <div class="cell" data-date="2026-09-16"><span class="num">16</span></div>
+            <div class="cell" data-date="2026-09-17"><span class="num">17</span></div>
+            <div class="cell" data-date="2026-09-18"><span class="num">18</span></div>
+            <div class="cell" data-date="2026-09-19"><span class="num">19</span></div>
+            <div class="cell" data-date="2026-09-20"><span class="num">20</span></div>
+            <div class="cell" data-date="2026-09-21"><span class="num">21</span></div>
+            <div class="cell" data-date="2026-09-22"><span class="num">22</span></div>
+            <div class="cell" data-date="2026-09-23"><span class="num">23</span></div>
+            <div class="cell" data-date="2026-09-24"><span class="num">24</span></div>
+            <div class="cell" data-date="2026-09-25"><span class="num">25</span></div>
+            <div class="cell" data-date="2026-09-26"><span class="num">26</span></div>
+            <div class="cell" data-date="2026-09-27"><span class="num">27</span></div>
+            <div class="cell" data-date="2026-09-28"><span class="num">28</span>
+                <span class="note"> End Game Encore!</span></div>
+            <div class="cell" data-date="2026-09-29"><span class="num">29</span></div>
+            <div class="cell" data-date="2026-09-30"><span class="num">30</span></div>
+
+                    
+        </div>
     </main>
-</body>
+
+    <script>
+        const todayISO = new Date().toLocaleDateString('sv-SE'); // gives YYYY-MM-DD in local time
+    const todayCell = document.querySelector(`.cell[data-date="${todayISO}"]`);
+    if (todayCell) todayCell.classList.add('today');
+    </script>
+    </body>
 </html>
