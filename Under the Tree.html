@@ -709,6 +709,17 @@
     box-sizing: border-box;
 }
 
+.entries-calendar.is-expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: min(90vw, 520px);
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: translate(-50%, -50%);
+    z-index: 2000;
+}
+
 .entries-calendar-heading {
     color: #a0522d;
     font-style: italic;
@@ -717,6 +728,13 @@
 }
 
 .entries-calendar-month {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    font: inherit;
     text-align: center;
     font-weight: bold;
     font-size: 1.05rem;
@@ -1213,7 +1231,14 @@
 
                 <div class="entries-calendar">
                     <p class="entries-calendar-heading">my blog entries</p>
-                    <p class="entries-calendar-month" id="entries-calendar-month"></p>
+
+                <button
+                class="entries-calendar-month"
+                id="entries-calendar-month"
+                type="button"
+                aria-expanded="false"
+                ></button>
+
                     <div class="entries-calendar-grid" id="entries-calendar-grid"></div>
 
                     <hr class="entries-calendar-divider">
@@ -1244,9 +1269,15 @@
     setInterval(updateCurrentlyTime, 60000);
 
     const calendarMonth = document.querySelector('#entries-calendar-month');
+    const calendarWidget = document.querySelector('.entries-calendar');
     const calendarGrid = document.querySelector('#entries-calendar-grid');
     const calendarList = document.querySelector('#entries-calendar-list');
     const calendarSources = ['music.html'];
+
+    calendarMonth.addEventListener('click', () => {
+        const isExpanded = calendarWidget.classList.toggle('is-expanded');
+        calendarMonth.setAttribute('aria-expanded', isExpanded);
+    });
 
     function getCalendarPosts(root, source = '') {
         return [...root.querySelectorAll('.blog-post')]
