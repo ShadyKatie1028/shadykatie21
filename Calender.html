@@ -11,28 +11,65 @@
     <title>Shady's Blog</title>
 </head>
 <style>
-    body {
-        background-color: #efe8d9;
-
+    :root {
+        --page-bg: #efe8d9;
+        --panel-bg: rgba(255, 255, 255, 0.22);
+        --panel-border: rgba(255, 255, 255, 0.38);
+        --text-main: #f7f4ee;
+        --text-soft: rgba(247, 244, 238, 0.8);
     }
 
- .hero-background {
-         
-            background-image: url('calbackground.jpg');
-         
-        }
+    * {
+        box-sizing: border-box;
+    }
 
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: var(--page-bg);
+        background-image: linear-gradient(rgba(84, 97, 110, 0.38), rgba(59, 74, 94, 0.34)), url("Sept,4.2.jpg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        background-attachment: fixed;
+        color: var(--text-main);
+    }
+
+    .page-shell {
+        width: min(90vw, 760px);
+        padding: 48px 38px;
+        border: 1px solid var(--panel-border);
+        background: var(--panel-bg);
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15);
+        text-align: center;
+    }
+
+    h1 {
+        margin: 0 0 12px;
+        font-size: clamp(2.3rem, 5vw, 4rem);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    p {
+        margin: 0;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: var(--text-soft);
+    }
 </style>
 
 <body>
-
-     <div class="hero-background">
-        <div class="positioned-text">
-            <h1>My Books & Favorite Reads</h1>
-            <p>Welcome to the books page! Here is where I'll post recent reads, book reviews, and recommendations.</p>
-            <p>Scroll down to see</p>
-        </div>
-    </div>
-    
+    <main class="page-shell">
+        <h1>Calendar</h1>
+        <p>Coming soon</p>
+    </main>
 </body>
 </html>
