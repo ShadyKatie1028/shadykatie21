@@ -49,7 +49,7 @@
         height: min(650px, 90vh);
         padding: 26px 40px;
         position: relative;
-        overflow: hidden;
+        overflow: visible;
         border: 1px solid var(--panel-border);
         backdrop-filter: blur(3px);
         -webkit-backdrop-filter: blur(3px);
@@ -67,7 +67,7 @@
         z-index: 0;
     }
 
-    .page-shell > :not(.panel-bg-img) {
+    .page-shell > :not(.panel-bg-img):not(.calclip) {
         position: relative;
         z-index: 1;
     }
@@ -188,14 +188,12 @@
 
 .calclip {
         position: absolute;
-        top: 5px;
+        top: -120px;
         left: 50%;
         transform: translateX(-50%) rotate(1deg);
-        width: -10px;
-        height: 3px;
         opacity: 1;
         pointer-events: none;
-        z-index: 1001;
+        z-index: 3;
     }
 .logo-btn img {
         width: 40px;
@@ -223,11 +221,11 @@
         <img src="LOGO.png" alt="Logo">
     </a>
 
-    <div class="calclip">
-        <img src="calclip.png" alt="calclip" width="230px" height="auto">
-    </div>
     <main class="page-shell">
         <img class="panel-bg-img" src="Calbackground2.jpg" alt="">
+        <div class="calclip">
+            <img src="calclip.png" alt="calclip" width="230" height="auto">
+        </div>
 
 
         <h1 id="monthLabel"><span class="month-number">09</span>September</h1>
