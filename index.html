@@ -77,6 +77,111 @@
         gap: 35px;
         align-items: flex-start;
     }
+  
+
+.currently-heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    font-weight: bold;
+    font-size: 1.15rem;
+    color: inherit;
+    margin: 0 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #cbb89f;
+}
+
+.currently-user {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: #3d3227;
+    margin: 0 0 4px;
+}
+
+.currently-time {
+    font-style: normal;
+    font-weight: normal;
+    color: #8a7d6d;
+    font-size: 0.85rem;
+}
+
+.currently-status {
+    font-size: 0.95rem;
+    color: #4a4038;
+    margin: 0 0 6px;
+}
+
+.currently-widget hr {
+    margin: 0 0 2px;
+}
+
+.currently-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.currently-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #4a4038;
+    line-height: 1.35;
+    padding: 5px 0;
+}
+
+.currently-list li span {
+    flex: 0 0 18px;
+    text-align: center;
+}
+
+.currently-list li > a {
+    align-items: flex-start;
+    color: inherit;
+    display: inline-flex;
+    text-decoration: none;
+}
+
+.currently-list li > a:hover {
+    color: #6b7a4f;
+    text-decoration: underline;
+}
+
+.currently-list li.currently-subitem {
+    display: block;
+    padding: 0 0 5px 28px;
+    color: #4a4038;
+    font-size: 0.85rem;
+}
+
+.currently-widget > a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #6b7a4f;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.currently-widget > a:hover {
+    text-decoration: underline;
+}
+
+.currently-widget {
+    text-align: center;
+}
+
+.currently-list li {
+    justify-content: center;
+    align-items: center;
+}
+
+.currently-list li.currently-subitem {
+    padding-left: 0;
+}
     </style>
 </head>
 <body>
@@ -93,7 +198,6 @@
 <div class="hero-header">
 <hr>
 </div>
-
            <article class="card" style="margin-top: 16px;">
     <div class="card-content">
         <img class="card-image" src="My face.jpg" width="264" height="242" alt="My face" style="float: left; margin-right: 18px; margin-bottom: 13px; object-fit: cover;">
@@ -150,28 +254,39 @@
 
         <hr>
 
-        <article class="card" style="margin-top: 16px;">
-            
-<div class="card-content" style="display: flex; flex-direction: row-reverse; align-items: flex-start; gap: 16px;">           
-     <img class="card-image" src="Filler sketch.png" width="400" height="auto" alt="My face" style="flex-shrink: 0; margin-left: auto; loading=lazy; transform: scaleX(-1);" title="filler-sketch">
-            <div class="card-text">
+  
                 
                
-</div>
+<article class="card" style="margin-top: 16px;">
+    <div class="card-content" style="display: flex; flex-direction: row-reverse; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap;">
+        <img class="card-image" src="Filler sketch.png" width="400" alt="Sketch of a person reading under a tree" style="flex-shrink: 0; height: auto; transform: scaleX(-1);" loading="lazy" title="filler-sketch">
 
-</div>
+        <div class="currently-widget" style="flex: 1; min-width: 260px; max-width: 420px;">
+            <p class="currently-heading">Currently...</p>
+
+            <ul class="currently-list">
+                <li><a href="music.html"><span title="Currently Listening to">🎵</span></a> - girl in new york - Role Model</li>
+                <li><a href="index.html"><span title="Currently Watching">📺</span></a> - FX's Adults</li>
+                <li><a href="books.html"><span title="Currently Reading">📖</span></a> - Much Ado About Nothing by Shakespeare</li>
+                <li class="currently-subitem"> - The War of The Worlds by H.G. Wells</li>
+                <li><a href="photos.html"><span title="Currently Shooting with">📷</span></a> - Minolta Maxxum 5 (Kodak Gold 400)</li>
+                <li class="currently-subitem"> - Nikon Z6 (digital)</li>
+                <li class="currently-subitem"> - Yashica Electra 35 (kodak ultramax 400)</li>
+            </ul>
+        </div>
+    </div>
+</article>
 <hr>
     <div class="feature-grid" style="display: flex; flex-direction: row; justify-content: space-between; gap: 24px; text-align: center;">    
 
  <div class="feature-card" style="flex: 1; display: flex; flex-direction: column; align-items: center;">        
         <a href="Postcards.html" style="display: inline-block; text-decoration: none;">
-            <img class="feature-card-image" src="Postcard.png" alt="Postcard" style="width: 90px; height: 90px; object-fit: cover; border-radius: 50%; margin-bottom: 12px;">
+            <img class="feature-card-image" src="Postcard.png" alt="Postcard" style="width: 90px; height: 90px; object-fit: cover; border-radius: 50%; margin-bottom: -2px;">
        
         </a>
             <h4 style="margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 1px;">
-            <a href="photos.html" style="color: inherit; text-decoration: none;">Postcard</a>
+            <a href="Postcards.html" style="color: inherit; text-decoration: none;">Postcard</a>
         </h4>
-      
 </div>
 
     </div>
