@@ -709,7 +709,7 @@
     box-sizing: border-box;
 }
 
-.entries-calendar.is-expanded {
+.entries-calendar:has(.entries-calendar-archive[open]) {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -729,7 +729,6 @@
 
 .entries-calendar-month {
     display: block;
-    width: 100%;
     padding: 0;
     border: 0;
     background: transparent;
@@ -739,7 +738,52 @@
     font-weight: bold;
     font-size: 1.05rem;
     color: #3d3227;
-    margin-bottom: 14px;
+    margin: 0;
+}
+
+.entries-calendar-month::-webkit-details-marker {
+    display: none;
+}
+
+.entries-calendar-month::marker {
+    content: "";
+}
+
+.entries-calendar-nav {
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr) 32px;
+    align-items: center;
+    gap: 6px;
+    margin: 10px 0 14px;
+}
+
+.entries-calendar-nav-button {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #e5dcc9;
+    border-radius: 50%;
+    background: #fffaf2;
+    color: #6b5747;
+    cursor: pointer;
+    font: inherit;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.entries-calendar-nav-button:disabled {
+    cursor: default;
+    opacity: 0.4;
+}
+
+.entries-calendar-nav-button:hover {
+    background: #f2e4d4;
+    color: #a0522d;
+}
+
+.entries-calendar-nav-button:focus-visible,
+.entries-calendar-month:focus-visible {
+    outline: 2px solid #a0522d;
+    outline-offset: 2px;
 }
 
 .entries-calendar-grid {
@@ -790,6 +834,11 @@
     color: #4a4038;
 }
 
+.day-cell.today.has-post .day-num {
+    background-color: #a0522d;
+    color: #fffaf2;
+}
+
 .entries-calendar-divider {
     border: none;
     border-top: 1px dashed #d8cdbb;
@@ -824,6 +873,13 @@
 .entries-calendar-list a:hover {
     color: #a0522d;
     text-decoration: underline;
+}
+
+.calendar-feed-label {
+    margin: 0 0 18px;
+    color: #8a7d6d;
+    font-size: 0.9rem;
+    font-style: italic;
 }
 
 @media (max-width: 1170px) {
@@ -907,10 +963,11 @@
             <main>
                  <article class="blog-post" id="post-2026-10-07">
                     <div class="post-meta">October 7,2026</div>
-                    <h2>And ignore this, im still super cool and nonchalant. baddest bitch you know</h2>
-                        <h5>lwk like 0ct 7....its like 3:36am</h5>
-                    <p>And what if I told you that i almost got in a car accendent, and felt a releif, havent felt that in awhile. My head was just empty which it hasnt been in months. Why is having a crush feel like a crushing weight on my chest? Its been getting harder to breath and I havent even been smoking. Ive been having to remind myself to breath to like not die. Am I crazy? Am I Conrad Fisher or Tom...? This kinda shit should be considered self harm. Cant even get away by reading anymore. How pathetic honestly. Im thinking about someone who <s>doesnt even give me a secound thought, </s>nah, EYE (I) am the secound thought. </p> 
-                    <p>but im still a boss</p>
+                   <h2>And ignore this, im still super cool and nonchalant. baddest bitch you know</h2>
+                       <h5>lwk like 0ct 7....its like 3:36am</h5>
+                   <p>And what if I told you that i almost got in a car accident, and felt a relief, haven't felt that in awhile. My head was just empty which it hasn't been in months. Why does having a crush feel like a crushing weight on my chest? It's been getting harder to breathe and I haven't even been smoking. I've been having to remind myself to breathe to not die. Am I crazy? Am I Conrad Fisher or Tom...? This kinda shit should be considered self harm. Cant even get away by reading anymore. How pathetic honestly. I'm thinking about someone who <s>doesnt even give me a second thought,</s> nah, EYE (I) am the second thought. </p>
+                   <p>but im still a boss</p>
+
                 </article>
                 <article class="blog-post" id="post-2026-10-06">
                     <div class="post-meta">October 6, 2026 • Updates</div>
@@ -1300,6 +1357,22 @@
             </main>
 
             <div class="right-rail">
+                  <div class="entries-calendar">
+                    <p class="entries-calendar-heading">my blog entries</p>
+
+                    <details class="entries-calendar-archive">
+                        <summary class="entries-calendar-month" id="entries-calendar-month"></summary>
+                        <div class="entries-calendar-nav">
+                            <button class="entries-calendar-nav-button" id="entries-calendar-previous" type="button" aria-label="Previous month">&lsaquo;</button>
+                            <button class="entries-calendar-nav-button" id="entries-calendar-next" type="button" aria-label="Next month">&rsaquo;</button>
+                        </div>
+                    </details>
+
+                    <div class="entries-calendar-grid" id="entries-calendar-grid"></div>
+
+                    <hr class="entries-calendar-divider">
+                    <ul class="entries-calendar-list" id="entries-calendar-list"></ul>
+                </div>
                 <div class="sticky-sidebar">
                     <img src="washi tape.png" alt="Washi Tape" class="washi-tape">
                     <p class="note-heading">Note to Self:</p>
@@ -1327,21 +1400,7 @@
                     </div>
                 </div>
 
-                <div class="entries-calendar">
-                    <p class="entries-calendar-heading">my blog entries</p>
-
-                <button
-                class="entries-calendar-month"
-                id="entries-calendar-month"
-                type="button"
-                aria-expanded="false"
-                ></button>
-
-                    <div class="entries-calendar-grid" id="entries-calendar-grid"></div>
-
-                    <hr class="entries-calendar-divider">
-                    <ul class="entries-calendar-list" id="entries-calendar-list"></ul>
-                </div>
+              
             </div>
         </div>
     </div>
@@ -1367,20 +1426,41 @@
     setInterval(updateCurrentlyTime, 60000);
 
     const calendarMonth = document.querySelector('#entries-calendar-month');
-    const calendarWidget = document.querySelector('.entries-calendar');
+    const calendarArchive = document.querySelector('.entries-calendar-archive');
+    const calendarPrevious = document.querySelector('#entries-calendar-previous');
+    const calendarNext = document.querySelector('#entries-calendar-next');
     const calendarGrid = document.querySelector('#entries-calendar-grid');
     const calendarList = document.querySelector('#entries-calendar-list');
     const calendarSources = ['music.html'];
+    const displayedMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+    const blogFeed = document.querySelector('.content-shell > main');
+    const calendarFeedLabel = document.createElement('p');
+    calendarFeedLabel.className = 'calendar-feed-label';
+    calendarFeedLabel.setAttribute('aria-live', 'polite');
+    blogFeed.prepend(calendarFeedLabel);
 
-    calendarMonth.addEventListener('click', () => {
-        const isExpanded = calendarWidget.classList.toggle('is-expanded');
-        calendarMonth.setAttribute('aria-expanded', isExpanded);
+    calendarArchive.addEventListener('toggle', () => {
+        if (!calendarArchive.open) {
+            const now = new Date();
+            displayedMonth.setFullYear(now.getFullYear(), now.getMonth(), 1);
+            renderCalendar();
+        }
+    });
+
+    calendarPrevious.addEventListener('click', () => {
+        displayedMonth.setMonth(displayedMonth.getMonth() - 1);
+        renderCalendar();
+    });
+
+    calendarNext.addEventListener('click', () => {
+        displayedMonth.setMonth(displayedMonth.getMonth() + 1);
+        renderCalendar();
     });
 
     function getCalendarPosts(root, source = '') {
         return [...root.querySelectorAll('.blog-post')]
         .map((post, index) => {
-            const dateText = post.querySelector('.post-meta')?.textContent.match(/[A-Z][a-z]+\s+\d{1,2}\s*,\s*\d{4}/)?.[0].replace(/\s*,\s*/, ', ');
+            const dateText = post.querySelector('.post-meta')?.textContent.match(/[A-Z][a-z]+\s+\d{1,2}\s*,\s*\d{4}/)?.[0].replace(/^Augest/i, 'August').replace(/\s*,\s*/, ', ');
             if (!dateText) return null;
             const date = new Date(`${dateText} 12:00:00`);
             if (Number.isNaN(date.getTime())) return null;
@@ -1391,12 +1471,26 @@
         .filter(Boolean);
     }
 
-    let calendarPosts = getCalendarPosts(document);
+    const blogPosts = getCalendarPosts(blogFeed);
+    let calendarPosts = blogPosts;
+
+    function renderBlogFeed() {
+        const year = displayedMonth.getFullYear();
+        const month = displayedMonth.getMonth();
+        blogPosts.forEach(({ date, post }) => {
+            post.hidden = date.getFullYear() !== year || date.getMonth() !== month;
+        });
+        [...blogFeed.querySelectorAll(':scope > hr')].forEach((divider) => {
+            const previousPost = divider.previousElementSibling?.matches('.blog-post') ? divider.previousElementSibling : null;
+            const nextPost = divider.nextElementSibling?.matches('.blog-post') ? divider.nextElementSibling : null;
+            divider.hidden = Boolean((previousPost && previousPost.hidden) || (nextPost && nextPost.hidden));
+        });
+    }
 
     function renderCalendar() {
         const today = new Date();
-        const year = today.getFullYear();
-        const month = today.getMonth();
+        const year = displayedMonth.getFullYear();
+        const month = displayedMonth.getMonth();
         const monthPosts = calendarPosts.filter(({ date }) => date.getFullYear() === year && date.getMonth() === month);
         const postsByDay = new Map();
         monthPosts.forEach(({ date, href }) => {
@@ -1405,7 +1499,8 @@
             postsByDay.get(day).push(href);
         });
 
-        calendarMonth.textContent = today.toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
+        calendarMonth.textContent = displayedMonth.toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
+        calendarNext.disabled = displayedMonth >= new Date(today.getFullYear(), today.getMonth(), 1);
         calendarGrid.replaceChildren();
         ['S', 'M', 'T', 'W', 'T', 'F', 'S'].forEach((label) => {
             const heading = document.createElement('div');
@@ -1430,7 +1525,9 @@
                     dayNumber.href = dayPosts[0];
                     dayNumber.title = `${dayPosts.length} blog entr${dayPosts.length === 1 ? 'y' : 'ies'}`;
                 }
-                if (day === today.getDate()) dayCell.classList.add('today');
+                if (year === today.getFullYear() && month === today.getMonth() && day === today.getDate()) {
+                    dayCell.classList.add('today');
+                }
                 dayCell.append(dayNumber);
             }
             calendarGrid.append(dayCell);
@@ -1448,8 +1545,10 @@
             item.append(heart, link);
             calendarList.append(item);
         });
+        renderBlogFeed();
     }
 
+    renderCalendar();
     async function loadCalendarSources() {
         const sourcePosts = await Promise.all(calendarSources.map(async (source) => {
             try {
