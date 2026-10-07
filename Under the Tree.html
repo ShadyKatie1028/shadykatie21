@@ -15,6 +15,7 @@
         }
 
         body {
+            zoom: 0.85;
             background-color: #efe8d9; 
             color: #333333;
             font-family: Georgia, serif;
@@ -741,6 +742,16 @@
     margin: 0;
 }
 
+.entries-calendar-month::after {
+    content: "⌄";
+    margin-left: 0.35em;
+    font-size: 0.85em;
+}
+
+.entries-calendar-archive[open] > .entries-calendar-month::after {
+    content: "⌃";
+}
+
 .entries-calendar-month::-webkit-details-marker {
     display: none;
 }
@@ -961,6 +972,11 @@
             </div>
 
             <main>
+                <article class="blog-post" id="post-2026-10-07">
+                    <h1>PINNED!</h1>
+                    <p><li class="new-shiny">New Way To Access The Older Months</li></p>
+                    <p>Now if you guys wanted to look back to the older posts, past the current months, you may use the Calender widget!</p>
+                </article>
                  <article class="blog-post" id="post-2026-10-07">
                     <div class="post-meta">October 7,2026</div>
                    <h2>And ignore this, im still super cool and nonchalant. baddest bitch you know</h2>
@@ -1357,7 +1373,15 @@
             </main>
 
             <div class="right-rail">
-                  <div class="entries-calendar">
+        
+                <div class="sticky-sidebar">
+                    <img src="washi tape.png" alt="Washi Tape" class="washi-tape">
+                    <p class="note-heading">Note to Self:</p>
+                    <p class="note-text note-text--handwritten">
+                        <span>Go Check Out <a href="https://kittenluv1.com/blog/2026/">Erica's Blog!</a></span>
+                    </p>
+                </div>
+                          <div class="entries-calendar">
                     <p class="entries-calendar-heading">my blog entries</p>
 
                     <details class="entries-calendar-archive">
@@ -1372,13 +1396,6 @@
 
                     <hr class="entries-calendar-divider">
                     <ul class="entries-calendar-list" id="entries-calendar-list"></ul>
-                </div>
-                <div class="sticky-sidebar">
-                    <img src="washi tape.png" alt="Washi Tape" class="washi-tape">
-                    <p class="note-heading">Note to Self:</p>
-                    <p class="note-text note-text--handwritten">
-                        <span>Go Check Out <a href="https://kittenluv1.com/blog/2026/">Erica's Blog!</a></span>
-                    </p>
                 </div>
 
 <a target="blank"
@@ -1426,6 +1443,7 @@
     setInterval(updateCurrentlyTime, 60000);
 
     const calendarMonth = document.querySelector('#entries-calendar-month');
+    const calendarWidget = document.querySelector('.entries-calendar');
     const calendarArchive = document.querySelector('.entries-calendar-archive');
     const calendarPrevious = document.querySelector('#entries-calendar-previous');
     const calendarNext = document.querySelector('#entries-calendar-next');
@@ -1438,6 +1456,12 @@
     calendarFeedLabel.className = 'calendar-feed-label';
     calendarFeedLabel.setAttribute('aria-live', 'polite');
     blogFeed.prepend(calendarFeedLabel);
+
+    calendarWidget.addEventListener('click', (event) => {
+        if (!calendarArchive.open && !event.target.closest('a, button, summary')) {
+            calendarArchive.open = true;
+        }
+    });
 
     calendarArchive.addEventListener('toggle', () => {
         if (!calendarArchive.open) {
