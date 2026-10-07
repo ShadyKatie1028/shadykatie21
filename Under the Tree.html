@@ -905,23 +905,19 @@
             </div>
 
             <main>
-                <article class="blog-post" id="post-2026-10-06">
-                    <div class="post-meta">October 6.2026</div>
+                 <article class="blog-post" id="post-2026-10-07">
+                    <div class="post-meta">October 7,2026</div>
                     <h2>And ignore this, im still super cool and nonchalant. baddest bitch you know</h2>
-                    <h3>lwk like 0ct 7....its like 3:36am</h3>
+                        <h5>lwk like 0ct 7....its like 3:36am</h5>
                     <p>And what if I told you that i almost got in a car accendent, and felt a releif, havent felt that in awhile. My head was just empty which it hasnt been in months. Why is having a crush feel like a crushing weight on my chest? Its been getting harder to breath and I havent even been smoking. Ive been having to remind myself to breath to like not die. Am I crazy? Am I Conrad Fisher or Tom...? This kinda shit should be considered self harm. Cant even get away by reading anymore. How pathetic honestly. Im thinking about someone who <s>doesnt even give me a secound thought, </s>nah, EYE (I) am the secound thought. </p> 
                     <p>but im still a boss</p>
                 </article>
-
-
-
                 <article class="blog-post" id="post-2026-10-06">
                     <div class="post-meta">October 6, 2026 • Updates</div>
                     <h2>October!</h2>
                         <p>Big month for me, I got mid terms next week. My 21st birthday, Charlies birthday, and most importanty KINGS BASKETBALL IS BACKKKKK!!!!</p>
-                        <p>I have already bought tickets for opening night and for a game in novemenber. And yes guys I did pay to watch the worst team in the NBA. so excited to see my team get beat up cant wait.</p>
+                        <p>I have already bought tickets for opening night and for a game in novemenber. And yes guys I did pay to watch the worst team in the NBA. so excited to see my team get beat up cant wait. </p>
                 </article>
-
                 <article class="blog-post" id="post-2026-10-06">
                     <div class="post-meta">October 6, 2026 • Updates</div>
                     <h2>A TWO MINUTE TEST?</h2>
@@ -1384,7 +1380,7 @@
     function getCalendarPosts(root, source = '') {
         return [...root.querySelectorAll('.blog-post')]
         .map((post, index) => {
-            const dateText = post.querySelector('.post-meta')?.textContent.match(/[A-Z][a-z]+\s+\d{1,2},\s+\d{4}/)?.[0];
+            const dateText = post.querySelector('.post-meta')?.textContent.match(/[A-Z][a-z]+\s+\d{1,2}\s*,\s*\d{4}/)?.[0].replace(/\s*,\s*/, ', ');
             if (!dateText) return null;
             const date = new Date(`${dateText} 12:00:00`);
             if (Number.isNaN(date.getTime())) return null;
