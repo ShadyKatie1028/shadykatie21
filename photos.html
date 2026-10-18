@@ -68,6 +68,12 @@
   margin: 0 0 0 auto;
 }
 
+.page-divider {
+  height: 1px;
+  border: 0;
+  background: #222;
+}
+
 .polaroid-gallery {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -283,6 +289,65 @@
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  width: 52px;
+  height: 76px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: #fff;
+  font-size: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 1001;
+}
+
+.lightbox-nav:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.38);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-nav::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  border: solid currentColor;
+  border-width: 0 3px 3px 0;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
+}
+
+.lightbox-prev::before {
+  transform: translateX(4px) rotate(135deg);
+}
+
+.lightbox-next::before {
+  transform: translateX(-4px) rotate(-45deg);
+}
+
+.lightbox-nav:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.lightbox-nav:disabled {
+  opacity: 0.28;
+  cursor: default;
+}
+
+.lightbox-prev {
+  left: 20px;
+}
+
+.lightbox-next {
+  right: 20px;
+}
+
 .lightbox-caption {
   color: #fff;
   margin-top: 16px;
@@ -362,6 +427,18 @@
 
   <hr class="page-divider page-divider--spaced">
 <div class="photo-grid">
+  <div class="grid-item" tabindex="0" data-bio=""> 
+  <img src="Tolerate It-1.jpg" alt="I know my love should be celebrated, but you tolerate it" loading="lazy" title="Tolerate It 1">
+    <div class="bio-overlay"><strong>I know my love should be celebrated, but you tolerate it</strong></div>
+  </div>
+  <div class="grid-item" tabindex="0" data-bio=""> 
+  <img src="Tolerate It-2.jpg" alt="Lay the table with the fancy shit" loading="lazy" title="Tolerate It 2">
+    <div class="bio-overlay"><strong>Lay the table with the fancy shit</strong></div>
+  </div>
+  <div class="grid-item" tabindex="0" data-bio=""> 
+  <img src="Tolerate It-3.jpg" alt="I wait by the door like I'm just a kid" loading="lazy" title="Tolerate It 3">
+    <div class="bio-overlay"><strong>I wait by the door like I'm just a kid</strong></div>
+  </div>
    <div class="grid-item" tabindex="0" data-bio=""> 
   <img src="Oct9-6.jpg" alt="" loading="lazy">
     <div class="bio-overlay"><strong></strong></div>
@@ -371,12 +448,12 @@
     <div class="bio-overlay"><strong></strong></div>
   </div>
    <div class="grid-item" tabindex="0" data-bio=""> 
-  <img src="Oct9-4.jpg" alt="" loading="lazy">
-    <div class="bio-overlay"><strong></strong></div>
+  <img src="Oct9-4.jpg" alt="PUMPKIN" loading="lazy">
+    <div class="bio-overlay"><strong>PUMPKIN</strong></div>
   </div>
    <div class="grid-item" tabindex="0" data-bio=""> 
-  <img src="Oct9-3.jpg" alt="" loading="lazy">
-    <div class="bio-overlay"><strong></strong></div>
+  <img src="Oct9-3.jpg" alt="Easy, easy like Sunday morning" loading="lazy">
+    <div class="bio-overlay"><strong>Easy, easy like Sunday morning</strong></div>
   </div>
   <div class="grid-item" tabindex="0" data-bio=""> 
   <img src="Oct9-2.jpg" alt="" loading="lazy">
@@ -405,8 +482,8 @@
   <img src="Red Car-01.jpg" alt="" loading="lazy">
     <div class="bio-overlay"><strong>Getaway Car</strong></div>
   </div><div class="grid-item" tabindex="0" data-bio="">
-    <img src="Red Car-02.jpg" alt="" loading="lazy">
-    <div class="bio-overlay"><strong></strong></div>
+    <img src="Red Car-02.jpg" alt="Hey, driver, pull on over, I'm in a fight with God." loading="lazy">
+    <div class="bio-overlay"><strong>Hey, driver, pull on over, I'm in a fight with God.</strong></div>
   </div><div class="grid-item" tabindex="0" data-bio="">
     <img src="Red Car-03.jpg" alt="" loading="lazy">
     <div class="bio-overlay"><strong></strong></div>
@@ -426,8 +503,8 @@
     <img src="Red Car-08.jpg" alt="" loading="lazy">
     <div class="bio-overlay"><strong>Stingray</strong></div>
   </div><div class="grid-item" tabindex="0" data-bio="">
-    <img src="Red Car-09.jpg" alt="" loading="lazy">
-    <div class="bio-overlay"><strong></strong></div>
+    <img src="Red Car-09.jpg" alt="Didn't know you drove American cars" loading="lazy">
+    <div class="bio-overlay"><strong>Didn't know you drove American cars</strong></div>
   </div><div class="grid-item" tabindex="0" data-bio="">
     <img src="Red Car-10.jpg" alt="" loading="lazy">
     <div class="bio-overlay"><strong></strong></div>
@@ -498,8 +575,8 @@
     <div class="bio-overlay"><strong>NYC2</strong></div>
   </div>
 <div class="grid-item" tabindex="0" data-bio="">
-    <img src="Motorcycle.jpg" alt="Motorcycle" loading="lazy">
-    <div class="bio-overlay"><strong>Motorcycle</strong></div>
+    <img src="Motorcycle.jpg" alt="Motorcycle Drive By" loading="lazy">
+    <div class="bio-overlay"><strong>Motorcycle Drive By</strong></div>
   </div>
 <div class="grid-item" tabindex="0" data-bio="Jameson">
     <img src="Jameson.jpg" alt="Jameson" loading="lazy">
@@ -756,7 +833,9 @@
 
   <div class="lightbox-modal" id="lightboxModal">
     <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Newer photo">‹</button>
     <img id="lightboxImage" src="" alt="Enlarged view">
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Previous photo">›</button>
     <div class="lightbox-caption" id="lightboxCaption"></div>
   </div>
 
@@ -765,16 +844,39 @@
     const lightboxImage = document.getElementById('lightboxImage');
     const lightboxCaption = document.getElementById('lightboxCaption');
     const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+    const photos = Array.from(document.querySelectorAll('.polaroid, .grid-item')).map(card => {
+      const img = card.querySelector('img');
+      const title = card.querySelector('p')?.textContent || img.alt;
 
-    function openLightbox(src, title, bio) {
+      return {
+        src: img.src,
+        title,
+        bio: card.getAttribute('data-bio') || ''
+      };
+    });
+    let currentPhotoIndex = -1;
+
+    function showPhoto(index) {
+      if (index < 0 || index >= photos.length) return;
+
+      currentPhotoIndex = index;
+      const { src, title, bio } = photos[index];
       lightboxImage.src = src;
       lightboxImage.alt = title || 'Photo';
-      
+
       let captionHtml = '';
       if (title) captionHtml += `<strong>${title}</strong>`;
       if (bio) captionHtml += `<span>${bio}</span>`;
-      
+
       lightboxCaption.innerHTML = captionHtml;
+      lightboxPrev.disabled = index === 0;
+      lightboxNext.disabled = index === photos.length - 1;
+    }
+
+    function openLightbox(index) {
+      showPhoto(index);
       lightboxModal.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
@@ -783,42 +885,31 @@
       lightboxModal.classList.remove('active');
       document.body.style.overflow = 'auto';
       lightboxImage.src = '';
+      currentPhotoIndex = -1;
     }
 
-    document.querySelectorAll('.polaroid').forEach(card => {
-      const img = card.querySelector('img');
-      const title = card.querySelector('p')?.textContent || img.alt;
-      const bio = card.getAttribute('data-bio') || '';
-
-      card.addEventListener('click', () => openLightbox(img.src, title, bio));
+    document.querySelectorAll('.polaroid, .grid-item').forEach((card, index) => {
+      card.addEventListener('click', () => openLightbox(index));
       card.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          openLightbox(img.src, title, bio);
-        }
-      });
-    });
-
-    document.querySelectorAll('.grid-item').forEach(item => {
-      const img = item.querySelector('img');
-      const title = img.alt;
-      const bio = item.getAttribute('data-bio') || '';
-
-      item.addEventListener('click', () => openLightbox(img.src, title, bio));
-      item.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          openLightbox(img.src, title, bio);
+          openLightbox(index);
         }
       });
     });
 
     lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', () => showPhoto(currentPhotoIndex - 1));
+    lightboxNext.addEventListener('click', () => showPhoto(currentPhotoIndex + 1));
     lightboxModal.addEventListener('click', (e) => {
       if (e.target === lightboxModal) closeLightbox();
     });
     document.addEventListener('keydown', (e) => {
+      if (!lightboxModal.classList.contains('active')) return;
+
       if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') showPhoto(currentPhotoIndex - 1);
+      if (e.key === 'ArrowRight') showPhoto(currentPhotoIndex + 1);
     });
   </script>
 </body>
