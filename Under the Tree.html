@@ -106,6 +106,61 @@
             margin-bottom: 15px;
         }
 
+        .post-photo-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: 16px;
+            justify-items: center;
+        }
+
+        .post-photo-comparison img {
+            display: block;
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+        }
+
+        .post-photo-expand {
+            width: 100%;
+            padding: 0;
+            border: 0;
+            background: none;
+            cursor: default;
+        }
+
+        .post-photo-viewer {
+            position: relative;
+            max-width: calc(100vw - 32px);
+            max-height: calc(100vh - 32px);
+            padding: 44px 16px 16px;
+            border: 1px solid #e5dcc9;
+            border-radius: 10px;
+            background: #fef9f0;
+        }
+
+        .post-photo-viewer::backdrop {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .post-photo-viewer img {
+            display: block;
+            max-width: calc(100vw - 64px);
+            max-height: calc(100vh - 96px);
+            object-fit: contain;
+        }
+
+        .post-photo-viewer-close {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            border: 0;
+            background: transparent;
+            color: #3d3227;
+            font-size: 1.8rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+
         .read-more {
             color: #a0522d;
             text-decoration: none;
@@ -969,7 +1024,7 @@
                         <li><a href="index.html"><span title="Currently Watching">📺</span></a>Sterling's Point</li>
                         <li><a href="books.html"><span title="Currently Reading">📖</span></a>MacBeth by Shakespeare</li>
                         <li class="currently-subitem">Letters To A Young Poet by Rainer Maria Rilke</li>
-                        <li><a href="photos.html"><span title="Currently Shooting with">📷</span></a> Minolta Maxxum 5 (Harman Phoenix II 200)</li>
+                        <li><a href="photos.html"><span title="Currently Shooting with">📷</span></a> Minolta Maxxum 5 (Kodak Gold 200)</li>
                         <li class="currently-subitem">Nikon Z6 (digital)</li>
                         <li class="currently-subitem">Yashica Electra 35 (kodak ultramax 400)</li>
                         <li class="currently-subitem">Canon Powershot SX740 HS (Digital)</li>
@@ -1006,6 +1061,36 @@
                     <p><li class="new-shiny">New Way To Access The Older Months</li></p>
                     <p>Now if you guys wanted to look back to the older posts, past the current months, you may use the Calender widget!</p>
                     <p>Just click on the month and youll be able to swtich months!</p>
+                </article>
+                <article class="blog-post" id="post-2026-10-21">
+                    <div class="post-meta">October 21, 2026</div>
+                    <h2>Film or Digital?</h2>
+                    <p>OK TIME TO ANSWER THE DAY OLD QUESTION!!</p>
+                    <p>We have two photos, taken the same day within a few minutes of each other, only thing different is the medium. So why dont you guys let me know which one is better?</p>
+                    <div class="post-photo-comparison">
+                        <button class="post-photo-expand" type="button" aria-label="Expand Harmon2-1 photo">
+                            <img src="Harmon2-1.jpg" alt="Harmon2-1 photograph">
+                        </button>
+                        <button class="post-photo-expand" type="button" aria-label="Expand Red Car-05 photo">
+                            <img src="Red Car-05.jpg" alt="Red Car-05 photograph">
+                        </button>
+                    </div>
+                    <p>Feel free to click on the photos and compare them, send ur thoughts too!!</p>
+                </article>
+                <article class="blog-post" id="post-2026-10-21">
+                    <div class="post-meta">October 21, 2026</div>
+                    <h2>Phonex Harman II 200 Review</h2>
+                    <p>ok I finally got my Harman II 200 film back and from the 2 secounds of reserch i did, i may have underexposed my photos...? But it was broad daylight and i had my camera in 200iso. So im not sure why, Ive heard that its just how the film looks and ive also read that it COULD be my developing place, which i hope now, i love my lab. idk, but i didnt love it so im relucted to use it again. Ill try one more time, maybe push the stock when we develop. Ill post the photos in the photo page.</p>
+                    <p> <a href="photos.html">View Harman Phonex II 200 photos</a> </p>
+                </article>
+
+
+                <article class="blog-post" id="post-2026-10-20">
+                    <div class="post-meta">October 20, 2026</div>
+                    <h2>The Role Model Concert got CANCELLED</h2>
+                    <p>I WAS DEVESATED, I came back from my Comms Midterm and got shot in the chest. Unforch I ended up having to go to my second class smh. I was dedicated to make a good thing happen and i knew if i stayed at home id cry myself to sleep so i bugged the group i was going to go to RM with and got them to go to berkeley with me anyways. Honestly was worth it TO ME, now if you know me, then you know that EVEN IF you punch me in the face and told me you were having a good time. I would still think you hated it and would rather stay home, who knwos. Def not me! So yes RM did get cancelled #Tuckerisoverparty, but i still had a really good time and got to take some cool photos. That yes are going to be posted.</p>
+                    <p>I think also, im gonna change the way i do that calender. Ill upload it the last day of each month, ie. My November calender will be uploaded on the last day of November, as more of a recap ya feel me?</p>
+                    <p>Tomorrow we might be going to SF...? Im not sure, but we might be going to see Malcom Todd and just doing a day trip. Will keep you guys updated <3 </p>
                 </article>
 
                 <article class="blog-post" id="post-2026-10-18">
@@ -1485,6 +1570,11 @@
         </div>
     </div>
 
+<dialog class="post-photo-viewer" aria-label="Expanded photo">
+    <button class="post-photo-viewer-close" type="button" aria-label="Close expanded photo">&times;</button>
+    <img src="" alt="">
+</dialog>
+
 <footer>
 <script type="text/javascript" src="https://counter.websiteout.com/js/4/0/61/0"></script>
 
@@ -1661,6 +1751,26 @@
     const blogGuestName = document.querySelector('#blog-guest-name');
     const blogGuestAnonymous = document.querySelector('#blog-guest-anonymous');
     const recentNotes = document.querySelector('#guestbook-recent-notes');
+    const photoViewer = document.querySelector('.post-photo-viewer');
+    const photoViewerImage = photoViewer.querySelector('img');
+
+    document.querySelectorAll('.post-photo-expand').forEach((button) => {
+        button.addEventListener('click', () => {
+            const thumbnail = button.querySelector('img');
+            photoViewerImage.src = thumbnail.src;
+            photoViewerImage.alt = thumbnail.alt;
+            photoViewer.showModal();
+        });
+    });
+
+    photoViewer.querySelector('.post-photo-viewer-close').addEventListener('click', () => {
+        photoViewer.close();
+    });
+
+    photoViewer.addEventListener('click', (event) => {
+        if (event.target === photoViewer) photoViewer.close();
+    });
+
     const supabaseUrl = 'https://wdezdqtlzzfpdnmgxfpq.supabase.co';
     const supabaseKey = 'sb_publishable_006ZLgVNmBJFl_LVQNjGwQ_Pt0_d2VV';
 
