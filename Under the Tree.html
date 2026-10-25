@@ -981,6 +981,62 @@
     .entries-calendar {
         display: none;
     }
+
+    body {
+        zoom: 1;
+        padding: 24px 16px;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 0 0 40px;
+    }
+
+    .content-shell {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+    }
+
+    .left-rail,
+    .right-rail {
+        display: none;
+    }
+
+    header {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 16px 10px;
+    }
+
+    .clip {
+        display: none;
+    }
+
+    header h1 {
+        font-size: 1.7rem;
+    }
+
+    header p {
+        font-size: 0.95rem;
+    }
+
+    .blog-post {
+        padding: 18px 16px;
+        margin-bottom: 20px;
+    }
+
+    .blog-post h2 {
+        font-size: 1.3rem;
+    }
+
+    .post-img,
+    .post-img--narrow {
+        max-width: 100%;
+    }
 }
 
 </style>
@@ -1055,18 +1111,17 @@
                 </aside>
             </div>
 
-            <main>
-                <article class="blog-post" id="post-2026-10-25">
-                    <div class='post-meta'>October 25, 2026</div>
-                    <p>For my birthday i just want really good soup.</p>
-                </article>              
+            <main>          
                 <article class="blog-post" id="post-2026-10-07">
                     <h1>PINNED!</h1>
                     <p><li class="new-shiny">New Way To Access The Older Months</li></p>
                     <p>Now if you guys wanted to look back to the older posts, past the current months, you may use the Calender widget!</p>
                     <p>Just click on the month and youll be able to swtich months!</p>
                 </article>
-              
+               <article class="blog-post" id="post-2026-10-25">
+                    <div class='post-meta'>October 25, 2026</div>
+                    <p>For my birthday i just want really good soup.</p>
+                </article>   
                 <article class="blog-post" id="post-2026-10-25">
                     <div class="post-meta">October 25, 2026</div>
                     <h2>New photos</h2>
