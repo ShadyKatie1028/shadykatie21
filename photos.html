@@ -209,6 +209,30 @@
   transition: transform 0.24s ease, filter 0.24s ease;
 }
 
+.grid-item.is-new::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #e53935;
+  animation: new-photo-pulse 1.6s ease-in-out infinite;
+  z-index: 4;
+  pointer-events: none;
+}
+
+@keyframes new-photo-pulse {
+  50% { transform: scale(1.35); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grid-item.is-new::after {
+    animation: none;
+  }
+}
+
 .grid-item .bio-overlay {
   position: absolute;
   inset: 0;
@@ -427,31 +451,31 @@
 
   <hr class="page-divider page-divider--spaced">
 <div class="photo-grid">
-  <div class="grid-item" tabindex="0" data-bio="">
-    <img src="Octphotos-3.jpg" alt="" loading="lazy" title="">
-    <div class="bio-overlay"><strong></strong></div>
+  <div class="grid-item is-new" tabindex="0" data-bio="">
+    <img src="Octphotos-3.jpg" alt="Debí tirar más fotos de cuando te tuve. Debí darte más beso' y abrazo' las vece' que pude" loading="lazy" title="Debí tirar más fotos de cuando te tuve. Debí darte más beso' y abrazo' las vece' que pude">
+    <div class="bio-overlay"><strong>"Debí tirar más fotos de cuando te tuve. Debí darte más beso' y abrazo' las vece' que pude"</strong></div>
   </div>
-  <div class="grid-item" tabindex="0" data-bio="">
+  <div class="grid-item is-new" tabindex="0" data-bio="">
     <img src="Octphotos-5.jpg" alt="" loading="lazy" title="">
     <div class="bio-overlay"><strong></strong></div>
   </div>
   
-  <div class="grid-item" tabindex="0" data-bio="">
+  <div class="grid-item is-new" tabindex="0" data-bio="">
     <img src="Octphotos-4.jpg" alt="" loading="lazy" title="">
     <div class="bio-overlay"><strong></strong></div>
   </div>
   
-  <div class="grid-item" tabindex="0" data-bio="">
+  <div class="grid-item is-new" tabindex="0" data-bio="">
     <img src="Octphotos-2.jpg" alt="'Lonesome Is A State of Mind'" loading="lazy" title="'Lonesome Is A State of Mind'">
     <div class="bio-overlay"><strong>'Lonesome Is A State of Mind' <br>(CineStill 800T)</strong></div>
   </div>
-  <div class="grid-item" tabindex="0" data-bio="">
+  <div class="grid-item is-new" tabindex="0" data-bio="">
     <img src="Octphotos-1.jpg" alt="I'm an astronaut, you're the Moon" loading="lazy" title="I'm an astronaut, you're the Moon">
     <div class="bio-overlay"><strong>I'm an astronaut</strong>you're the Moon</div>
   </div>
-  <div class="grid-item" tabindex="0" data-bio="">
-    <img src="Octphotos.jpg" alt="" loading="lazy" title="">
-    <div class="bio-overlay"><strong></strong></div>
+  <div class="grid-item is-new" tabindex="0" data-bio="">
+    <img src="Octphotos.jpg" alt="Edna's old pickup truck" loading="lazy" title="Edna's old pickup truck">
+    <div class="bio-overlay"><strong>Edna's old pickup truck</strong></div>
   </div>
   <div class="grid-item" tabindex="0" data-bio="">
     <img src="Harman II-7.jpg" alt="Harman II 200" loading="lazy" title="Harman II-07">
