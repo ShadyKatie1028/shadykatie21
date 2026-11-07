@@ -24,7 +24,6 @@
             padding: 40px 20px;
         }
 
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -49,9 +48,42 @@
         }
 
         header {
+            position: relative;
             text-align: center;
             margin-bottom: 60px;
     }
+
+        .header-divider {
+            position: relative;
+            border-top: 1px solid #ddd3c0;
+            margin-top: 20px;
+        }
+
+        .header-lights {
+            position: absolute;
+            top: -37px;
+            left: 50%;
+            width: 100vw;
+            height: 74px;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1002;
+        }
+
+        .header-lights img {
+            flex: 0 0 360px;
+            width: 360px;
+            height: auto;
+            margin-right: -60px;
+            filter: drop-shadow(0 2px 3px rgba(120, 83, 35, 0.22));
+        }
+
+        .header-lights img:first-child {
+            margin-left: -150px;
+        }
 
         header h1 {
             font-size: 2rem;
@@ -217,20 +249,38 @@
             height: auto;
         }
 
-        .birds-clip {
+        .santa-clip {
             position: absolute;
-            top: -90px;
-            left: 50px;
-            width: auto;
-            height: 250px;
+            top: -65px;
+            left: 70px;
+            width: 280px;
+            height: auto;
+        }
+
+        .tree-sticker {
+            position: absolute;
+            top: -65px;
+            right: 110px;
+            width: 200px;
+            height: 200px;
+            z-index: 999;
         }
 
         .shady-clip {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .christmas-star {
             position: absolute;
-            top: -97px;
-            right: 60px;
-            width: auto;
-            height: 230px;
+            top: 10%;
+            left: 44%;
+            width: 18px;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 1;
         }
 
 
@@ -1024,6 +1074,10 @@
         display: none;
     }
 
+    .tree-sticker {
+        display: none;
+    }
+
     header h1 {
         font-size: 1.7rem;
     }
@@ -1059,13 +1113,33 @@
     </div>
 
     <div class="container">
-        <img src="birds.png" alt="Scrapbook clip" class="clip birds-clip">
-        <img src="Shady.png" alt="Scrapbook clip" class="clip shady-clip">
+        <img src="santa.png" alt="Santa and his reindeer" class="clip santa-clip">
+        <div class="tree-sticker">
+            <img src="Shady.png" alt="Three tree sticker" class="shady-clip">
+            <img src="Chrismas star.png" alt="Star on the middle tree" class="christmas-star">
+        </div>
 
         <header>
             <h1>Under the Tree</h1>
             <p>Updates, random thoughts, honeslty a glorified tumblr.</p>
-            <hr>
+            <div class="header-divider" aria-hidden="true">
+                <div class="header-lights">
+                    <img src="lights.png" alt="">
+                    <img src="lights.png" alt="">
+                    <img src="lights.png" alt="">
+                    <img src="lights.png" alt="">
+                    <img src="lights.png" alt="">
+                    <img src="lights.png" alt="">
+                    <img src="lights.png" alt="">
+                    <img src="lights.png" alt="">
+                    <img src="lights.png" alt="">
+                    <img src="lights.png" alt="">
+                    <img src="lights.png" alt="">
+                    <img src="lights.png" alt="">
+                    <img src="lights.png" alt="">
+                    <img src="lights.png" alt="">
+                </div>
+            </div>
             <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="82ba29e9-1385-41a9-975a-15bf63e4d649"></script>
         </header>
 
@@ -1124,6 +1198,15 @@
             </div>
 
             <main>  
+                 <article class="blog-post" id="post-2026-11-6">
+                    <div class='post-meta'>November 7, 2026 (4:00 AM)</div>
+                    <h2>Book Red Flags</h2>
+                    <p>Okay Ive thought about it, if a guy says that he reads but his favoirte book is <i>The Count of Monte Cristo</i> or <i>The Great Gatsby</i> that man has not gotten over ANYTHING. One book is about wasting your life for revenge and the other is just a book on yearning. both bad RUN RED FLAG. Also if your favorite book is a book you read in high shcool you dont read enough. People just say <i>Count of Monte Cristo</i> because its so long and its just to impress people trust.</p>
+                </article>
+                 <article class="blog-post" id="post-2026-11-6">
+                    <div class='post-meta'>November 7, 2026 (4:00 AM)</div>
+                    <p>ITS TIMEEEEEE!!!!!</p>
+                </article>
                 <article class="blog-post" id="post-2026-11-6">
                     <div class='post-meta'>November 6, 2026 (9:30 PM)</div>
                     <p>Saboner im sorry you gotta shave that toupe AND LOCK THE FUCK IN.</p>
@@ -1193,13 +1276,9 @@
                 </article>
                 <article class="blog-post" id="post-2026-11-3">
                     <div class='post-meta'>November 3, 2026 (1:12 AM)</div>
-                    <h2>The nerdy parts</h2>
-                    <p>Maybe this month I can like do (at least) one post a day. currently Im 2 classes away from my history AA, now AAs arent REAL degrees, if i wanted to teach I would have to get AT LEAST a masters, and then if i wanted to teach at a uni i would probably need a PHD. HA DR.Katie thats crazy. But if i wanted to teach community college its just a masters i think. HS is a whole other ball game. But some of you might be going "wow katie, teaching?" or "wow Katie that was fast how'd u get your history credits so fast?" well most of you know i took a gap year after high school, well i LIED. When I was dating someone who must not be named, it felt a little shamey to be a nerd. She made fun of Pokemon before I could show her my interest in it. She didn't read many books but when she did IT WAS ONLY COLLEEN HOOVER??? couldn't even pronounce Camus or Dostoevsky (guys I literally have a Camus speech on my thigh and like most of Dostoevsky on my shelf). So yeah, I played dumb in the relationship, and I hid a lot about me, including taking history classes (for fun too may i add, wasn't even planning on getting a degree, still dont it just happened that i took so many that i would be qualified).</p>
-                    <p>Now ME katie is like...girl why are you seeing someone who made u hide the nerdy parts of yourself? well idfk, and if you know me you know the nerdy parts of me is like 90% of me. The only upside of doing that is that I really got back into weightlifting and my Deadlift Pr was like 250 or some bullshit like that. Haven't been able to deadlift in so long, damn i gotta get on that...But yeah my fav trope has always been 'one person cares about something and the other doesn't but they still listen and try to understand'. I guess that's why it's so important for me to take recommendations seriously. (wow im so good at tying this all together) Whatever you love or are interested in can be really telling, and i like to know how people tick. and yes if i care about you, like REALLY care about you, i will never not want to learn about you. and that includes the nerdy things. In fact, to what, date the nerdy girls trustttttttt. To me, to be nerdy, is just another way of someone saying they're passionate about something. NERD OUT. </p>
-                    <p> Idk what changed, i used to get made fun of for being a nerd, weather it was liking history, comics, or like greek myths. but apparently now its cool? idk I come back to <a href="https://www.youtube.com/watch?v=-gZ-NvUlxfg">this video</a> a lot and it really helped me realize that in that relationship I was closing myself off a lot. Now that realization didn't come till after that relationship had come to an end, maybe if it had come out sooner than I would have been in the same place as I was. Another big example which later i realize was a bit of a red flag was that when taylor swift announced TTPD i was so hyped, and i was jumping around all giddy and shit, and she looked at me. and its a look ill never forget, it was that "what are you doing" look, that judgy look your parents would give you when you were interested in anything other than something that can produce money, kinda look. I think im just rambling now. oh yeah and she was a warroiers fan, not because she was from the bay or knew anything about basketball, but just beacuse someone from like her childhood (or wtv, it was the past) liked the kings, and she hated them so much that she would root for the FUCKING WARRIORS. what tf was i was THINKING </p>
+                    <h2>Barbecue Sauce</h2>
                     <p>Lets just kill this dumb ass nonchalant shit please. its cool to care, its cool to have passion and intrests. ACTUALLY being nonchalant is so lame, it just makes you boring. ask questions, ask other people questions. At some age we were stopped being told that there are no dumb questions. Theres this Ted Lasso quote, ill link the scene at the end of the post, 'Be Curious, not judgmental'. Ask the dumb questions, nerd out, play darts, stay curious, barbecue sauce.</p>                
-                    <p><a herf= https://youtu.be/i_FofLSherM?si=IfET2CGtxCAgQ4Hp> This is the Ted Lasso quote</a></p>
-                    <p>PS if anyone can tell me the significance of 'barbecue sauce' ill venmo you $2, just to see who read this long ass fucking post. my bad, ig i had a lot on my mind today :/ nighty</p>
+                    <p><a href="https://youtu.be/i_FofLSherM?si=IfET2CGtxCAgQ4Hp"> This is the Ted Lasso quote</a></p>
                 </article>   
                 <article class="blog-post" id="post-2026-11-2">
                     <div class='post-meta'>November 2, 2026 (2:08 PM)</div>
