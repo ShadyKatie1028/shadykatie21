@@ -2338,7 +2338,7 @@ main > article.blog-post:first-of-type::before {
 
     async function loadRecentNotes() {
         try {
-            const response = await fetch(`${supabaseUrl}/rest/v1/guestbook?select=name,message,created_at&order=created_at.desc&limit=3`, {
+            const response = await fetch(`${supabaseUrl}/rest/v1/guestbook?select=name,message,created_at&order=created_at.desc&limit=8`, {
                 headers: { apikey: supabaseKey, Authorization: `Bearer ${supabaseKey}` }
             });
             if (!response.ok) throw new Error('Could not load notes.');
