@@ -2241,7 +2241,7 @@ main > article.blog-post:first-of-type::before {
     function getCalendarPosts(root, source = '') {
         return [...root.querySelectorAll('.blog-post')]
         .map((post, index) => {
-            const dateText = post.querySelector('.post-meta')?.textContent.match(/[A-Z][a-z]+\s+\d{1,2}\s*,\s*\d{4}/)?.[0].replace(/^Augest/i, 'August').replace(/\s*,\s*/, ', ');
+            const dateText = post.querySelector('.post-meta, .blog-meta')?.textContent.match(/[A-Z][a-z]+\s+\d{1,2}\s*,\s*\d{4}/)?.[0].replace(/^Augest/i, 'August').replace(/\s*,\s*/, ', ');
             if (!dateText) return null;
             const date = new Date(`${dateText} 12:00:00`);
             if (Number.isNaN(date.getTime())) return null;
@@ -2322,7 +2322,7 @@ main > article.blog-post:first-of-type::before {
             heart.textContent = '♡';
             const link = document.createElement('a');
             link.href = href;
-            link.textContent = post.querySelector('h2, h4, p:not(.post-meta)')?.textContent.trim().slice(0, 60) || 'Blog entry';
+            link.textContent = post.querySelector('h2, h4, p:not(.post-meta):not(.blog-meta)')?.textContent.trim().slice(0, 60) || 'Blog entry';
             item.append(heart, link);
             calendarList.append(item);
         });
